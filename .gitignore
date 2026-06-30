@@ -1,0 +1,29 @@
+.env
+.fastapicloud/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.ruff_cache/
+local.db
+test.db
+test-e2e.db
+node_modules/
+frontend/node_modules/
+frontend/.turbo/
+frontend/*.tsbuildinfo
+.pnpm-store/
+playwright-report/
+test-results/
+frontend/test-results/
+
+# IDE
+.vscode/
+.idea/
+
+# FastAPI / uvicorn
+*.log
+
+# OS
+.DS_Store

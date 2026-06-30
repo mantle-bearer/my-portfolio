@@ -1,0 +1,50 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: fastapi
+          POSTGRES_PASSWORD: fastapi
+          POSTGRES_DB: fastapi_template
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U fastapi -d fastapi_template"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+      redis:
+        image: redis:7
+        ports:
+          - 6379:6379
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v5
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+      - run: uv sync --all-groups
+      - run: pnpm --dir frontend install --frozen-lockfile
+      - run: uv run ruff check .
+      - run: uv run pytest
+        env:
+          ENVIRONMENT: test
+          DATABASE_URL: postgresql+psycopg://fastapi:fastapi@localhost:5432/fastapi_template
+          REDIS_URL: redis://localhost:6379/0
+          JWT_SECRET: test-secret
+      - run: pnpm --dir frontend typecheck
+      - run: pnpm --dir frontend build
+      - run: git diff --exit-code -- dist
+      - run: uvx library-skills --check || true

@@ -1,0 +1,71 @@
+_message_after_copy: |
+  Your FastAPI project has been created.
+
+  Next steps:
+
+    cd {{ project_slug }}
+    cp .env.example .env
+    uv sync --all-groups
+    pnpm --dir frontend install
+    uv run app seed-local
+    uv run fastapi dev
+
+  Open http://127.0.0.1:8000 when the server starts.
+_templates_suffix: .jinja
+_exclude:
+  - .env
+  - .fastapicloud
+  - .git
+  - .github
+  - .pytest_cache
+  - .ruff_cache
+  - .venv
+  - .env.example
+  - node_modules
+  - frontend/node_modules
+  - frontend/test-results
+  - playwright-report
+  - test-results
+  - test.db
+  - test-e2e.db
+  - local.db
+
+project_name:
+  type: str
+  help: Project name
+  default: Fullstack FastAPI Template
+
+project_slug:
+  type: str
+  help: Directory/package slug
+  default: "{{ project_name|lower|replace(' ', '-')|replace('_', '-') }}"
+
+app_name:
+  type: str
+  help: Human-readable app name
+  default: "{{ project_name }}"
+
+database_url:
+  type: str
+  help: Local or hosted PostgreSQL URL
+  default: postgresql+psycopg://fastapi:fastapi@localhost:5432/fastapi_template
+
+first_admin_email:
+  type: str
+  help: First local admin email
+  default: admin@example.com
+
+enable_signup:
+  type: bool
+  help: Enable public signups by default
+  default: false
+
+use_redis:
+  type: bool
+  help: Configure optional Redis URL placeholder
+  default: false
+
+use_smtp:
+  type: bool
+  help: Configure optional SMTP placeholders
+  default: false

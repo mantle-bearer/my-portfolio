@@ -1,0 +1,24 @@
+{
+  "name": "FastAPI Full Stack Starter",
+  "short_name": "FastAPI Starter",
+  "description": "A production-minded FastAPI full stack starter with React, authentication, RBAC, Redis integration, and FastAPI Cloud deployment support.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#059669",
+  "icons": [
+    {
+      "src": "/assets/images/favicon.png",
+      "sizes": "144x144",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/images/fastapi-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

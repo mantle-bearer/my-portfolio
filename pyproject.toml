@@ -1,0 +1,63 @@
+[project]
+name = "fullstack-fastapi-template"
+version = "0.1.0"
+description = "A public fullstack FastAPI template for FastAPI Cloud."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "alembic>=1.13.0",
+    "email-validator>=2.2.0",
+    "fastapi[standard]>=0.116.0",
+    "pydantic-settings>=2.8.0",
+    "psycopg[binary]>=3.2.0",
+    "pwdlib[argon2]>=0.2.1",
+    "pyjwt>=2.10.0",
+    "sqlmodel>=0.0.22",
+    "fastapi-cloud-cli>=0.21.0",
+    "fastapi-redis-sdk==0.7.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "httpx>=0.28.0",
+    "httpx2>=2.0.0",
+    "pytest>=8.3.0",
+    "pytest-asyncio>=0.25.0",
+    "ruff>=0.8.0",
+]
+
+[project.scripts]
+app = "app.cli:main"
+
+[tool.fastapi]
+entrypoint = "app.main:app"
+
+[tool.uv]
+package = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["B", "D", "E", "F", "I", "SIM", "UP"]
+ignore = ["B008", "D203", "D213"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["D"]
+"migrations/*" = ["D"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+addopts = "-q"
