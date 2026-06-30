@@ -5,6 +5,7 @@ import { LoginPage, RecoverPasswordPage, ResetPasswordPage, SignupPage } from "@
 import { DashboardPage } from "@/pages/DashboardPage";
 import { ItemsPage } from "@/pages/ItemsPage";
 import { NotFoundPage } from "@/pages/NotFoundPage";
+import { PortfolioPage } from "@/pages/PortfolioPage";
 import { SettingsPage } from "@/pages/SettingsPage";
 
 const rootRoute = createRootRoute({ component: () => <Outlet /> });
@@ -13,6 +14,7 @@ const loginRoute = createRoute({ getParentRoute: () => rootRoute, path: "/login"
 const signupRoute = createRoute({ getParentRoute: () => rootRoute, path: "/signup", component: SignupPage });
 const recoverRoute = createRoute({ getParentRoute: () => rootRoute, path: "/recover-password", component: RecoverPasswordPage });
 const resetRoute = createRoute({ getParentRoute: () => rootRoute, path: "/reset-password", component: ResetPasswordPage });
+const portfolioRoute = createRoute({ getParentRoute: () => rootRoute, path: "/portfolio", component: PortfolioPage });
 const itemsRoute = createRoute({ getParentRoute: () => rootRoute, path: "/items", component: ItemsPage });
 const adminRoute = createRoute({ getParentRoute: () => rootRoute, path: "/admin", component: AdminPage });
 const settingsRoute = createRoute({ getParentRoute: () => rootRoute, path: "/settings", component: SettingsPage });
@@ -24,6 +26,7 @@ const routeTree = rootRoute.addChildren([
   signupRoute,
   recoverRoute,
   resetRoute,
+  portfolioRoute,
   itemsRoute,
   adminRoute,
   settingsRoute,
