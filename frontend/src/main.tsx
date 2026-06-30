@@ -7,6 +7,7 @@ import { ThemeProvider } from "@/components/theme";
 import { AuthProvider } from "@/lib/auth";
 import { router } from "@/router";
 import "./styles.css";
+import "./styles/portfolio.css";
 
 const queryClient = new QueryClient();
 
