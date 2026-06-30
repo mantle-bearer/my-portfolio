@@ -1,0 +1,25 @@
+import { ExternalLink } from "lucide-react";
+
+import type { PortfolioProject } from "@/data/portfolio";
+
+export function ProjectCard({ project }: { project: PortfolioProject }) {
+  return (
+    <article className="project-card">
+      <div>
+        <p className="project-card-kicker">{project.featured ? "Featured placeholder" : "Project placeholder"}</p>
+        <h3>{project.title}</h3>
+        <p>{project.summary}</p>
+      </div>
+      <div className="project-tags">
+        {project.tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
+      </div>
+      {project.href ? (
+        <a href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`}>
+          <ExternalLink size={16} />
+        </a>
+      ) : null}
+    </article>
+  );
+}
