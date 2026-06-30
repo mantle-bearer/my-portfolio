@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Portfolio subject placeholder</title>
+  <desc id="desc">Temporary transparent portrait placeholder for portfolio layout work.</desc>
+  <defs>
+    <linearGradient id="body" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#f7f8fb"/>
+      <stop offset="1" stop-color="#d8deea"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0" stop-color="#ff922d"/>
+      <stop offset="1" stop-color="#f26a00"/>
+    </linearGradient>
+  </defs>
+  <path d="M450 96c143 0 259 116 259 259S593 614 450 614 191 498 191 355 307 96 450 96Z" fill="url(#body)"/>
+  <path d="M166 1116c32-244 139-366 284-366s252 122 284 366H166Z" fill="url(#body)"/>
+  <path d="M196 1120c28-170 111-255 254-255s226 85 254 255H196Z" fill="url(#accent)" opacity=".92"/>
+  <path d="M450 158c109 0 197 88 197 197s-88 197-197 197-197-88-197-197 88-197 197-197Z" fill="none" stroke="#123e8a" stroke-width="18" opacity=".18"/>
+</svg>
