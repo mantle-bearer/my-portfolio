@@ -21,6 +21,10 @@ export function ProjectsSection() {
           <img src={portfolioAssets.projectsPortrait.src} alt={`${portfolioProfile.name} working at a laptop`} />
         </figure>
       </div>
+      <div className="project-list-heading">
+        <p className="portfolio-kicker">Selected work</p>
+        <p>Project case studies are being prepared.</p>
+      </div>
       <div className="project-grid">
         {portfolioProjects.map((project) => (
           <ProjectCard key={project.slug} project={project} />

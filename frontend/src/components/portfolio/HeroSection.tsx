@@ -9,11 +9,6 @@ export function HeroSection() {
     <section id="home" className="portfolio-hero" aria-labelledby="portfolio-hero-title">
       <TechBackdrop />
       <div className="portfolio-shell hero-grid">
-        <div className="hero-art" aria-hidden="true">
-          <span className="hero-code-card">API</span>
-          <span className="hero-code-card">UI</span>
-          <span className="hero-code-card">DB</span>
-        </div>
         <HeroPortrait />
         <div className="hero-content">
           <p className="portfolio-kicker">{portfolioProfile.role}</p>

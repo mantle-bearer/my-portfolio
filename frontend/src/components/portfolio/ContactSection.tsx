@@ -1,9 +1,22 @@
-import { Github, Linkedin, Mail } from "lucide-react";
+import type { FormEvent } from "react";
+import { Github, Linkedin, Mail, Send } from "lucide-react";
 
 import { portfolioProfile } from "@/data/portfolio";
 import { SectionShell } from "@/components/portfolio/SectionShell";
 
 export function ContactSection() {
+  function openEmailDraft(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const form = new FormData(event.currentTarget);
+    const name = String(form.get("name") ?? "").trim();
+    const email = String(form.get("email") ?? "").trim();
+    const subject = String(form.get("subject") ?? "Project enquiry").trim();
+    const message = String(form.get("message") ?? "").trim();
+    const body = [`Name: ${name}`, `Email: ${email}`, "", message].join("\n");
+
+    window.location.href = `mailto:${portfolioProfile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  }
+
   return (
     <SectionShell id="contact" className="contact-section">
       <div className="contact-grid">
@@ -28,26 +41,28 @@ export function ContactSection() {
             </a>
           </div>
         </div>
-        <form className="contact-form" aria-label="Contact form">
+        <form className="contact-form" aria-label="Contact form" onSubmit={openEmailDraft}>
           <label>
             <span>Name</span>
-            <input name="name" type="text" autoComplete="name" />
+            <input name="name" type="text" autoComplete="name" required />
           </label>
           <label>
             <span>Email</span>
-            <input name="email" type="email" autoComplete="email" />
+            <input name="email" type="email" autoComplete="email" required />
           </label>
           <label>
             <span>Subject</span>
-            <input name="subject" type="text" />
+            <input name="subject" type="text" required />
           </label>
           <label>
             <span>Message</span>
-            <textarea name="message" rows={5} />
+            <textarea name="message" rows={5} required />
           </label>
-          <button className="portfolio-button portfolio-button-secondary" type="button">
-            Backend coming later
+          <button className="portfolio-button portfolio-button-primary" type="submit">
+            Open email draft
+            <Send size={17} />
           </button>
+          <p className="contact-form-note">This opens your email app. Direct website sending is coming later.</p>
         </form>
       </div>
     </SectionShell>

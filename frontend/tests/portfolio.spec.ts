@@ -156,10 +156,10 @@ test("portfolio contact form exposes expected fields and actions", async ({ page
   await expect(form.getByLabel("Email")).toHaveAttribute("type", "email");
   await expect(form.getByLabel("Subject")).toBeVisible();
   await expect(form.getByLabel("Message")).toBeVisible();
-  await expect(form.getByRole("button", { name: "Backend coming later" })).toHaveAttribute("type", "button");
+  await expect(form.getByRole("button", { name: "Open email draft" })).toHaveAttribute("type", "submit");
 
   await expect(page.getByRole("link", { name: /@/ })).toHaveAttribute("href", /^mailto:/);
-  await expect(form.getByText("Backend coming later")).toBeVisible();
+  await expect(form.getByText(/Direct website sending is coming later/)).toBeVisible();
   await expect(page.getByRole("link", { name: "LinkedIn", exact: true })).toHaveAttribute(
     "href",
     "https://linkedin.com/in/mantle-bearer"
