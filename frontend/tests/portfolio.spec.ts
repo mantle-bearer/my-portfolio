@@ -1,12 +1,12 @@
 import { expect, type Page, test } from "@playwright/test";
 
-const portfolioHeadline =
-  "Helping businesses build powerful, scalable web applications that drive real results.";
+const portfolioHeadline = "Meet Goodluck Igbokwe";
+const portfolioSummary = "A Software Developer building powerful, scalable web applications.";
 
 const sectionLinks = [
-  { name: "Home", hash: "#home" },
-  { name: "Projects", hash: "#projects" },
-  { name: "Consult", hash: "#consultation" },
+  { name: "About", hash: "#home" },
+  { name: "Work", hash: "#projects" },
+  { name: "Services", hash: "#consultation" },
   { name: "Contact", hash: "#contact" }
 ] as const;
 
@@ -71,6 +71,26 @@ test("portfolio route exposes accessible landmarks and anchor targets", async ({
   }
 });
 
+test("portfolio hero stays focused on its primary actions", async ({ page }) => {
+  await page.goto("/portfolio");
+
+  const hero = page.locator("#home");
+  await expect(hero.getByRole("heading", { name: portfolioHeadline })).toBeVisible();
+  await expect(hero.getByText(portfolioSummary)).toBeVisible();
+  await expect(hero.getByRole("link", { name: "Get In Touch" })).toHaveAttribute("href", "#contact");
+  await expect(hero.getByRole("link", { name: "View Portfolio" })).toHaveAttribute("href", "#projects");
+  await expect(hero.getByLabel("Technical expertise").locator("span")).toHaveCount(5);
+  await expect(hero.getByRole("link", { name: "Scroll down to know more" })).toHaveAttribute("href", "#projects");
+  await expect(hero.getByRole("img", { name: "Goodluck Igbokwe, Software Developer" })).toHaveAttribute(
+    "src",
+    "/images/portfolio/personal-portrait2.png"
+  );
+  await expect(hero.locator(".portfolio-kicker")).toHaveCount(0);
+  await expect(hero.locator(".hero-socials")).toHaveCount(0);
+  await expect(hero.locator(".portfolio-rings")).toHaveCount(0);
+  await expect(hero.locator(".tech-backdrop")).toHaveCount(0);
+});
+
 test("portfolio navigation anchors reach their sections", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto("/portfolio");
@@ -95,25 +115,27 @@ for (const { name, size } of responsiveViewports) {
     await expect(page.getByRole("heading", { name: "Tell me what you want to build." })).toBeAttached();
     await expectNoHorizontalOverflow(page);
 
+    const projectsTop = await page.locator("#projects").evaluate((section) => section.getBoundingClientRect().top);
+    expect(projectsTop).toBeLessThanOrEqual(size.height);
+
     await page.locator("#contact").scrollIntoViewIfNeeded();
     await expect(page.getByRole("form", { name: "Contact form" })).toBeVisible();
     await expectNoHorizontalOverflow(page);
   });
 }
 
-test("portfolio theme toggle applies and persists dark mode", async ({ page }) => {
+test("portfolio navigation exposes profile actions", async ({ page }) => {
   await page.goto("/portfolio");
-  await page.evaluate(() => localStorage.setItem("fastapi-template-theme", "light"));
-  await page.reload();
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
-
-  await page.getByRole("button", { name: "Toggle theme" }).click();
-  await expect(page.locator("html")).toHaveClass(/dark/);
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
-
-  await page.reload();
-  await expect(page.locator("html")).toHaveClass(/dark/);
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
+  const nav = page.locator(".portfolio-nav");
+  await expect(nav.getByRole("link", { name: "GitHub profile" })).toHaveAttribute(
+    "href",
+    "https://github.com/mantle-bearer"
+  );
+  await expect(nav.getByRole("link", { name: "LinkedIn profile" })).toHaveAttribute(
+    "href",
+    "https://linkedin.com/in/mantle-bearer"
+  );
+  await expect(nav.getByRole("link", { name: "Email Goodluck Igbokwe" })).toHaveAttribute("href", /^mailto:/);
 });
 
 test("portfolio mobile menu opens, closes, and reaches anchors", async ({ page }) => {
