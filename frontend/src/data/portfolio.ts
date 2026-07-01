@@ -32,12 +32,12 @@ export const portfolioAssets = {
   heroPortrait: {
     key: "heroPortrait",
     label: "Hero portrait",
-    src: "/images/portfolio/personal-portrait.png",
+    src: "/images/portfolio/personal-portrait2.png",
     fallbackSrc: subjectPlaceholder,
-    finalPath: "/images/portfolio/personal-portrait.png",
+    finalPath: "/images/portfolio/personal-portrait2.png",
     fallbackFinalPath: "/images/portfolio/personal-portrait.png",
     status: "final",
-    notes: "Transparent white-sweater portrait cutout used for the hero composition."
+    notes: "Tightly cropped transparent white-sweater portrait used for the split hero composition."
   },
   projectsPortrait: {
     key: "projectsPortrait",
@@ -103,7 +103,11 @@ export const portfolioProfile = {
   name: "Goodluck Igbokwe",
   role: "Software Developer",
   email: "igbokwegoodluck8@gmail.com",
-  headline: "Helping businesses build powerful, scalable web applications that drive real results.",
+  heroTitle: {
+    intro: "Meet",
+    name: "Goodluck Igbokwe"
+  },
+  heroSummary: "A Software Developer building powerful, scalable web applications.",
   projectIntro:
     "From e-commerce solutions to IoT integrations, see how I help businesses thrive online.",
   consultationHeadline: "Book a consultation",
