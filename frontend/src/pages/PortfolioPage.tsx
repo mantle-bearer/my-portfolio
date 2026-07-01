@@ -8,8 +8,10 @@ import { ProjectsSection } from "@/components/portfolio/ProjectsSection";
 export function PortfolioPage() {
   return (
     <main className="portfolio-root">
-      <PortfolioNav />
-      <HeroSection />
+      <div className="portfolio-hero-frame">
+        <PortfolioNav />
+        <HeroSection />
+      </div>
       <ProjectsSection />
       <ConsultationSection />
       <ContactSection />
