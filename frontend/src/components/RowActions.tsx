@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import React, { useEffect, useRef, useState } from "react";
-import { MoreVertical } from "lucide-react";
+import { EllipsisVertical } from "lucide-react";
 
 export function RowActions({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
@@ -53,7 +53,7 @@ export function RowActions({ children }: { children: ReactNode }) {
         className="row-actions-trigger"
         onClick={() => setOpen((value) => !value)}
       >
-        <MoreVertical size={18} />
+        <EllipsisVertical size={18} />
       </button>
       {open && mobile ? (
         <div className="action-sheet-layer" role="presentation" onMouseDown={() => setOpen(false)}>
