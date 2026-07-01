@@ -1,5 +1,7 @@
 import type { FormEvent } from "react";
-import { Github, Linkedin, Mail, Send } from "lucide-react";
+import { Mail, Send } from "lucide-react";
+import { FaLinkedinIn } from "react-icons/fa6";
+import { SiGithub } from "react-icons/si";
 
 import { portfolioProfile } from "@/data/portfolio";
 import { SectionShell } from "@/components/portfolio/SectionShell";
@@ -32,11 +34,11 @@ export function ContactSection() {
               {portfolioProfile.email}
             </a>
             <a href={portfolioProfile.socialLinks[0].href} target="_blank" rel="noreferrer">
-              <Linkedin size={18} />
+              <FaLinkedinIn size={18} />
               LinkedIn
             </a>
             <a href={portfolioProfile.socialLinks[1].href} target="_blank" rel="noreferrer">
-              <Github size={18} />
+              <SiGithub size={18} />
               GitHub
             </a>
           </div>
