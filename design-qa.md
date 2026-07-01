@@ -1,27 +1,35 @@
-# Portfolio Design QA
+# Portfolio Hero Design QA
 
-- Source visual truth: `frontend/public/images/portfolio/hero-banner-flyer.jpg` and the desktop/mobile flyer references supplied in the conversation.
-- Implementation screenshot: blocked pending browser-capture permission.
-- Viewport: desktop and mobile captures pending.
-- State: light theme, `/portfolio`.
-- Full-view comparison evidence: unavailable until browser capture is approved.
-- Focused region comparison evidence: unavailable until browser capture is approved.
+- Source visual truth: the framed David Kim portfolio reference supplied in the conversation.
+- Implementation screenshots: `/tmp/reference-hero-desktop-final.png` and `/tmp/reference-hero-mobile-final.png`.
+- Viewports: 1440x900 and 390x844.
+- State: light theme, `/portfolio`, default interaction state.
+- Full-view comparison evidence: the reference and desktop capture were compared for frame proportions, navigation position, content density, portrait scale, and visual hierarchy.
+- Focused comparison evidence: the complete framed hero is visible in both captures, including the portrait edges, expertise row, scroll prompt, and split-color boundary.
 
 ## Findings
 
-- Browser rendering has not yet been captured, so typography, spacing, image crop, responsive layout, and interaction-state fidelity cannot be signed off.
+No actionable P0, P1, or P2 mismatches remain.
+
+- Fonts and typography: the compact `Meet` plus emphasized name treatment follows the reference hierarchy; mobile wrapping remains readable with zero negative letter spacing.
+- Spacing and layout: desktop uses the reference's centered rounded frame, compact top navigation, 62/38 content split, large overlapping portrait, expertise row, and anchored scroll prompt. Mobile converts this into a stable vertical composition without horizontal overflow.
+- Colors and tokens: the reference's black field is adapted to the established deep navy, while burnt orange replaces its landscape panel without competing with the copy.
+- Image quality: the tightly trimmed crossed-arms portrait remains sharp and undistorted, fills the visual panel, and keeps the face and pose visible at every tested viewport.
+- Copy and content: the hero uses the reference's concise title, one-line role summary, `Hire Me`, `View Portfolio`, expertise row, and scroll prompt structure with Goodluck's identity and development stack.
+- Accessibility and behavior: heading semantics, portrait alt text, focus styles, CTA anchors, reduced motion, responsive navigation, and profile action labels remain intact.
 
 ## Patches Made
 
-- Replaced the accumulated CSS overrides with one responsive flyer-derived visual system.
-- Rebuilt hero, projects, consultation, contact, navigation, and footer composition.
-- Made the deferred-backend contact form open a prefilled email draft.
-- Updated browser coverage for the contact action.
+- Rebuilt the hero and navigation as one centered, rounded reference-style composition.
+- Added the restrained navy/orange split, compact profile actions, expertise icons, and bottom navigation details.
+- Switched to the tightly trimmed crossed-arms portrait so the subject fills the visual panel without distortion.
+- Added responsive portrait framing and tuned mobile height so the projects section remains visible in the first viewport.
+- Updated focused Playwright assertions for the new hero content, anchors, portrait, and navigation actions.
 
-## Next Pass
+## Verification
 
-- Capture desktop and mobile screenshots.
-- Compare full views and focused hero/project/contact regions against the references.
-- Fix all P0, P1, and P2 differences.
+- `just check`: passed.
+- `just build`: passed.
+- Playwright: 15 passed.
 
-final result: blocked
+final result: passed
