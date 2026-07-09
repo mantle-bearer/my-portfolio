@@ -7,7 +7,7 @@ export function NotesSection() {
   return (
     <SectionShell id="notes" className="notes-section">
       <div className="section-heading">
-        <p className="portfolio-kicker">Blog</p>
+        {/* <p className="portfolio-kicker">Blog</p> */}
         <h2>
           Code <span>Chronicles</span>
         </h2>

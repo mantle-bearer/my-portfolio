@@ -9,7 +9,7 @@ export function ServicesSection() {
   return (
     <SectionShell id="services" className="services-section">
       <div className="section-heading">
-        <p className="portfolio-kicker">Services</p>
+        {/* <p className="portfolio-kicker">Services</p> */}
         <h2>
           My <span>services</span>
         </h2>

@@ -121,13 +121,12 @@ export const portfolioAssetList = Object.values(portfolioAssets);
 
 export const portfolioProfile = {
   name: "Goodluck Igbokwe",
-  role: "Software Developer",
+  role: "Software Engineer",
   email: "igbokwegoodluck8@gmail.com",
   heroTitle: {
-    intro: "Meet",
     name: "Goodluck Igbokwe"
   },
-  heroSummary: "A Software Developer building powerful, scalable web applications.",
+  heroSummary: "I am a Software Engineer, building scalable and secure website applications. When AI is relevant, I use it pragmatically through RAG, prompt engineering, and workflow tooling to improve products and delivery.",
   aboutSummary:
     "I build practical web platforms, APIs, dashboards, and automation tools for businesses that need reliable software without unnecessary complexity.",
   projectIntro:

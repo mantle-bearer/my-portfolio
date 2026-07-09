@@ -5,9 +5,9 @@ export function AboutSection() {
   return (
     <SectionShell id="about" className="about-section">
       <div className="section-heading">
-        <p className="portfolio-kicker">About me</p>
+        {/* <p className="portfolio-kicker">About me</p> */}
         <h2>
-          About <span>Goodluck</span>
+          About Me
         </h2>
       </div>
       <div className="about-grid">

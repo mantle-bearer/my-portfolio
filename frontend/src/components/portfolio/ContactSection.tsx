@@ -21,15 +21,13 @@ export function ContactSection() {
 
   return (
     <SectionShell id="contact" className="contact-section">
+      <div className="section-heading">
+        <h2>
+          Contact Me
+        </h2>
+      </div>
       <div className="contact-grid">
         <div>
-          <p className="portfolio-kicker">Contact</p>
-          <h2>
-            Contact <span>me</span>
-          </h2>
-          <p className="portfolio-copy">
-            The form is prepared for a future backend endpoint. For now, use email or the profile links.
-          </p>
           <div className="contact-links">
             <a href={`mailto:${portfolioProfile.email}`}>
               <Mail size={18} />

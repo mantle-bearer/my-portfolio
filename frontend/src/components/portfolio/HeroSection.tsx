@@ -17,10 +17,10 @@ export function HeroSection() {
     <section id="home" className="portfolio-hero" aria-labelledby="portfolio-hero-title">
       <div className="portfolio-shell hero-grid">
         <div className="hero-content">
-          <h1 id="portfolio-hero-title" className="portfolio-display">
-            <span className="hero-title-intro">{portfolioProfile.heroTitle.intro}</span>{" "}
+          <h2 id="portfolio-hero-title" className="portfolio-display">
+            {/* <span className="hero-title-intro">{portfolioProfile.heroTitle.intro}</span>{" "} */}
             <span className="hero-title-name">{portfolioProfile.heroTitle.name}</span>
-          </h1>
+          </h2>
           <p className="hero-summary">{portfolioProfile.heroSummary}</p>
           <div className="hero-actions" aria-label="Primary portfolio actions">
             <a className="portfolio-button portfolio-button-primary" href="#projects">

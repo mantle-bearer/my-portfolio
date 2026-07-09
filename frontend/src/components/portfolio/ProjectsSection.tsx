@@ -6,11 +6,10 @@ export function ProjectsSection() {
   return (
     <SectionShell id="projects" className="projects-section">
       <div className="section-heading">
-        <p className="portfolio-kicker">Portfolio</p>
+        {/* <p className="portfolio-kicker">Portfolio</p> */}
         <h2>
-          Personal <span>Projects</span>
+          My Portfolio
         </h2>
-        <p>Project case studies are being prepared, so these stay as placeholders for now.</p>
       </div>
       <div className="project-grid">
         {portfolioProjects.map((project) => (
