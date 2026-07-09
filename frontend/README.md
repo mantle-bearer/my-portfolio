@@ -37,6 +37,13 @@ From the project root:
 just build
 ```
 
+## Portfolio Page
+
+The public portfolio lives at `/portfolio`. Its content is centralized in
+`frontend/src/data/portfolio.ts`, with focused sections under
+`frontend/src/components/portfolio`. Keep the page dependency-light and preserve
+the current navy, blue, orange, white, and neumorphic brand direction.
+
 ## Generated Client
 
 The generated OpenAPI client lives in `frontend/src/api/client`.
@@ -58,3 +65,9 @@ pnpm --dir frontend test:e2e
 
 The Playwright suite starts the backend and verifies login, RBAC, item CRUD,
 password recovery, and SPA route fallback behavior.
+
+Run the focused portfolio checks with:
+
+```bash
+pnpm --dir frontend exec playwright test tests/portfolio.spec.ts
+```

@@ -4,9 +4,11 @@ const portfolioHeadline = "Meet Goodluck Igbokwe";
 const portfolioSummary = "A Software Developer building powerful, scalable web applications.";
 
 const sectionLinks = [
-  { name: "About", hash: "#home" },
-  { name: "Work", hash: "#projects" },
-  { name: "Services", hash: "#consultation" },
+  { name: "Home", hash: "#home" },
+  { name: "About", hash: "#about" },
+  { name: "Services", hash: "#services" },
+  { name: "Portfolio", hash: "#projects" },
+  { name: "Blog", hash: "#notes" },
   { name: "Contact", hash: "#contact" }
 ] as const;
 
@@ -77,10 +79,9 @@ test("portfolio hero stays focused on its primary actions", async ({ page }) => 
   const hero = page.locator("#home");
   await expect(hero.getByRole("heading", { name: portfolioHeadline })).toBeVisible();
   await expect(hero.getByText(portfolioSummary)).toBeVisible();
-  await expect(hero.getByRole("link", { name: "Get In Touch" })).toHaveAttribute("href", "#contact");
-  await expect(hero.getByRole("link", { name: "View Portfolio" })).toHaveAttribute("href", "#projects");
+  await expect(hero.getByRole("link", { name: "View my work" })).toHaveAttribute("href", "#projects");
+  await expect(hero.getByRole("link", { name: "Get in touch" })).toHaveAttribute("href", "#contact");
   await expect(hero.getByLabel("Technical expertise").locator("span")).toHaveCount(5);
-  await expect(hero.getByRole("link", { name: "Scroll down to know more" })).toHaveAttribute("href", "#projects");
   await expect(hero.getByRole("img", { name: "Goodluck Igbokwe, Software Developer" })).toHaveAttribute(
     "src",
     "/images/portfolio/personal-portrait2.png"
@@ -111,12 +112,12 @@ for (const { name, size } of responsiveViewports) {
     await page.goto("/portfolio");
 
     await expect(page.getByRole("heading", { name: portfolioHeadline })).toBeVisible();
-    await expect(page.getByRole("heading", { name: "Practical builds for real business workflows." })).toBeAttached();
-    await expect(page.getByRole("heading", { name: "Tell me what you want to build." })).toBeAttached();
+    await expect(page.getByRole("heading", { name: "About Goodluck" })).toBeAttached();
+    await expect(page.getByRole("heading", { name: "My services" })).toBeAttached();
+    await expect(page.getByRole("heading", { name: "Personal Projects" })).toBeAttached();
+    await expect(page.getByRole("heading", { name: "Code Chronicles", exact: true })).toBeAttached();
+    await expect(page.getByRole("heading", { name: "Contact me" })).toBeAttached();
     await expectNoHorizontalOverflow(page);
-
-    const projectsTop = await page.locator("#projects").evaluate((section) => section.getBoundingClientRect().top);
-    expect(projectsTop).toBeLessThanOrEqual(size.height);
 
     await page.locator("#contact").scrollIntoViewIfNeeded();
     await expect(page.getByRole("form", { name: "Contact form" })).toBeVisible();

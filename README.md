@@ -16,6 +16,7 @@ FastAPI's `app.frontend()`.
 - [React](https://react.dev) for the frontend.
   - TypeScript, Vite, TanStack Router, TanStack Query, and Tailwind CSS.
   - shadcn-style owned components and FastAPI template inspired UI.
+  - Public `/portfolio` homepage for Goodluck Igbokwe.
   - Generated OpenAPI TypeScript client.
   - Playwright end-to-end tests.
   - Dark mode support.
@@ -57,6 +58,14 @@ FastAPI's `app.frontend()`.
 
 <!-- Replace with a screenshot of this template. -->
 ![API docs placeholder](img/docs.png)
+
+### Portfolio Homepage
+
+The public `/portfolio` route is a React-only page served by the same FastAPI
+frontend fallback. It uses the current navy, blue, orange, and white brand with a
+neumorphic layout inspired by the previous Goodluck Igbokwe portfolio: fixed
+identity navigation, hero, about stats, services, placeholder projects, notes,
+and contact.
 
 ## How To Use It
 

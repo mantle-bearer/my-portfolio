@@ -1,35 +1,33 @@
-# Portfolio Hero Design QA
+# Portfolio Design QA
 
-- Source visual truth: the framed David Kim portfolio reference supplied in the conversation.
-- Implementation screenshots: `/tmp/reference-hero-desktop-final.png` and `/tmp/reference-hero-mobile-final.png`.
+- Source visual truth: the previous `mantle-bearer/portfolio` homepage.
+- Current direction: modernized old portfolio structure with brand-aligned
+  neumorphic shadows, fixed identity navigation, hero, about, services,
+  portfolio, notes, and contact sections.
+- Implementation screenshots: `/tmp/portfolio-neumorphic-desktop.png` and
+  `/tmp/portfolio-neumorphic-mobile.png`.
 - Viewports: 1440x900 and 390x844.
 - State: light theme, `/portfolio`, default interaction state.
-- Full-view comparison evidence: the reference and desktop capture were compared for frame proportions, navigation position, content density, portrait scale, and visual hierarchy.
-- Focused comparison evidence: the complete framed hero is visible in both captures, including the portrait edges, expertise row, scroll prompt, and split-color boundary.
 
 ## Findings
 
-No actionable P0, P1, or P2 mismatches remain.
+No actionable P0, P1, or P2 mismatches remain for this pass.
 
-- Fonts and typography: the compact `Meet` plus emphasized name treatment follows the reference hierarchy; mobile wrapping remains readable with zero negative letter spacing.
-- Spacing and layout: desktop uses the reference's centered rounded frame, compact top navigation, 62/38 content split, large overlapping portrait, expertise row, and anchored scroll prompt. Mobile converts this into a stable vertical composition without horizontal overflow.
-- Colors and tokens: the reference's black field is adapted to the established deep navy, while burnt orange replaces its landscape panel without competing with the copy.
-- Image quality: the tightly trimmed crossed-arms portrait remains sharp and undistorted, fills the visual panel, and keeps the face and pose visible at every tested viewport.
-- Copy and content: the hero uses the reference's concise title, one-line role summary, `Hire Me`, `View Portfolio`, expertise row, and scroll prompt structure with Goodluck's identity and development stack.
-- Accessibility and behavior: heading semantics, portrait alt text, focus styles, CTA anchors, reduced motion, responsive navigation, and profile action labels remain intact.
-
-## Patches Made
-
-- Rebuilt the hero and navigation as one centered, rounded reference-style composition.
-- Added the restrained navy/orange split, compact profile actions, expertise icons, and bottom navigation details.
-- Switched to the tightly trimmed crossed-arms portrait so the subject fills the visual panel without distortion.
-- Added responsive portrait framing and tuned mobile height so the projects section remains visible in the first viewport.
-- Updated focused Playwright assertions for the new hero content, anchors, portrait, and navigation actions.
+- Structure: the page now follows the old portfolio rhythm: Home, About,
+  Services, Portfolio, Blog, and Contact.
+- Visual tone: soft raised and inset shadows are used across navigation, cards,
+  stats, skill bars, inputs, and project placeholders.
+- Branding: the existing navy, blue, orange, white, and personal portrait assets
+  are retained.
+- Responsiveness: desktop uses a fixed identity rail; tablet and mobile collapse
+  to a top navigation with drawer links and no horizontal overflow.
+- Content: project cards remain placeholders as requested; social/profile links
+  remain in navigation and contact.
 
 ## Verification
 
-- `just check`: passed.
-- `just build`: passed.
-- Playwright: 15 passed.
+- `pnpm --dir frontend typecheck`: passed.
+- `pnpm --dir frontend build`: passed.
+- `pnpm --dir frontend exec playwright test tests/portfolio.spec.ts`: 9 passed.
 
 final result: passed
