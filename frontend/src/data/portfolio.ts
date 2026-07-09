@@ -52,12 +52,12 @@ export const portfolioAssets = {
   heroPortrait: {
     key: "heroPortrait",
     label: "Hero portrait",
-    src: "/images/portfolio/personal-portrait2.png",
+    src: "/images/portfolio/hero-portrait.png",
     fallbackSrc: subjectPlaceholder,
-    finalPath: "/images/portfolio/personal-portrait2.png",
+    finalPath: "/images/portfolio/hero-portrait.png",
     fallbackFinalPath: "/images/portfolio/personal-portrait.png",
     status: "final",
-    notes: "Tightly cropped transparent white-sweater portrait used for the split hero composition."
+    notes: "Framed white-sweater portrait used as the hero composition."
   },
   projectsPortrait: {
     key: "projectsPortrait",
@@ -141,14 +141,6 @@ export const portfolioProfile = {
     { label: "Email", href: "mailto:igbokwegoodluck8@gmail.com" }
   ] satisfies PortfolioLink[]
 };
-
-export const portfolioSocialLinks = [
-  { label: "LinkedIn", href: "https://linkedin.com/in/mantle-bearer" },
-  { label: "Email", href: "mailto:igbokwegoodluck8@gmail.com" },
-  { label: "Instagram", href: "https://instagram.com/mantle_bearer?igshid=OGQ5ZDc2ODk2ZA==" },
-  { label: "WhatsApp", href: "https://wa.link/p9709d" },
-  { label: "GitHub", href: "https://github.com/mantle-bearer" }
-] satisfies PortfolioLink[];
 
 export const portfolioStats = [
   { value: "4+", label: "years of focused practice" },

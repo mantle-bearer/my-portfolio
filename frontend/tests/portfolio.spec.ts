@@ -84,7 +84,7 @@ test("portfolio hero stays focused on its primary actions", async ({ page }) => 
   await expect(hero.getByLabel("Technical expertise").locator("span")).toHaveCount(5);
   await expect(hero.getByRole("img", { name: "Goodluck Igbokwe, Software Developer" })).toHaveAttribute(
     "src",
-    "/images/portfolio/personal-portrait2.png"
+    "/images/portfolio/hero-portrait.png"
   );
   await expect(hero.locator(".portfolio-kicker")).toHaveCount(0);
   await expect(hero.locator(".hero-socials")).toHaveCount(0);
@@ -125,18 +125,12 @@ for (const { name, size } of responsiveViewports) {
   });
 }
 
-test("portfolio navigation exposes profile actions", async ({ page }) => {
+test("portfolio navigation exposes theme controls without social shortcuts", async ({ page }) => {
   await page.goto("/portfolio");
   const nav = page.locator(".portfolio-nav");
-  await expect(nav.getByRole("link", { name: "GitHub profile" })).toHaveAttribute(
-    "href",
-    "https://github.com/mantle-bearer"
-  );
-  await expect(nav.getByRole("link", { name: "LinkedIn profile" })).toHaveAttribute(
-    "href",
-    "https://linkedin.com/in/mantle-bearer"
-  );
-  await expect(nav.getByRole("link", { name: "Email Goodluck Igbokwe" })).toHaveAttribute("href", /^mailto:/);
+  await expect(nav.getByRole("button", { name: /switch to dark mode|switch to light mode/i })).toBeVisible();
+  await expect(nav.getByRole("link", { name: /profile/i })).toHaveCount(0);
+  await expect(nav.getByRole("link", { name: "Email Goodluck Igbokwe" })).toHaveCount(0);
 });
 
 test("portfolio mobile menu opens, closes, and reaches anchors", async ({ page }) => {

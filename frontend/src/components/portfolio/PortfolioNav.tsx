@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Mail, Menu, Moon, Sun, X } from "lucide-react";
-import { FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
-import { SiGithub } from "react-icons/si";
+import { Menu, Moon, Sun, X } from "lucide-react";
 
 import { useTheme } from "@/components/theme";
-import { portfolioProfile, portfolioSocialLinks } from "@/data/portfolio";
+import { portfolioProfile } from "@/data/portfolio";
 
 const links = [
   { label: "Home", href: "#home" },
@@ -34,20 +32,10 @@ export function PortfolioNav() {
     setTheme(isDark ? "light" : "dark");
   }
 
-  function SocialIcon({ label }: { label: string }) {
-    if (label === "LinkedIn") return <FaLinkedinIn size={15} />;
-    if (label === "Instagram") return <FaInstagram size={15} />;
-    if (label === "WhatsApp") return <FaWhatsapp size={15} />;
-    if (label === "GitHub") return <SiGithub size={15} />;
-    return <Mail size={15} />;
-  }
-
   return (
     <header className={`portfolio-nav ${open ? "is-open" : ""}`}>
       <Link to="/portfolio" className="portfolio-brand" aria-label="Goodluck Igbokwe portfolio home">
         <img src="/images/portfolio/profile-passport-picture.jpg" alt="" />
-        <span>Goodluck Igbokwe</span>
-        <small>{portfolioProfile.role}</small>
       </Link>
       <nav className="portfolio-nav-links" aria-label="Portfolio navigation">
         {links.map((link) => (
@@ -57,17 +45,6 @@ export function PortfolioNav() {
         ))}
       </nav>
       <div className="portfolio-nav-actions">
-        {portfolioSocialLinks.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            target={link.href.startsWith("http") ? "_blank" : undefined}
-            rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-            aria-label={link.label === "Email" ? "Email Goodluck Igbokwe" : `${link.label} profile`}
-          >
-            <SocialIcon label={link.label} />
-          </a>
-        ))}
         <button
           className="portfolio-theme-button"
           type="button"
@@ -122,19 +99,6 @@ export function PortfolioNav() {
               {link.label}
             </a>
           ))}
-          <div className="portfolio-mobile-socials">
-            {portfolioSocialLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target={link.href.startsWith("http") ? "_blank" : undefined}
-                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
-                aria-label={link.label === "Email" ? "Email Goodluck Igbokwe" : `${link.label} profile`}
-              >
-                <SocialIcon label={link.label} />
-              </a>
-            ))}
-          </div>
         </nav>
       ) : null}
     </header>
