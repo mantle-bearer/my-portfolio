@@ -5,6 +5,9 @@ import type { PortfolioProject } from "@/data/portfolio";
 export function ProjectCard({ project }: { project: PortfolioProject }) {
   return (
     <article className="project-card">
+      <div className="project-card-image" aria-hidden="true">
+        <span>{project.title}</span>
+      </div>
       <div className="project-card-copy">
         <p className="project-card-kicker">{project.featured ? "Featured placeholder" : "Project placeholder"}</p>
         <h3>{project.title}</h3>

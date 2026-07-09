@@ -25,6 +25,26 @@ export type PortfolioLink = {
   href: string;
 };
 
+export type PortfolioStat = {
+  value: string;
+  label: string;
+};
+
+export type PortfolioService = {
+  title: string;
+  summary: string;
+};
+
+export type PortfolioSkill = {
+  label: string;
+  value: number;
+};
+
+export type PortfolioNote = {
+  title: string;
+  summary: string;
+};
+
 const subjectPlaceholder = "/images/portfolio/placeholders/subject-placeholder.svg";
 const backgroundPlaceholder = "/images/portfolio/placeholders/tech-background-placeholder.svg";
 
@@ -108,6 +128,8 @@ export const portfolioProfile = {
     name: "Goodluck Igbokwe"
   },
   heroSummary: "A Software Developer building powerful, scalable web applications.",
+  aboutSummary:
+    "I build practical web platforms, APIs, dashboards, and automation tools for businesses that need reliable software without unnecessary complexity.",
   projectIntro:
     "From e-commerce solutions to IoT integrations, see how I help businesses thrive online.",
   consultationHeadline: "Book a consultation",
@@ -119,6 +141,72 @@ export const portfolioProfile = {
     { label: "Email", href: "mailto:igbokwegoodluck8@gmail.com" }
   ] satisfies PortfolioLink[]
 };
+
+export const portfolioSocialLinks = [
+  { label: "LinkedIn", href: "https://linkedin.com/in/mantle-bearer" },
+  { label: "Email", href: "mailto:igbokwegoodluck8@gmail.com" },
+  { label: "Instagram", href: "https://instagram.com/mantle_bearer?igshid=OGQ5ZDc2ODk2ZA==" },
+  { label: "WhatsApp", href: "https://wa.link/p9709d" },
+  { label: "GitHub", href: "https://github.com/mantle-bearer" }
+] satisfies PortfolioLink[];
+
+export const portfolioStats = [
+  { value: "4+", label: "years of focused practice" },
+  { value: "12+", label: "business workflows shaped" },
+  { value: "5+", label: "core service areas" },
+  { value: "100%", label: "practical build mindset" }
+] satisfies PortfolioStat[];
+
+export const portfolioSkills = [
+  { label: "Frontend Development", value: 86 },
+  { label: "Backend Development", value: 92 },
+  { label: "API Design", value: 88 },
+  { label: "Database Workflows", value: 82 },
+  { label: "Automation Systems", value: 78 },
+  { label: "Software Optimization", value: 74 }
+] satisfies PortfolioSkill[];
+
+export const portfolioServices = [
+  {
+    title: "Web Development",
+    summary: "Responsive websites and web apps built around real business goals."
+  },
+  {
+    title: "Backend Systems",
+    summary: "FastAPI, Laravel-style workflows, authentication, dashboards, and admin tools."
+  },
+  {
+    title: "API Development",
+    summary: "Clean endpoints for products, integrations, internal tools, and connected devices."
+  },
+  {
+    title: "Database Management",
+    summary: "PostgreSQL and MySQL modeling, data flows, reporting, and maintenance."
+  },
+  {
+    title: "Business Automation",
+    summary: "Tools that reduce repeated manual work and keep operations moving."
+  },
+  {
+    title: "Consulting",
+    summary: "Focused technical direction before a new platform, feature, or rebuild."
+  }
+] satisfies PortfolioService[];
+
+export const portfolioNotes = [
+  {
+    title: "Code Chronicles 001",
+    summary: "Short practical notes on building useful software, APIs, and business tools."
+  },
+  {
+    title: "Code Chronicles 002",
+    summary: "A space for lessons from client workflows, product decisions, and implementation."
+  },
+  {
+    title: "Code Chronicles 003",
+    summary: "Placeholder journal entry for future writing about development and delivery."
+  }
+] satisfies PortfolioNote[];
 
 export const portfolioProjects = [
   {

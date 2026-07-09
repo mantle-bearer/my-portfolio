@@ -1,19 +1,21 @@
+import { AboutSection } from "@/components/portfolio/AboutSection";
 import { ContactSection } from "@/components/portfolio/ContactSection";
-import { ConsultationSection } from "@/components/portfolio/ConsultationSection";
 import { HeroSection } from "@/components/portfolio/HeroSection";
+import { NotesSection } from "@/components/portfolio/NotesSection";
 import { PortfolioFooter } from "@/components/portfolio/PortfolioFooter";
 import { PortfolioNav } from "@/components/portfolio/PortfolioNav";
 import { ProjectsSection } from "@/components/portfolio/ProjectsSection";
+import { ServicesSection } from "@/components/portfolio/ServicesSection";
 
 export function PortfolioPage() {
   return (
     <main className="portfolio-root">
-      <div className="portfolio-hero-frame">
-        <PortfolioNav />
-        <HeroSection />
-      </div>
+      <PortfolioNav />
+      <HeroSection />
+      <AboutSection />
+      <ServicesSection />
       <ProjectsSection />
-      <ConsultationSection />
+      <NotesSection />
       <ContactSection />
       <PortfolioFooter />
     </main>
