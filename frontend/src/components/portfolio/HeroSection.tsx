@@ -1,4 +1,4 @@
-import { ArrowUpRight, ChevronDown } from "lucide-react";
+import { Download, Mail } from "lucide-react";
 import { SiFastapi, SiPostgresql, SiPython, SiReact, SiTypescript } from "react-icons/si";
 
 import { HeroPortrait } from "@/components/portfolio/HeroPortrait";
@@ -23,12 +23,13 @@ export function HeroSection() {
           </h1>
           <p className="hero-summary">{portfolioProfile.heroSummary}</p>
           <div className="hero-actions" aria-label="Primary portfolio actions">
-            <a className="portfolio-button portfolio-button-primary" href="#contact">
-              Get In Touch
+            <a className="portfolio-button portfolio-button-primary" href="#projects">
+              View my work
+              <Download size={17} />
             </a>
-            <a className="hero-text-link" href="#projects">
-              View Portfolio
-              <ArrowUpRight size={17} />
+            <a className="portfolio-button portfolio-button-secondary" href="#contact">
+              Get in touch
+              <Mail size={17} />
             </a>
           </div>
           <div className="hero-expertise" aria-label="Technical expertise">
@@ -41,17 +42,9 @@ export function HeroSection() {
               ))}
             </div>
           </div>
-          <a className="hero-scroll-link" href="#projects">
-            Scroll down to know more
-            <ChevronDown size={22} />
-          </a>
         </div>
         <div className="hero-visual">
           <HeroPortrait />
-          {/* <span className="hero-connect-label" aria-hidden="true">Let's connect</span>
-          <a className="hero-connect-button" href="#contact" aria-label="Start a conversation">
-            <ArrowUpRight size={23} />
-          </a> */}
         </div>
       </div>
     </section>

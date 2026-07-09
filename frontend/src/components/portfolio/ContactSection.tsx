@@ -1,9 +1,9 @@
 import type { FormEvent } from "react";
 import { Mail, Send } from "lucide-react";
-import { FaLinkedinIn } from "react-icons/fa6";
+import { FaInstagram, FaLinkedinIn, FaWhatsapp } from "react-icons/fa6";
 import { SiGithub } from "react-icons/si";
 
-import { portfolioProfile } from "@/data/portfolio";
+import { portfolioProfile, portfolioSocialLinks } from "@/data/portfolio";
 import { SectionShell } from "@/components/portfolio/SectionShell";
 
 export function ContactSection() {
@@ -19,12 +19,22 @@ export function ContactSection() {
     window.location.href = `mailto:${portfolioProfile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
+  function SocialIcon({ label }: { label: string }) {
+    if (label === "LinkedIn") return <FaLinkedinIn size={16} />;
+    if (label === "Instagram") return <FaInstagram size={16} />;
+    if (label === "WhatsApp") return <FaWhatsapp size={16} />;
+    if (label === "GitHub") return <SiGithub size={16} />;
+    return <Mail size={16} />;
+  }
+
   return (
     <SectionShell id="contact" className="contact-section">
       <div className="contact-grid">
         <div>
           <p className="portfolio-kicker">Contact</p>
-          <h2>Tell me what you want to build.</h2>
+          <h2>
+            Contact <span>me</span>
+          </h2>
           <p className="portfolio-copy">
             The form is prepared for a future backend endpoint. For now, use email or the profile links.
           </p>
@@ -41,6 +51,19 @@ export function ContactSection() {
               <SiGithub size={18} />
               GitHub
             </a>
+          </div>
+          <div className="contact-socials" aria-label="Social links">
+            {portfolioSocialLinks.map((link) => (
+              <a
+                key={link.label}
+                href={link.href}
+                target={link.href.startsWith("http") ? "_blank" : undefined}
+                rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                aria-label={`${link.label} social icon`}
+              >
+                <SocialIcon label={link.label} />
+              </a>
+            ))}
           </div>
         </div>
         <form className="contact-form" aria-label="Contact form" onSubmit={openEmailDraft}>
