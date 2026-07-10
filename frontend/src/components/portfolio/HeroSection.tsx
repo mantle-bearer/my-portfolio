@@ -1,15 +1,18 @@
 import { Download, Mail } from "lucide-react";
-import { SiFastapi, SiPostgresql, SiPython, SiReact, SiTypescript } from "react-icons/si";
+import { SiFastapi, SiJavascript, SiPython, SiReact, SiTypescript, SiDjango, SiPhp, SiLaravel } from "react-icons/si";
 
 import { HeroPortrait } from "@/components/portfolio/HeroPortrait";
 import { portfolioProfile } from "@/data/portfolio";
 
 const expertise = [
-  { label: "React", Icon: SiReact },
-  { label: "TypeScript", Icon: SiTypescript },
   { label: "Python", Icon: SiPython },
   { label: "FastAPI", Icon: SiFastapi },
-  { label: "PostgreSQL", Icon: SiPostgresql }
+  { label: "Django", Icon: SiDjango },
+  // { label: "JavaScript", Icon: SiJavascript },
+  { label: "React", Icon: SiReact },
+  // { label: "TypeScript", Icon: SiTypescript },
+  // { label: "PHP", Icon: SiPhp },
+  { label: "Laravel", Icon: SiLaravel }
 ];
 
 export function HeroSection() {

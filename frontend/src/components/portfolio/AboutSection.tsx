@@ -21,7 +21,7 @@ export function AboutSection() {
         </div>
         <div className="about-copy neumorphic-panel">
           <p>{portfolioProfile.aboutSummary}</p>
-          <a className="portfolio-button portfolio-button-secondary" href="#contact">
+          <a className="portfolio-butaddton portfolio-button-secondary" href="#contact">
             Contact me
           </a>
         </div>
