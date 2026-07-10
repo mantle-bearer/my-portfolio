@@ -40,6 +40,16 @@ export type PortfolioSkill = {
   value: number;
 };
 
+export type PortfolioAboutCard = {
+  title: string;
+  summary: string;
+  image: string;
+  imageAlt: string;
+  layout: "tall" | "wide" | "small";
+  tone: "navy" | "white" | "blue" | "orange";
+  imageFit: "contain" | "cover";
+};
+
 export type PortfolioNote = {
   title: string;
   summary: string;
@@ -156,6 +166,63 @@ export const portfolioSkills = [
   { label: "Automation Systems", value: 78 },
   { label: "Software Optimization", value: 74 }
 ] satisfies PortfolioSkill[];
+
+export const portfolioAboutCards = [
+  {
+    title: "Product-Minded Engineer",
+    summary: "Builds software with the user, product, and business outcome in mind.",
+    image: "/images/portfolio/product-minded-engineer2.png",
+    imageAlt: "Product-minded engineering illustration with dashboards, goals, and code.",
+    layout: "tall",
+    tone: "orange",
+    imageFit: "contain"
+  },
+  {
+    title: "Technical Communication",
+    summary: "Explains tradeoffs, decisions, and complex systems clearly across teams.",
+    image: "/images/portfolio/technical-communication.png",
+    imageAlt: "Technical communication illustration showing a developer explaining system flow.",
+    layout: "wide",
+    tone: "white",
+    imageFit: "cover"
+  },
+  {
+    title: "AI / LLM Tooling",
+    summary: "Uses AI to speed up development and automate workflows.",
+    image: "/images/portfolio/ai-llm-developer-tooling.png",
+    imageAlt: "AI tooling illustration with code, automation flow, and assistant bot.",
+    layout: "small",
+    tone: "blue",
+    imageFit: "contain"
+  },
+  {
+    title: "Observability",
+    summary: "Builds visibility into systems to debug and improve reliability.",
+    image: "/images/portfolio/observability-and-monitoring.png",
+    imageAlt: "Observability illustration with dashboards, metrics, alerts, and code.",
+    layout: "small",
+    tone: "orange",
+    imageFit: "contain"
+  },
+  {
+    title: "End-to-End Ownership",
+    summary: "Takes features from idea to implementation, launch, and iteration.",
+    image: "/images/portfolio/end-to-end-ownership2.png",
+    imageAlt: "End-to-end ownership illustration showing idea, code, launch, and iteration.",
+    layout: "small",
+    tone: "white",
+    imageFit: "contain"
+  },
+  {
+    title: "Operational Clarity",
+    summary: "Makes work visible, understandable, and easier to move forward.",
+    image: "/images/portfolio/operational-clarity.png",
+    imageAlt: "Operational clarity illustration with organized workflow columns and tasks.",
+    layout: "wide",
+    tone: "navy",
+    imageFit: "cover"
+  }
+] satisfies PortfolioAboutCard[];
 
 export const portfolioServices = [
   {

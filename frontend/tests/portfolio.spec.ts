@@ -1,7 +1,8 @@
 import { expect, type Page, test } from "@playwright/test";
 
-const portfolioHeadline = "Meet Goodluck Igbokwe";
-const portfolioSummary = "A Software Developer building powerful, scalable web applications.";
+const portfolioHeadline = "Goodluck Igbokwe";
+const portfolioSummary =
+  "I am a Software Engineer, building scalable and secure website applications. When AI is relevant, I use it pragmatically through RAG, prompt engineering, and workflow tooling to improve products and delivery.";
 
 const sectionLinks = [
   { name: "Home", hash: "#home" },
@@ -16,6 +17,15 @@ const responsiveViewports = [
   { name: "mobile", size: { width: 390, height: 844 } },
   { name: "tablet", size: { width: 768, height: 1024 } },
   { name: "desktop", size: { width: 1280, height: 900 } }
+] as const;
+
+const aboutCards = [
+  { title: "Product-Minded Engineer", image: "/images/portfolio/product-minded-engineer.png" },
+  { title: "Technical Communication", image: "/images/portfolio/technical-communication.png" },
+  { title: "AI / LLM Tooling", image: "/images/portfolio/ai-llm-developer-tooling.png" },
+  { title: "Observability", image: "/images/portfolio/observability-and-monitoring.png" },
+  { title: "End-to-End Ownership", image: "/images/portfolio/end-to-end-ownership.png" },
+  { title: "Operational Clarity", image: "/images/portfolio/operational-clarity.png" }
 ] as const;
 
 async function expectNoHorizontalOverflow(page: Page) {
@@ -82,7 +92,7 @@ test("portfolio hero stays focused on its primary actions", async ({ page }) => 
   await expect(hero.getByRole("link", { name: "View my work" })).toHaveAttribute("href", "#projects");
   await expect(hero.getByRole("link", { name: "Get in touch" })).toHaveAttribute("href", "#contact");
   await expect(hero.getByLabel("Technical expertise").locator("span")).toHaveCount(5);
-  await expect(hero.getByRole("img", { name: "Goodluck Igbokwe, Software Developer" })).toHaveAttribute(
+  await expect(hero.getByRole("img", { name: "Goodluck Igbokwe, Software Engineer" })).toHaveAttribute(
     "src",
     "/images/portfolio/hero-portrait.png"
   );
@@ -106,6 +116,25 @@ test("portfolio navigation anchors reach their sections", async ({ page }) => {
   }
 });
 
+test("portfolio about section renders branded bento cards", async ({ page }) => {
+  await page.goto("/portfolio#about");
+
+  const about = page.locator("#about");
+  await expect(about.getByRole("heading", { name: "About Goodluck" })).toBeVisible();
+  await expect(about.getByText("A quick read, not a resume.")).toBeVisible();
+  await expect(about.locator(".about-bento-card")).toHaveCount(6);
+
+  for (const { title, image } of aboutCards) {
+    const card = about.locator(".about-bento-card").filter({ hasText: title });
+    await expect(card.getByRole("heading", { name: title })).toBeVisible();
+    await expect(card.getByRole("img")).toHaveAttribute("src", image);
+  }
+
+  await expect(about.locator(".stat-card")).toHaveCount(0);
+  await expect(about.locator(".skill-meter")).toHaveCount(0);
+  await expectNoHorizontalOverflow(page);
+});
+
 for (const { name, size } of responsiveViewports) {
   test(`portfolio key sections fit without horizontal overflow on ${name}`, async ({ page }) => {
     await page.setViewportSize(size);
@@ -114,7 +143,7 @@ for (const { name, size } of responsiveViewports) {
     await expect(page.getByRole("heading", { name: portfolioHeadline })).toBeVisible();
     await expect(page.getByRole("heading", { name: "About Goodluck" })).toBeAttached();
     await expect(page.getByRole("heading", { name: "My services" })).toBeAttached();
-    await expect(page.getByRole("heading", { name: "Personal Projects" })).toBeAttached();
+    await expect(page.getByRole("heading", { name: "My Portfolio" })).toBeAttached();
     await expect(page.getByRole("heading", { name: "Code Chronicles", exact: true })).toBeAttached();
     await expect(page.getByRole("heading", { name: "Contact me" })).toBeAttached();
     await expectNoHorizontalOverflow(page);
@@ -177,11 +206,13 @@ test("portfolio contact form exposes expected fields and actions", async ({ page
 
   await expect(page.getByRole("link", { name: /@/ })).toHaveAttribute("href", /^mailto:/);
   await expect(form.getByText(/Direct website sending is coming later/)).toBeVisible();
-  await expect(page.getByRole("link", { name: "LinkedIn", exact: true })).toHaveAttribute(
+  await expect(page.locator(`a[href="https://linkedin.com/in/mantle-bearer"]`)).toHaveCount(1);
+  await expect(page.locator(`a[href="https://github.com/mantle-bearer"]`)).toHaveCount(1);
+  await expect(page.locator(`a[href="https://linkedin.com/in/mantle-bearer"]`)).toHaveAttribute(
     "href",
     "https://linkedin.com/in/mantle-bearer"
   );
-  await expect(page.getByRole("link", { name: "GitHub", exact: true })).toHaveAttribute(
+  await expect(page.locator(`a[href="https://github.com/mantle-bearer"]`)).toHaveAttribute(
     "href",
     "https://github.com/mantle-bearer"
   );
