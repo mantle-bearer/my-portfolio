@@ -212,8 +212,8 @@ export const portfolioAboutCards = [
     imageFit: "contain"
   },
   {
-    title: "Technical Ownership",
-    summary: "Takes features from idea to implementation, launch, and iteration.",
+    title: "Code Ownership",
+    summary: "Takes features from idea to end-to-end implementation, launch, and iteration.",
     image: "/images/portfolio/end-to-end-ownership2.png",
     imageAlt: "End-to-end ownership illustration showing idea, code, launch, and iteration.",
     layout: "small",
