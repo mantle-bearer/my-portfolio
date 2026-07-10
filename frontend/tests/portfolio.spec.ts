@@ -138,6 +138,8 @@ test("portfolio about section renders branded bento cards", async ({ page }) => 
   await expect(about.locator(".about-bento-card").filter({ hasText: "Operational Clarity" })).toHaveClass(
     /image-ratio-landscape/
   );
+  await expect(about.getByLabel("About summary note")).toContainText("about-summary.sh");
+  await expect(about.getByLabel("About summary note")).toContainText("This is how I work");
 
   await expect(about.locator(".stat-card")).toHaveCount(0);
   await expect(about.locator(".skill-meter")).toHaveCount(0);

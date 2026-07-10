@@ -588,10 +588,147 @@ html {
   background: var(--pf-surface-strong);
 }
 
+.about-bento-stack {
+  display: grid;
+  min-width: 0;
+  grid-column: span 2;
+  align-content: start;
+  gap: 18px;
+}
+
+.about-bento-stack > .about-bento-card.is-wide {
+  grid-column: auto;
+}
+
+.about-summary-note {
+  display: grid;
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(0, 63, 136, 0.34);
+  border-radius: 12px;
+  background: #07162f;
+  color: #ffffff;
+  box-shadow: var(--pf-raised-soft);
+}
+
+.about-summary-note-bar {
+  display: grid;
+  min-width: 0;
+  grid-template-columns: 10px 10px 10px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+  border-bottom: 1px solid rgba(0, 63, 136, 0.42);
+  background: var(--pf-navy-deep);
+  padding: 9px 12px;
+}
+
+.about-summary-note-bar span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.about-summary-note-bar span:nth-child(1) {
+  background: #ff5f57;
+}
+
+.about-summary-note-bar span:nth-child(2) {
+  background: var(--pf-orange);
+}
+
+.about-summary-note-bar span:nth-child(3) {
+  background: #27c93f;
+}
+
+.about-summary-note-bar small {
+  min-width: 0;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.62);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 11px;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.about-summary-note-bar strong {
+  border: 1px solid rgba(255, 107, 0, 0.55);
+  border-radius: 4px;
+  color: var(--pf-orange);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 10px;
+  line-height: 1;
+  padding: 4px 6px;
+}
+
+.about-summary-note-body {
+  display: grid;
+  gap: 12px;
+  padding: 16px 18px 18px;
+}
+
+.about-summary-note-title {
+  width: 0;
+  max-width: max-content;
+  margin: 0;
+  overflow: hidden;
+  border-right: 2px solid currentColor;
+  color: var(--pf-orange);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1.1;
+  white-space: nowrap;
+  animation: aboutNoteTyping 1.45s steps(16, end) forwards, aboutNoteCursor 850ms step-end infinite;
+}
+
+.about-summary-note-body > p:last-child {
+  margin: 0;
+  border-left: 2px solid rgba(255, 107, 0, 0.64);
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.55;
+  padding-left: 12px;
+}
+
+:root.dark .about-summary-note {
+  border-color: rgba(255, 107, 0, 0.36);
+  background: #040d1d;
+  color: #ffffff;
+}
+
+:root:not(.dark) .about-summary-note {
+  border-color: rgba(0, 63, 136, 0.3);
+  background: #07162f;
+}
+
 @media (min-width: 521px) {
   .about-bento-card.tone-navy.image-ratio-landscape {
     align-self: start;
     grid-template-rows: auto auto;
+  }
+}
+
+@keyframes aboutNoteTyping {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 16ch;
+  }
+}
+
+@keyframes aboutNoteCursor {
+  0%,
+  45% {
+    border-color: currentColor;
+  }
+
+  46%,
+  100% {
+    border-color: transparent;
   }
 }
 
@@ -1081,6 +1218,10 @@ html {
     grid-column: span 2;
   }
 
+  .about-bento-stack {
+    grid-column: span 2;
+  }
+
   .hero-grid {
     gap: 36px;
   }
@@ -1160,6 +1301,11 @@ html {
     grid-column: auto;
   }
 
+  .about-bento-stack {
+    grid-column: auto;
+    gap: 14px;
+  }
+
   .about-bento-card.is-tall,
   .about-bento-card.is-wide,
   .about-bento-card.is-small {
@@ -1172,6 +1318,23 @@ html {
 
   .about-bento-art {
     margin: 14px;
+  }
+
+  .about-summary-note {
+    gap: 0;
+  }
+
+  .about-summary-note-body {
+    gap: 8px;
+    padding: 14px 16px 16px;
+  }
+
+  .about-summary-note-body > p:last-child {
+    font-size: 13px;
+    line-height: 1.45;
+    white-space: wrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   .hero-visual {
@@ -1212,5 +1375,11 @@ html {
   .portfolio-root *::after {
     scroll-behavior: auto !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .about-summary-note-title {
+    width: auto;
+    border-right-color: currentColor;
+    animation: none;
   }
 }

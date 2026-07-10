@@ -51,6 +51,11 @@ export type PortfolioAboutCard = {
   imageRatio?: "portrait" | "landscape";
 };
 
+export type PortfolioAboutSummaryNote = {
+  title: string;
+  summary: string;
+};
+
 export type PortfolioNote = {
   title: string;
   summary: string;
@@ -227,6 +232,12 @@ export const portfolioAboutCards = [
     imageRatio: "landscape"
   }
 ] satisfies PortfolioAboutCard[];
+
+export const portfolioAboutSummaryNote = {
+  title: "about-summary.sh",
+  summary:
+    "My workflow: understand the product, communicate clearly, use AI where it helps, monitor what matters, own the build, and turn messy work into clear steps."
+} satisfies PortfolioAboutSummaryNote;
 
 export const portfolioServices = [
   {
