@@ -48,6 +48,7 @@ export type PortfolioAboutCard = {
   layout: "tall" | "wide" | "small";
   tone: "navy" | "white" | "blue" | "orange";
   imageFit: "contain" | "cover";
+  imageRatio?: "portrait" | "landscape";
 };
 
 export type PortfolioNote = {
@@ -169,13 +170,14 @@ export const portfolioSkills = [
 
 export const portfolioAboutCards = [
   {
-    title: "Product-Minded Engineer",
-    summary: "Builds software with the user, product, and business outcome in mind.",
+    title: "Software Engineer",
+    summary: "I am a Product-Minded Developer, mobile & infrastructure engineer with a foundation in Management Information Systems, focused on building web applications, mobile experiences, and business software that solve real problems. My core work is product development across Python, FastAPI, Django, PHP, Laravel, React, Node.js and modern delivery workflows.",
     image: "/images/portfolio/product-minded-engineer2.png",
     imageAlt: "Product-minded engineering illustration with dashboards, goals, and code.",
     layout: "tall",
     tone: "orange",
-    imageFit: "contain"
+    imageFit: "contain",
+    imageRatio: "portrait"
   },
   {
     title: "Technical Communication",
@@ -188,7 +190,7 @@ export const portfolioAboutCards = [
   },
   {
     title: "AI / LLM Tooling",
-    summary: "Uses AI to speed up development and automate workflows.",
+    summary: "Uses AI and Machine Learning Models to speed up development and automate workflows.",
     image: "/images/portfolio/ai-llm-developer-tooling.png",
     imageAlt: "AI tooling illustration with code, automation flow, and assistant bot.",
     layout: "small",
@@ -196,7 +198,7 @@ export const portfolioAboutCards = [
     imageFit: "contain"
   },
   {
-    title: "Observability",
+    title: "Monitoring & Observability",
     summary: "Builds visibility into systems to debug and improve reliability.",
     image: "/images/portfolio/observability-and-monitoring.png",
     imageAlt: "Observability illustration with dashboards, metrics, alerts, and code.",
@@ -205,22 +207,24 @@ export const portfolioAboutCards = [
     imageFit: "contain"
   },
   {
-    title: "End-to-End Ownership",
+    title: "Technical Ownership",
     summary: "Takes features from idea to implementation, launch, and iteration.",
     image: "/images/portfolio/end-to-end-ownership2.png",
     imageAlt: "End-to-end ownership illustration showing idea, code, launch, and iteration.",
     layout: "small",
     tone: "white",
-    imageFit: "contain"
+    imageFit: "contain",
+    imageRatio: "portrait"
   },
   {
     title: "Operational Clarity",
-    summary: "Makes work visible, understandable, and easier to move forward.",
+    summary: "Makes work visible, understandable, and easier to move forward. Also organizing messy work into clear steps and shipping it.",
     image: "/images/portfolio/operational-clarity.png",
     imageAlt: "Operational clarity illustration with organized workflow columns and tasks.",
     layout: "wide",
     tone: "navy",
-    imageFit: "cover"
+    imageFit: "contain",
+    imageRatio: "landscape"
   }
 ] satisfies PortfolioAboutCard[];
 

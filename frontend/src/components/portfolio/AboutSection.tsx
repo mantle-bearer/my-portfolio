@@ -11,7 +11,9 @@ export function AboutSection() {
       <div className="about-bento" aria-label="About Goodluck">
         {portfolioAboutCards.map((card) => (
           <article
-            className={`about-bento-card is-${card.layout} tone-${card.tone} image-${card.imageFit}`}
+            className={`about-bento-card is-${card.layout} tone-${card.tone} image-${card.imageFit}${
+              card.imageRatio ? ` image-ratio-${card.imageRatio}` : ""
+            }`}
             key={card.title}
           >
             <div className="about-bento-copy">

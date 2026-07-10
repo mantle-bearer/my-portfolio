@@ -20,11 +20,11 @@ const responsiveViewports = [
 ] as const;
 
 const aboutCards = [
-  { title: "Product-Minded Engineer", image: "/images/portfolio/product-minded-engineer.png" },
+  { title: "Product-Minded Engineer", image: "/images/portfolio/product-minded-engineer2.png" },
   { title: "Technical Communication", image: "/images/portfolio/technical-communication.png" },
   { title: "AI / LLM Tooling", image: "/images/portfolio/ai-llm-developer-tooling.png" },
   { title: "Observability", image: "/images/portfolio/observability-and-monitoring.png" },
-  { title: "End-to-End Ownership", image: "/images/portfolio/end-to-end-ownership.png" },
+  { title: "End-to-End Ownership", image: "/images/portfolio/end-to-end-ownership2.png" },
   { title: "Operational Clarity", image: "/images/portfolio/operational-clarity.png" }
 ] as const;
 
@@ -120,8 +120,7 @@ test("portfolio about section renders branded bento cards", async ({ page }) => 
   await page.goto("/portfolio#about");
 
   const about = page.locator("#about");
-  await expect(about.getByRole("heading", { name: "About Goodluck" })).toBeVisible();
-  await expect(about.getByText("A quick read, not a resume.")).toBeVisible();
+  await expect(about.getByRole("heading", { name: "About Me" })).toBeVisible();
   await expect(about.locator(".about-bento-card")).toHaveCount(6);
 
   for (const { title, image } of aboutCards) {
@@ -129,6 +128,16 @@ test("portfolio about section renders branded bento cards", async ({ page }) => 
     await expect(card.getByRole("heading", { name: title })).toBeVisible();
     await expect(card.getByRole("img")).toHaveAttribute("src", image);
   }
+
+  await expect(about.locator(".about-bento-card").filter({ hasText: "Product-Minded Engineer" })).toHaveClass(
+    /image-ratio-portrait/
+  );
+  await expect(about.locator(".about-bento-card").filter({ hasText: "End-to-End Ownership" })).toHaveClass(
+    /image-ratio-portrait/
+  );
+  await expect(about.locator(".about-bento-card").filter({ hasText: "Operational Clarity" })).toHaveClass(
+    /image-ratio-landscape/
+  );
 
   await expect(about.locator(".stat-card")).toHaveCount(0);
   await expect(about.locator(".skill-meter")).toHaveCount(0);
@@ -141,7 +150,7 @@ for (const { name, size } of responsiveViewports) {
     await page.goto("/portfolio");
 
     await expect(page.getByRole("heading", { name: portfolioHeadline })).toBeVisible();
-    await expect(page.getByRole("heading", { name: "About Goodluck" })).toBeAttached();
+    await expect(page.getByRole("heading", { name: "About Me" })).toBeAttached();
     await expect(page.getByRole("heading", { name: "My services" })).toBeAttached();
     await expect(page.getByRole("heading", { name: "My Portfolio" })).toBeAttached();
     await expect(page.getByRole("heading", { name: "Code Chronicles", exact: true })).toBeAttached();
