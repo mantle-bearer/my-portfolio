@@ -20,11 +20,11 @@ const responsiveViewports = [
 ] as const;
 
 const aboutCards = [
-  { title: "Product-Minded Engineer", image: "/images/portfolio/product-minded-engineer2.png" },
+  { title: "Software Engineer", image: "/images/portfolio/product-minded-engineer2.png" },
   { title: "Technical Communication", image: "/images/portfolio/technical-communication.png" },
   { title: "AI / LLM Tooling", image: "/images/portfolio/ai-llm-developer-tooling.png" },
-  { title: "Observability", image: "/images/portfolio/observability-and-monitoring.png" },
-  { title: "End-to-End Ownership", image: "/images/portfolio/end-to-end-ownership2.png" },
+  { title: "Monitoring & Observability", image: "/images/portfolio/observability-and-monitoring.png" },
+  { title: "Technical Ownership", image: "/images/portfolio/end-to-end-ownership2.png" },
   { title: "Operational Clarity", image: "/images/portfolio/operational-clarity.png" }
 ] as const;
 
@@ -129,10 +129,10 @@ test("portfolio about section renders branded bento cards", async ({ page }) => 
     await expect(card.getByRole("img")).toHaveAttribute("src", image);
   }
 
-  await expect(about.locator(".about-bento-card").filter({ hasText: "Product-Minded Engineer" })).toHaveClass(
+  await expect(about.locator(".about-bento-card").filter({ hasText: "Software Engineer" })).toHaveClass(
     /image-ratio-portrait/
   );
-  await expect(about.locator(".about-bento-card").filter({ hasText: "End-to-End Ownership" })).toHaveClass(
+  await expect(about.locator(".about-bento-card").filter({ hasText: "Technical Ownership" })).toHaveClass(
     /image-ratio-portrait/
   );
   await expect(about.locator(".about-bento-card").filter({ hasText: "Operational Clarity" })).toHaveClass(

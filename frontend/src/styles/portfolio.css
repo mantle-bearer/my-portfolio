@@ -506,6 +506,7 @@ html {
 
 .about-bento-art {
   display: grid;
+  align-self: end;
   min-height: 0;
   margin: 16px;
   overflow: hidden;
@@ -585,6 +586,13 @@ html {
 
 .about-bento-card.tone-white {
   background: var(--pf-surface-strong);
+}
+
+@media (min-width: 521px) {
+  .about-bento-card.tone-navy.image-ratio-landscape {
+    align-self: start;
+    grid-template-rows: auto auto;
+  }
 }
 
 .service-grid,
