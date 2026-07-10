@@ -1,7 +1,7 @@
 import type { FormEvent } from "react";
 import { Mail, Send } from "lucide-react";
 import { FaLinkedinIn } from "react-icons/fa6";
-import { SiGithub } from "react-icons/si";
+import { SiGithub, SiGmail } from "react-icons/si";
 
 import { portfolioProfile } from "@/data/portfolio";
 import { SectionShell } from "@/components/portfolio/SectionShell";
@@ -19,6 +19,13 @@ export function ContactSection() {
     window.location.href = `mailto:${portfolioProfile.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
   }
 
+
+const contactLinks = [
+  { label: "Email", Icon: SiGmail },
+  { label: "GitHub", Icon: SiGithub },
+  { label: "LinkedIn", Icon: FaLinkedinIn }
+];
+
   return (
     <SectionShell id="contact" className="contact-section">
       <div className="section-heading">
@@ -28,19 +35,29 @@ export function ContactSection() {
       </div>
       <div className="contact-grid">
         <div>
-          <div className="contact-links">
-            <a href={`mailto:${portfolioProfile.email}`}>
-              <Mail size={18} />
-              {portfolioProfile.email}
-            </a>
-            <a href={portfolioProfile.socialLinks[0].href} target="_blank" rel="noreferrer">
-              <FaLinkedinIn size={18} />
-              LinkedIn
-            </a>
-            <a href={portfolioProfile.socialLinks[1].href} target="_blank" rel="noreferrer">
-              <SiGithub size={18} />
-              GitHub
-            </a>
+          <div className="hero-expertise" aria-label="Technical expertise">
+            <p>Connect with Me</p>
+            <div>
+              {contactLinks.map(({ label, Icon }) => (
+                <span key={label} title={label} aria-label={label}>
+                  <Icon aria-hidden="true" />
+                </span>
+              ))}
+            </div>
+            <div className="contact-links">
+              <a href={`mailto:${portfolioProfile.email}`}>
+                <Mail size={18} />
+                {portfolioProfile.email}
+              </a>
+              <a href={portfolioProfile.socialLinks[0].href} target="_blank" rel="noreferrer">
+                <FaLinkedinIn size={18} />
+                mantle-bearer
+              </a>
+              <a href={portfolioProfile.socialLinks[1].href} target="_blank" rel="noreferrer">
+                <SiGithub size={18} />
+                mantle-bearer
+              </a>
+            </div>
           </div>
         </div>
         <form className="contact-form" aria-label="Contact form" onSubmit={openEmailDraft}>

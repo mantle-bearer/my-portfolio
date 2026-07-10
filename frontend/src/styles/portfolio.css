@@ -1118,7 +1118,7 @@ html {
   }
 
   .portfolio-footer .portfolio-shell {
-    align-items: flex-start;
+    align-items: center;
     flex-direction: column;
   }
 }
