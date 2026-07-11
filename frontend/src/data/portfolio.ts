@@ -56,9 +56,14 @@ export type PortfolioAboutSummaryNote = {
   summary: string;
 };
 
+export type PortfolioNoteCategory = "Backend" | "Frontend" | "AI Tooling" | "Workflow";
+
 export type PortfolioNote = {
   title: string;
-  summary: string;
+  category: PortfolioNoteCategory;
+  excerpt: string;
+  date: string;
+  href: string;
 };
 
 const subjectPlaceholder = "/images/portfolio/placeholders/subject-placeholder.svg";
@@ -266,18 +271,56 @@ export const portfolioServices = [
   }
 ] satisfies PortfolioService[];
 
+export const portfolioNoteCategories = [
+  "All",
+  "Backend",
+  "Frontend",
+  "AI Tooling",
+  "Workflow"
+] satisfies readonly ("All" | PortfolioNoteCategory)[];
+
 export const portfolioNotes = [
   {
-    title: "Code Chronicles 001",
-    summary: "Short practical notes on building useful software, APIs, and business tools."
+    title: "Designing APIs that stay easy to use",
+    category: "Backend",
+    excerpt: "Placeholder notes on building predictable endpoints, clean contracts, and backend flows that product teams can trust.",
+    date: "2026-07-12",
+    href: "#contact"
   },
   {
-    title: "Code Chronicles 002",
-    summary: "A space for lessons from client workflows, product decisions, and implementation."
+    title: "Frontend layouts that respect real content",
+    category: "Frontend",
+    excerpt: "Placeholder lessons on responsive interfaces, spacing systems, and component decisions that keep pages readable.",
+    date: "2026-07-10",
+    href: "#contact"
   },
   {
-    title: "Code Chronicles 003",
-    summary: "Placeholder journal entry for future writing about development and delivery."
+    title: "Using AI tooling without losing judgment",
+    category: "AI Tooling",
+    excerpt: "Placeholder thoughts on prompts, RAG, automation helpers, and where human engineering taste still matters.",
+    date: "2026-07-08",
+    href: "#contact"
+  },
+  {
+    title: "Turning messy work into clear shipping steps",
+    category: "Workflow",
+    excerpt: "Placeholder notes on breaking business ideas into small buildable phases, ownership loops, and launch-ready tasks.",
+    date: "2026-07-06",
+    href: "#contact"
+  },
+  {
+    title: "What reliable dashboards need first",
+    category: "Backend",
+    excerpt: "Placeholder guidance for data models, permissions, reporting views, and the backend details behind useful dashboards.",
+    date: "2026-07-04",
+    href: "#contact"
+  },
+  {
+    title: "A practical rhythm for technical delivery",
+    category: "Workflow",
+    excerpt: "Placeholder writing about discovery, implementation, feedback, and the habits that keep software work moving.",
+    date: "2026-07-02",
+    href: "#contact"
   }
 ] satisfies PortfolioNote[];
 

@@ -24,8 +24,19 @@ const aboutCards = [
   { title: "Technical Communication", image: "/images/portfolio/technical-communication.png" },
   { title: "AI / LLM Tooling", image: "/images/portfolio/ai-llm-developer-tooling.png" },
   { title: "Monitoring & Observability", image: "/images/portfolio/observability-and-monitoring.png" },
-  { title: "Technical Ownership", image: "/images/portfolio/end-to-end-ownership2.png" },
+  { title: "Code Ownership", image: "/images/portfolio/end-to-end-ownership2.png" },
   { title: "Operational Clarity", image: "/images/portfolio/operational-clarity.png" }
+] as const;
+
+const noteCategories = ["All", "Backend", "Frontend", "AI Tooling", "Workflow"] as const;
+
+const noteCards = [
+  { title: "Designing APIs that stay easy to use", category: "Backend", date: "July 12, 2026" },
+  { title: "Frontend layouts that respect real content", category: "Frontend", date: "July 10, 2026" },
+  { title: "Using AI tooling without losing judgment", category: "AI Tooling", date: "July 8, 2026" },
+  { title: "Turning messy work into clear shipping steps", category: "Workflow", date: "July 6, 2026" },
+  { title: "What reliable dashboards need first", category: "Backend", date: "July 4, 2026" },
+  { title: "A practical rhythm for technical delivery", category: "Workflow", date: "July 2, 2026" }
 ] as const;
 
 async function expectNoHorizontalOverflow(page: Page) {
@@ -132,17 +143,58 @@ test("portfolio about section renders branded bento cards", async ({ page }) => 
   await expect(about.locator(".about-bento-card").filter({ hasText: "Software Engineer" })).toHaveClass(
     /image-ratio-portrait/
   );
-  await expect(about.locator(".about-bento-card").filter({ hasText: "Technical Ownership" })).toHaveClass(
+  await expect(about.locator(".about-bento-card").filter({ hasText: "Code Ownership" })).toHaveClass(
     /image-ratio-portrait/
   );
   await expect(about.locator(".about-bento-card").filter({ hasText: "Operational Clarity" })).toHaveClass(
     /image-ratio-landscape/
   );
   await expect(about.getByLabel("About summary note")).toContainText("about-summary.sh");
-  await expect(about.getByLabel("About summary note")).toContainText("This is how I work");
+  await expect(about.getByLabel("About summary note")).toContainText("My workflow:");
 
   await expect(about.locator(".stat-card")).toHaveCount(0);
   await expect(about.locator(".skill-meter")).toHaveCount(0);
+  await expectNoHorizontalOverflow(page);
+});
+
+test("portfolio code chronicles filters placeholder articles", async ({ page }) => {
+  await page.goto("/portfolio#notes");
+
+  const notes = page.locator("#notes");
+  await expect(notes.getByRole("heading", { name: "Code Chronicles", exact: true })).toBeVisible();
+
+  for (const category of noteCategories) {
+    await expect(notes.getByRole("button", { name: category, exact: true })).toBeVisible();
+  }
+
+  await expect(notes.getByRole("button", { name: "All", exact: true })).toHaveAttribute(
+    "aria-pressed",
+    "true"
+  );
+  await expect(notes.getByText("6 articles")).toBeVisible();
+  await expect(notes.locator(".note-card")).toHaveCount(6);
+
+  for (const { title, category, date } of noteCards) {
+    const card = notes.locator(".note-card").filter({ hasText: title });
+    await expect(card.getByRole("heading", { name: title })).toBeVisible();
+    await expect(card.getByText(category, { exact: true })).toBeVisible();
+    await expect(card.getByText(date)).toBeVisible();
+    await expect(card.getByRole("link", { name: `Read ${title}` })).toHaveAttribute("href", "#contact");
+  }
+
+  await notes.getByRole("button", { name: "Backend", exact: true }).click();
+  await expect(notes.getByRole("button", { name: "Backend", exact: true })).toHaveAttribute(
+    "aria-pressed",
+    "true"
+  );
+  await expect(notes.getByText("2 articles")).toBeVisible();
+  await expect(notes.locator(".note-card")).toHaveCount(2);
+  await expect(notes.getByRole("heading", { name: "Frontend layouts that respect real content" })).toHaveCount(0);
+
+  await notes.getByRole("button", { name: "AI Tooling", exact: true }).click();
+  await expect(notes.getByText("1 article")).toBeVisible();
+  await expect(notes.locator(".note-card")).toHaveCount(1);
+  await expect(notes.getByRole("heading", { name: "Using AI tooling without losing judgment" })).toBeVisible();
   await expectNoHorizontalOverflow(page);
 });
 
