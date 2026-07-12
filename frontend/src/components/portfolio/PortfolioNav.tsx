@@ -8,6 +8,7 @@ import { portfolioProfile } from "@/data/portfolio";
 const links = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
+  { label: "Stack", href: "#stacks" },
   { label: "Services", href: "#services" },
   { label: "Portfolio", href: "#projects" },
   { label: "Blog", href: "#notes" },

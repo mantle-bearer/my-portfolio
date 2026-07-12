@@ -7,6 +7,7 @@ const portfolioSummary =
 const sectionLinks = [
   { name: "Home", hash: "#home" },
   { name: "About", hash: "#about" },
+  { name: "Stack", hash: "#stacks" },
   { name: "Services", hash: "#services" },
   { name: "Portfolio", hash: "#projects" },
   { name: "Blog", hash: "#notes" },
@@ -38,6 +39,8 @@ const noteCards = [
   { title: "What reliable dashboards need first", category: "Backend", date: "July 4, 2026" },
   { title: "A practical rhythm for technical delivery", category: "Workflow", date: "July 2, 2026" }
 ] as const;
+
+const stackTabs = ["Python", "PHP", "Rust", "JavaScript", "Golang", "C#"] as const;
 
 async function expectNoHorizontalOverflow(page: Page) {
   await expect
@@ -157,6 +160,42 @@ test("portfolio about section renders branded bento cards", async ({ page }) => 
   await expectNoHorizontalOverflow(page);
 });
 
+test("portfolio stacks section switches language panels", async ({ page }) => {
+  await page.goto("/portfolio#stacks");
+
+  const stacks = page.locator("#stacks");
+  await expect(stacks.getByRole("heading", { name: "Stacks I Use", exact: true })).toBeVisible();
+
+  for (const tab of stackTabs) {
+    await expect(stacks.getByRole("tab", { name: tab, exact: true })).toBeVisible();
+  }
+
+  await expect(stacks.getByRole("tab", { name: "Python", exact: true })).toHaveAttribute(
+    "aria-selected",
+    "true"
+  );
+  await expect(stacks.getByRole("tabpanel")).toContainText("FastAPI");
+  await expect(stacks.getByLabel("Python frameworks and tools")).toContainText("Django");
+  await expect(stacks.getByLabel("Python code snippet")).toContainText("from fastapi import FastAPI");
+
+  await stacks.getByRole("tab", { name: "Rust", exact: true }).click();
+  await expect(stacks.getByRole("tab", { name: "Rust", exact: true })).toHaveAttribute(
+    "aria-selected",
+    "true"
+  );
+  await expect(stacks.getByRole("tabpanel")).toContainText("performance-minded tooling");
+  await expect(stacks.getByLabel("Rust frameworks and tools")).toContainText("Tokio");
+  await expect(stacks.getByLabel("Rust frameworks and tools")).toContainText("Serde");
+  await expect(stacks.getByLabel("Rust code snippet")).toContainText("#[tokio::main]");
+
+  await stacks.getByRole("tab", { name: "JavaScript", exact: true }).click();
+  await expect(stacks.getByRole("tabpanel")).toContainText("interactive interfaces");
+  await expect(stacks.getByLabel("JavaScript frameworks and tools")).toContainText("React");
+  await expect(stacks.getByLabel("JavaScript frameworks and tools")).toContainText("TypeScript");
+  await expect(stacks.getByLabel("JavaScript code snippet")).toContainText("const workflow = useMemo");
+  await expectNoHorizontalOverflow(page);
+});
+
 test("portfolio code chronicles filters placeholder articles", async ({ page }) => {
   await page.goto("/portfolio#notes");
 
@@ -205,6 +244,7 @@ for (const { name, size } of responsiveViewports) {
 
     await expect(page.getByRole("heading", { name: portfolioHeadline })).toBeVisible();
     await expect(page.getByRole("heading", { name: "About Me" })).toBeAttached();
+    await expect(page.getByRole("heading", { name: "Stacks I Use", exact: true })).toBeAttached();
     await expect(page.getByRole("heading", { name: "My services" })).toBeAttached();
     await expect(page.getByRole("heading", { name: "My Portfolio" })).toBeAttached();
     await expect(page.getByRole("heading", { name: "Code Chronicles", exact: true })).toBeAttached();

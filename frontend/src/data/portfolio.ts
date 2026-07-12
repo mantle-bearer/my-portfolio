@@ -66,6 +66,17 @@ export type PortfolioNote = {
   href: string;
 };
 
+export type PortfolioStack = {
+  language: string;
+  summary: string;
+  tools: string[];
+  snippet: string[];
+  useCases: Array<{
+    title: string;
+    summary: string;
+  }>;
+};
+
 const subjectPlaceholder = "/images/portfolio/placeholders/subject-placeholder.svg";
 const backgroundPlaceholder = "/images/portfolio/placeholders/tech-background-placeholder.svg";
 
@@ -243,6 +254,203 @@ export const portfolioAboutSummaryNote = {
   summary:
     "My workflow: understand the product, communicate clearly, use AI where it helps, monitor what matters, own the build, and turn messy work into clear steps."
 } satisfies PortfolioAboutSummaryNote;
+
+export const portfolioStacks = [
+  {
+    language: "Python",
+    summary: "For APIs, dashboards, automation, and practical backend workflows.",
+    tools: ["FastAPI", "Django", "Pydantic", "PostgreSQL"],
+    snippet: [
+      "from fastapi import FastAPI",
+      "",
+      "app = FastAPI(title=\"Business workflow API\")",
+      "",
+      "@app.post(\"/orders/sync\")",
+      "async def sync_orders(payload: OrderSync):",
+      "    result = await service.sync(payload)",
+      "    return {\"status\": \"ready\", \"items\": result.count}"
+    ],
+    useCases: [
+      {
+        title: "API systems",
+        summary: "Build clean endpoints for products, dashboards, and integrations."
+      },
+      {
+        title: "Automation",
+        summary: "Turn repeated business tasks into reliable background workflows."
+      },
+      {
+        title: "Dashboards",
+        summary: "Shape data views that help teams see what is happening."
+      },
+      {
+        title: "Backend apps",
+        summary: "Use Django or FastAPI when a product needs structure and speed."
+      }
+    ]
+  },
+  {
+    language: "PHP",
+    summary: "For Laravel-style business platforms, admin tools, and backend workflows.",
+    tools: ["Laravel", "Eloquent", "Blade", "MySQL"],
+    snippet: [
+      "Route::post('/invoices/send', SendInvoiceController::class);",
+      "",
+      "public function __invoke(InvoiceRequest $request)",
+      "{",
+      "    $invoice = Invoice::create($request->validated());",
+      "    SendInvoiceJob::dispatch($invoice);",
+      "    return response()->json(['queued' => true]);",
+      "}"
+    ],
+    useCases: [
+      {
+        title: "Admin systems",
+        summary: "Create internal panels for managing records and operations."
+      },
+      {
+        title: "Laravel APIs",
+        summary: "Ship structured backend workflows with validation and queues."
+      },
+      {
+        title: "Business logic",
+        summary: "Model orders, invoices, users, roles, and permissions clearly."
+      },
+      {
+        title: "Database work",
+        summary: "Use migrations and Eloquent patterns to keep data maintainable."
+      }
+    ]
+  },
+  {
+    language: "Rust",
+    summary: "For performance-minded tooling, reliable services, and CLI experiments.",
+    tools: ["Actix", "Axum", "Tokio", "Serde"],
+    snippet: [
+      "#[tokio::main]",
+      "async fn main() -> anyhow::Result<()> {",
+      "    let app = Router::new()",
+      "        .route(\"/health\", get(health_check));",
+      "",
+      "    serve(listener, app).await?;",
+      "    Ok(())",
+      "}"
+    ],
+    useCases: [
+      {
+        title: "CLI tools",
+        summary: "Build fast utilities for local automation and developer workflows."
+      },
+      {
+        title: "Reliable services",
+        summary: "Explore strongly typed services where correctness matters."
+      },
+      {
+        title: "Data tasks",
+        summary: "Process structured data with predictable memory and speed."
+      },
+      {
+        title: "Systems learning",
+        summary: "Use Rust to deepen performance and architecture instincts."
+      }
+    ]
+  },
+  {
+    language: "JavaScript",
+    summary: "For interactive interfaces, frontend systems, and Node.js workflows.",
+    tools: ["React", "TypeScript", "Node.js", "Vite"],
+    snippet: [
+      "const workflow = useMemo(() => {",
+      "  return projects.filter((project) => project.ready);",
+      "}, [projects]);",
+      "",
+      "return <Dashboard items={workflow} onSelect={openProject} />;"
+    ],
+    useCases: [
+      {
+        title: "React UI",
+        summary: "Build responsive screens, dashboards, and polished interactions."
+      },
+      {
+        title: "TypeScript",
+        summary: "Keep frontend behavior safer with clear types and contracts."
+      },
+      {
+        title: "Node workflows",
+        summary: "Create scripts, integrations, and lightweight service glue."
+      },
+      {
+        title: "Product screens",
+        summary: "Turn business requirements into usable browser experiences."
+      }
+    ]
+  },
+  {
+    language: "Golang",
+    summary: "For APIs, service workflows, and concurrent backend processes.",
+    tools: ["Gin", "Fiber", "Goroutines", "PostgreSQL"],
+    snippet: [
+      "func SyncJobs(ctx context.Context, jobs []Job) error {",
+      "    group, ctx := errgroup.WithContext(ctx)",
+      "    for _, job := range jobs {",
+      "        job := job",
+      "        group.Go(func() error { return runJob(ctx, job) })",
+      "    }",
+      "    return group.Wait()",
+      "}"
+    ],
+    useCases: [
+      {
+        title: "Service APIs",
+        summary: "Build simple backend services with predictable performance."
+      },
+      {
+        title: "Concurrency",
+        summary: "Handle background jobs and parallel workflows cleanly."
+      },
+      {
+        title: "Integrations",
+        summary: "Connect systems where speed and simplicity matter."
+      },
+      {
+        title: "Ops tooling",
+        summary: "Create compact tools for deployment and maintenance tasks."
+      }
+    ]
+  },
+  {
+    language: "C#",
+    summary: "For .NET business applications, typed backend systems, and structured APIs.",
+    tools: [".NET", "ASP.NET Core", "Entity Framework", "SQL Server"],
+    snippet: [
+      "app.MapPost(\"/customers\", async (CustomerDto input, AppDb db) =>",
+      "{",
+      "    var customer = Customer.From(input);",
+      "    db.Customers.Add(customer);",
+      "    await db.SaveChangesAsync();",
+      "    return Results.Created($\"/customers/{customer.Id}\", customer);",
+      "});"
+    ],
+    useCases: [
+      {
+        title: "Typed APIs",
+        summary: "Create structured endpoints with strong models and contracts."
+      },
+      {
+        title: "Business apps",
+        summary: "Build workflows for records, approvals, and internal operations."
+      },
+      {
+        title: "Data models",
+        summary: "Use Entity Framework patterns for maintainable persistence."
+      },
+      {
+        title: "Enterprise fit",
+        summary: "Support teams that prefer the .NET ecosystem."
+      }
+    ]
+  }
+] satisfies PortfolioStack[];
 
 export const portfolioServices = [
   {

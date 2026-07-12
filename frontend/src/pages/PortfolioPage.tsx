@@ -6,6 +6,7 @@ import { PortfolioFooter } from "@/components/portfolio/PortfolioFooter";
 import { PortfolioNav } from "@/components/portfolio/PortfolioNav";
 import { ProjectsSection } from "@/components/portfolio/ProjectsSection";
 import { ServicesSection } from "@/components/portfolio/ServicesSection";
+import { StacksSection } from "@/components/portfolio/StacksSection";
 
 export function PortfolioPage() {
   return (
@@ -13,6 +14,7 @@ export function PortfolioPage() {
       <PortfolioNav />
       <HeroSection />
       <AboutSection />
+      <StacksSection />
       <ServicesSection />
       <ProjectsSection />
       <NotesSection />
