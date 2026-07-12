@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { Check, Copy } from "lucide-react";
+import { Check } from "lucide-react";
+import { TbCopy } from "react-icons/tb";
 
 import { portfolioStacks } from "@/data/portfolio";
 import { SectionShell } from "@/components/portfolio/SectionShell";
@@ -87,13 +88,11 @@ export function StacksSection() {
             <button className="stacks-copy-button" type="button" onClick={copySnippet}>
               {copiedStack === selectedStack.language ? (
                 <>
-                  <Check size={17} aria-hidden="true" />
-                  Copied
+                  <span><Check size={17} aria-hidden="true" /></span>
                 </>
               ) : (
                 <>
-                  <Copy size={17} aria-hidden="true" />
-                  Copy
+                  <span><TbCopy size={17} aria-hidden="true" /></span>
                 </>
               )}
             </button>
