@@ -297,6 +297,7 @@ test("portfolio mobile menu opens, closes, and reaches anchors", async ({ page }
 });
 
 test("portfolio contact form exposes expected fields and actions", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
   await page.goto("/portfolio#contact");
 
   const form = page.getByRole("form", { name: "Contact form" });
@@ -319,5 +320,24 @@ test("portfolio contact form exposes expected fields and actions", async ({ page
     "href",
     "https://github.com/mantle-bearer"
   );
+
+  const consultationCard = page.getByRole("complementary", { name: "Book a consultation" });
+  await expect(consultationCard).toBeVisible();
+  await expect(
+    consultationCard.getByRole("img", { name: "Goodluck Igbokwe offering a 30-minute web consultation" })
+  ).toHaveAttribute("src", "/images/portfolio/book-consultation.jfif");
+
+  const consultationLink = consultationCard.getByRole("link", { name: "Book for Consultation" });
+  await expect(consultationLink).toHaveAttribute("href", "https://calendly.com/igbokwegoodluck8/30min");
+  await expect(consultationLink).toHaveAttribute("target", "_blank");
+  await expect(consultationLink).toHaveAttribute("rel", "noopener noreferrer");
+
+  const [asideBox, formBox] = await Promise.all([
+    page.locator(".contact-aside").boundingBox(),
+    form.boundingBox()
+  ]);
+  expect(asideBox).not.toBeNull();
+  expect(formBox).not.toBeNull();
+  expect(asideBox!.height).toBeLessThanOrEqual(formBox!.height + 1);
   await expectNoHorizontalOverflow(page);
 });

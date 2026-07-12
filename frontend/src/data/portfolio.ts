@@ -107,6 +107,14 @@ export const portfolioAssets = {
     status: "placeholder",
     notes: "Using the seated projects portrait until a separate consultation portrait is provided."
   },
+  consultationCard: {
+    key: "consultationCard",
+    label: "Book a consultation",
+    src: "/images/portfolio/book-consultation.jfif",
+    finalPath: "/images/portfolio/book-consultation.jfif",
+    status: "final",
+    notes: "Wide consultation artwork used beneath the contact links."
+  },
   laptopAward: {
     key: "laptopAward",
     label: "Laptop and award",

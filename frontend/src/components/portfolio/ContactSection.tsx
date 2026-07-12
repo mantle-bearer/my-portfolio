@@ -3,7 +3,7 @@ import { Mail, Send } from "lucide-react";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { SiGithub, SiGmail } from "react-icons/si";
 
-import { portfolioProfile } from "@/data/portfolio";
+import { portfolioAssets, portfolioProfile } from "@/data/portfolio";
 import { SectionShell } from "@/components/portfolio/SectionShell";
 
 export function ContactSection() {
@@ -34,7 +34,7 @@ const contactLinks = [
         </h2>
       </div>
       <div className="contact-grid">
-        <div>
+        <div className="contact-aside">
           <div className="hero-expertise" aria-label="Technical expertise">
             <p>Connect with Me</p>
             <div>
@@ -59,6 +59,22 @@ const contactLinks = [
               </a>
             </div>
           </div>
+          <aside className="consultation-card" aria-label="Book a consultation">
+            <div className="consultation-card-image">
+              <img
+                src={portfolioAssets.consultationCard.src}
+                alt="Goodluck Igbokwe offering a 30-minute web consultation"
+              />
+            </div>
+            <a
+              className="portfolio-button portfolio-button-primary consultation-card-link"
+              href="https://calendly.com/igbokwegoodluck8/30min"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Book for Consultation
+            </a>
+          </aside>
         </div>
         <form className="contact-form" aria-label="Contact form" onSubmit={openEmailDraft}>
           <label>
