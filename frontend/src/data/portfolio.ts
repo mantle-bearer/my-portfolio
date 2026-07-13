@@ -1,75 +1,36 @@
-export type PortfolioAssetStatus = "placeholder" | "final";
+import type {
+  PortfolioAboutCard,
+  PortfolioAboutSummaryNote,
+  PortfolioAsset,
+  PortfolioContent,
+  PortfolioLink,
+  PortfolioNote,
+  PortfolioProject,
+  PortfolioService,
+  PortfolioStack
+} from "@/types/portfolio";
 
-export type PortfolioAsset = {
-  key: string;
-  label: string;
-  src: string;
-  finalPath: string;
-  status: PortfolioAssetStatus;
-  notes: string;
-};
-
-export type PortfolioProject = {
-  slug: string;
-  title: string;
-  summary: string;
-  tags: string[];
-  href?: string;
-  featured?: boolean;
-};
-
-export type PortfolioLink = {
-  label: string;
-  href: string;
-};
-
-export type PortfolioService = {
-  title: string;
-  summary: string;
-};
-
-export type PortfolioAboutCard = {
-  title: string;
-  summary: string;
-  image: string;
-  imageAlt: string;
-  layout: "tall" | "wide" | "small";
-  tone: "navy" | "white" | "blue" | "orange";
-  imageFit: "contain" | "cover";
-  imageRatio?: "portrait" | "landscape";
-};
-
-export type PortfolioAboutSummaryNote = {
-  title: string;
-  summary: string;
-};
+export type {
+  PortfolioAboutCard,
+  PortfolioAboutSummaryNote,
+  PortfolioAsset,
+  PortfolioAssetStatus,
+  PortfolioContent,
+  PortfolioLink,
+  PortfolioNote,
+  PortfolioProject,
+  PortfolioService,
+  PortfolioStack
+} from "@/types/portfolio";
 
 export type PortfolioNoteCategory = "Backend" | "Frontend" | "AI Tooling" | "Workflow";
-
-export type PortfolioNote = {
-  title: string;
-  category: PortfolioNoteCategory;
-  excerpt: string;
-  date: string;
-  href: string;
-};
-
-export type PortfolioStack = {
-  language: string;
-  summary: string;
-  tools: string[];
-  snippet: string[];
-  useCases: Array<{
-    title: string;
-    summary: string;
-  }>;
-};
 
 export const portfolioAssets = {
   heroPortrait: {
     key: "heroPortrait",
     label: "Hero portrait",
     src: "/images/portfolio/hero-portrait.png",
+    alt: "Goodluck Igbokwe, Software Engineer",
     finalPath: "/images/portfolio/hero-portrait.png",
     status: "final",
     notes: "Framed white-sweater portrait used as the hero composition."
@@ -78,9 +39,19 @@ export const portfolioAssets = {
     key: "consultationCard",
     label: "Book a consultation",
     src: "/images/portfolio/book-consultation.jfif",
+    alt: "Goodluck Igbokwe offering a 30-minute web consultation",
     finalPath: "/images/portfolio/book-consultation.jfif",
     status: "final",
     notes: "Wide consultation artwork used beneath the contact links."
+  },
+  profilePortrait: {
+    key: "profilePortrait",
+    label: "Profile portrait",
+    src: "/images/portfolio/profile-passport-picture.jpg",
+    alt: "Goodluck Igbokwe",
+    finalPath: "/images/portfolio/profile-passport-picture.jpg",
+    status: "final",
+    notes: "Compact portrait used in portfolio navigation."
   }
 } satisfies Record<string, PortfolioAsset>;
 
@@ -92,12 +63,37 @@ export const portfolioProfile = {
     name: "Goodluck Igbokwe"
   },
   heroSummary: "I am a Software Engineer, building scalable and secure website applications. When AI is relevant, I use it pragmatically through RAG, prompt engineering, and workflow tooling to improve products and delivery.",
+  heroPrimaryAction: { label: "View my work", href: "#projects" },
+  heroSecondaryAction: { label: "Get in touch", href: "#contact" },
   socialLinks: [
-    { label: "LinkedIn", href: "https://linkedin.com/in/mantle-bearer" },
-    { label: "GitHub", href: "https://github.com/mantle-bearer" },
-    { label: "Email", href: "mailto:igbokwegoodluck8@gmail.com" }
+    {
+      platform: "LinkedIn",
+      label: "mantle-bearer",
+      href: "https://linkedin.com/in/mantle-bearer",
+      iconKey: "linkedin"
+    },
+    {
+      platform: "GitHub",
+      label: "mantle-bearer",
+      href: "https://github.com/mantle-bearer",
+      iconKey: "github"
+    },
+    {
+      platform: "Email",
+      label: "igbokwegoodluck8@gmail.com",
+      href: "mailto:igbokwegoodluck8@gmail.com",
+      iconKey: "email"
+    }
   ] satisfies PortfolioLink[]
 };
+
+export const portfolioHeroExpertise = [
+  { label: "Python", iconKey: "python" },
+  { label: "FastAPI", iconKey: "fastapi" },
+  { label: "Django", iconKey: "django" },
+  { label: "React", iconKey: "react" },
+  { label: "Laravel", iconKey: "laravel" }
+];
 
 export const portfolioAboutCards = [
   {
@@ -399,46 +395,58 @@ export const portfolioNoteCategories = [
 
 export const portfolioNotes = [
   {
+    slug: "designing-apis-that-stay-easy-to-use",
     title: "Designing APIs that stay easy to use",
     category: "Backend",
     excerpt: "Placeholder notes on building predictable endpoints, clean contracts, and backend flows that product teams can trust.",
     date: "2026-07-12",
-    href: "#contact"
+    href: "/blog/designing-apis-that-stay-easy-to-use",
+    body_markdown: "# Designing APIs that stay easy to use\n\nA practical article draft ready for editing in the CMS."
   },
   {
+    slug: "frontend-layouts-that-respect-real-content",
     title: "Frontend layouts that respect real content",
     category: "Frontend",
     excerpt: "Placeholder lessons on responsive interfaces, spacing systems, and component decisions that keep pages readable.",
     date: "2026-07-10",
-    href: "#contact"
+    href: "/blog/frontend-layouts-that-respect-real-content",
+    body_markdown: "# Frontend layouts that respect real content\n\nA practical article draft ready for editing in the CMS."
   },
   {
+    slug: "using-ai-tooling-without-losing-judgment",
     title: "Using AI tooling without losing judgment",
     category: "AI Tooling",
     excerpt: "Placeholder thoughts on prompts, RAG, automation helpers, and where human engineering taste still matters.",
     date: "2026-07-08",
-    href: "#contact"
+    href: "/blog/using-ai-tooling-without-losing-judgment",
+    body_markdown: "# Using AI tooling without losing judgment\n\nA practical article draft ready for editing in the CMS."
   },
   {
+    slug: "turning-messy-work-into-clear-shipping-steps",
     title: "Turning messy work into clear shipping steps",
     category: "Workflow",
     excerpt: "Placeholder notes on breaking business ideas into small buildable phases, ownership loops, and launch-ready tasks.",
     date: "2026-07-06",
-    href: "#contact"
+    href: "/blog/turning-messy-work-into-clear-shipping-steps",
+    body_markdown: "# Turning messy work into clear shipping steps\n\nA practical article draft ready for editing in the CMS."
   },
   {
+    slug: "what-reliable-dashboards-need-first",
     title: "What reliable dashboards need first",
     category: "Backend",
     excerpt: "Placeholder guidance for data models, permissions, reporting views, and the backend details behind useful dashboards.",
     date: "2026-07-04",
-    href: "#contact"
+    href: "/blog/what-reliable-dashboards-need-first",
+    body_markdown: "# What reliable dashboards need first\n\nA practical article draft ready for editing in the CMS."
   },
   {
+    slug: "a-practical-rhythm-for-technical-delivery",
     title: "A practical rhythm for technical delivery",
     category: "Workflow",
     excerpt: "Placeholder writing about discovery, implementation, feedback, and the habits that keep software work moving.",
     date: "2026-07-02",
-    href: "#contact"
+    href: "/blog/a-practical-rhythm-for-technical-delivery",
+    body_markdown: "# A practical rhythm for technical delivery\n\nA practical article draft ready for editing in the CMS."
   }
 ] satisfies PortfolioNote[];
 
@@ -447,6 +455,7 @@ export const portfolioProjects = [
     slug: "commerce-platform",
     title: "Commerce Platform",
     summary: "Placeholder case study for a storefront, checkout, and operations dashboard.",
+    case_study_markdown: "# Commerce Platform\n\nA placeholder case study ready for editing in the CMS.",
     tags: ["React", "FastAPI", "Payments"],
     featured: true
   },
@@ -454,12 +463,78 @@ export const portfolioProjects = [
     slug: "iot-operations",
     title: "IoT Operations",
     summary: "Placeholder project for connected-device data, monitoring, and business workflows.",
+    case_study_markdown: "# IoT Operations\n\nA placeholder case study ready for editing in the CMS.",
     tags: ["IoT", "API", "Dashboard"]
   },
   {
     slug: "business-automation",
     title: "Business Automation",
     summary: "Placeholder project for reducing manual work with reliable internal tools.",
+    case_study_markdown: "# Business Automation\n\nA placeholder case study ready for editing in the CMS.",
     tags: ["Automation", "Workflows", "Integrations"]
   }
 ] satisfies PortfolioProject[];
+
+export const portfolioSections = {
+  home: { heading: "Goodluck Igbokwe", navigationLabel: "Home", isVisible: true },
+  about: { heading: "About Me", navigationLabel: "About", isVisible: true },
+  stacks: { heading: "Stacks I Use", navigationLabel: "Stack", isVisible: true },
+  services: { heading: "My services", navigationLabel: "Services", isVisible: true },
+  projects: { heading: "My Portfolio", navigationLabel: "Portfolio", isVisible: true },
+  notes: { heading: "Code Chronicles", navigationLabel: "Blog", isVisible: true },
+  contact: { heading: "Contact Me", navigationLabel: "Contact", isVisible: true }
+};
+
+export const portfolioNavigation = [
+  { key: "home", label: "Home", href: "#home", isVisible: true },
+  { key: "about", label: "About", href: "#about", isVisible: true },
+  { key: "stacks", label: "Stack", href: "#stacks", isVisible: true },
+  { key: "services", label: "Services", href: "#services", isVisible: true },
+  { key: "projects", label: "Portfolio", href: "#projects", isVisible: true },
+  { key: "notes", label: "Blog", href: "#notes", isVisible: true },
+  { key: "contact", label: "Contact", href: "#contact", isVisible: true }
+];
+
+export const staticPortfolioContent: PortfolioContent = {
+  profile: portfolioProfile,
+  assets: {
+    heroPortrait: portfolioAssets.heroPortrait,
+    profilePortrait: portfolioAssets.profilePortrait,
+    consultationCard: portfolioAssets.consultationCard
+  },
+  sections: portfolioSections,
+  navigation: portfolioNavigation,
+  heroExpertise: portfolioHeroExpertise,
+  aboutCards: portfolioAboutCards,
+  aboutSummaryNote: portfolioAboutSummaryNote,
+  stacks: portfolioStacks,
+  services: portfolioServices,
+  projects: portfolioProjects,
+  noteCategories: [...portfolioNoteCategories],
+  notes: portfolioNotes,
+  consultation: {
+    label: "Book for Consultation",
+    url: "https://calendly.com/igbokwegoodluck8/30min"
+  },
+  footerText: "All rights reserved.",
+  seo: {
+    title: "Goodluck Igbokwe | Software Engineer",
+    description:
+      "Software engineering portfolio covering web applications, backend systems, automation, and practical AI tooling.",
+    image: "/images/portfolio/hero-portrait.png",
+    ogTitle: "Goodluck Igbokwe | Software Engineer",
+    ogDescription: "Helping businesses build powerful, scalable web applications that drive real results.",
+    twitterCard: "summary_large_image",
+    twitterTitle: "Goodluck Igbokwe | Software Engineer",
+    twitterDescription: "Helping businesses build powerful, scalable web applications that drive real results.",
+    twitterImage: "/images/portfolio/hero-portrait.png",
+    themeColor: "#06245a"
+  },
+  branding: {
+    name: "Goodluck Igbokwe",
+    logoAlt: "Goodluck Igbokwe",
+    markLight: { src: "/assets/images/brand-mark.svg", alt: "Goodluck Igbokwe" },
+    markDark: { src: "/assets/images/brand-mark.svg", alt: "Goodluck Igbokwe" },
+    favicon: { src: "/assets/images/brand-mark.svg", alt: "Goodluck Igbokwe" }
+  }
+};
