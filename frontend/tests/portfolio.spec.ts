@@ -76,8 +76,8 @@ async function expectHashTargetInViewport(page: Page, hash: string) {
     .toEqual({ exists: true, visible: true });
 }
 
-test("portfolio route exposes accessible landmarks and anchor targets", async ({ page }) => {
-  await page.goto("/portfolio");
+test("portfolio root exposes accessible landmarks and anchor targets", async ({ page }) => {
+  await page.goto("/");
 
   await expect(page.getByRole("main")).toBeVisible();
   await expect(
@@ -98,7 +98,7 @@ test("portfolio route exposes accessible landmarks and anchor targets", async ({
 });
 
 test("portfolio hero stays focused on its primary actions", async ({ page }) => {
-  await page.goto("/portfolio");
+  await page.goto("/");
 
   const hero = page.locator("#home");
   await expect(hero.getByRole("heading", { name: portfolioHeadline })).toBeVisible();
@@ -118,7 +118,7 @@ test("portfolio hero stays focused on its primary actions", async ({ page }) => 
 
 test("portfolio navigation anchors reach their sections", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/portfolio");
+  await page.goto("/");
 
   const nav = page.getByRole("navigation", { name: "Portfolio navigation" });
 
@@ -131,7 +131,7 @@ test("portfolio navigation anchors reach their sections", async ({ page }) => {
 });
 
 test("portfolio about section renders branded bento cards", async ({ page }) => {
-  await page.goto("/portfolio#about");
+  await page.goto("/#about");
 
   const about = page.locator("#about");
   await expect(about.getByRole("heading", { name: "About Me" })).toBeVisible();
@@ -161,7 +161,7 @@ test("portfolio about section renders branded bento cards", async ({ page }) => 
 });
 
 test("portfolio stacks section switches language panels", async ({ page }) => {
-  await page.goto("/portfolio#stacks");
+  await page.goto("/#stacks");
 
   const stacks = page.locator("#stacks");
   await expect(stacks.getByRole("heading", { name: "Stacks I Use", exact: true })).toBeVisible();
@@ -176,7 +176,9 @@ test("portfolio stacks section switches language panels", async ({ page }) => {
   );
   await expect(stacks.getByRole("tabpanel")).toContainText("FastAPI");
   await expect(stacks.getByLabel("Python frameworks and tools")).toContainText("Django");
-  await expect(stacks.getByLabel("Python code snippet")).toContainText("from fastapi import FastAPI");
+  await expect(stacks.getByLabel("Python code snippet", { exact: true })).toContainText(
+    "from fastapi import FastAPI"
+  );
 
   await stacks.getByRole("tab", { name: "Rust", exact: true }).click();
   await expect(stacks.getByRole("tab", { name: "Rust", exact: true })).toHaveAttribute(
@@ -186,18 +188,22 @@ test("portfolio stacks section switches language panels", async ({ page }) => {
   await expect(stacks.getByRole("tabpanel")).toContainText("performance-minded tooling");
   await expect(stacks.getByLabel("Rust frameworks and tools")).toContainText("Tokio");
   await expect(stacks.getByLabel("Rust frameworks and tools")).toContainText("Serde");
-  await expect(stacks.getByLabel("Rust code snippet")).toContainText("#[tokio::main]");
+  await expect(stacks.getByLabel("Rust code snippet", { exact: true })).toContainText(
+    "#[tokio::main]"
+  );
 
   await stacks.getByRole("tab", { name: "JavaScript", exact: true }).click();
   await expect(stacks.getByRole("tabpanel")).toContainText("interactive interfaces");
   await expect(stacks.getByLabel("JavaScript frameworks and tools")).toContainText("React");
   await expect(stacks.getByLabel("JavaScript frameworks and tools")).toContainText("TypeScript");
-  await expect(stacks.getByLabel("JavaScript code snippet")).toContainText("const workflow = useMemo");
+  await expect(stacks.getByLabel("JavaScript code snippet", { exact: true })).toContainText(
+    "const workflow = useMemo"
+  );
   await expectNoHorizontalOverflow(page);
 });
 
 test("portfolio code chronicles filters placeholder articles", async ({ page }) => {
-  await page.goto("/portfolio#notes");
+  await page.goto("/#notes");
 
   const notes = page.locator("#notes");
   await expect(notes.getByRole("heading", { name: "Code Chronicles", exact: true })).toBeVisible();
@@ -218,7 +224,7 @@ test("portfolio code chronicles filters placeholder articles", async ({ page }) 
     await expect(card.getByRole("heading", { name: title })).toBeVisible();
     await expect(card.getByText(category, { exact: true })).toBeVisible();
     await expect(card.getByText(date)).toBeVisible();
-    await expect(card.getByRole("link", { name: `Read ${title}` })).toHaveAttribute("href", "#contact");
+    await expect(card.getByRole("link", { name: `Read ${title}` })).toHaveAttribute("href", /\/blog\//);
   }
 
   await notes.getByRole("button", { name: "Backend", exact: true }).click();
@@ -240,7 +246,7 @@ test("portfolio code chronicles filters placeholder articles", async ({ page }) 
 for (const { name, size } of responsiveViewports) {
   test(`portfolio key sections fit without horizontal overflow on ${name}`, async ({ page }) => {
     await page.setViewportSize(size);
-    await page.goto("/portfolio");
+    await page.goto("/");
 
     await expect(page.getByRole("heading", { name: portfolioHeadline })).toBeVisible();
     await expect(page.getByRole("heading", { name: "About Me" })).toBeAttached();
@@ -258,7 +264,7 @@ for (const { name, size } of responsiveViewports) {
 }
 
 test("portfolio navigation exposes theme controls without social shortcuts", async ({ page }) => {
-  await page.goto("/portfolio");
+  await page.goto("/");
   const nav = page.locator(".portfolio-nav");
   await expect(nav.getByRole("button", { name: /switch to dark mode|switch to light mode/i })).toBeVisible();
   await expect(nav.getByRole("link", { name: /profile/i })).toHaveCount(0);
@@ -267,7 +273,7 @@ test("portfolio navigation exposes theme controls without social shortcuts", asy
 
 test("portfolio mobile menu opens, closes, and reaches anchors", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
-  await page.goto("/portfolio");
+  await page.goto("/");
 
   const menuButton = page.getByRole("button", { name: /portfolio menu/i });
   await expect(menuButton).toHaveAttribute("aria-expanded", "false");
@@ -298,7 +304,7 @@ test("portfolio mobile menu opens, closes, and reaches anchors", async ({ page }
 
 test("portfolio contact form exposes expected fields and actions", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 });
-  await page.goto("/portfolio#contact");
+  await page.goto("/#contact");
 
   const form = page.getByRole("form", { name: "Contact form" });
   await expect(form).toBeVisible();
@@ -306,10 +312,9 @@ test("portfolio contact form exposes expected fields and actions", async ({ page
   await expect(form.getByLabel("Email")).toHaveAttribute("type", "email");
   await expect(form.getByLabel("Subject")).toBeVisible();
   await expect(form.getByLabel("Message")).toBeVisible();
-  await expect(form.getByRole("button", { name: "Open email draft" })).toHaveAttribute("type", "submit");
+  await expect(form.getByRole("button", { name: "Send message" })).toHaveAttribute("type", "submit");
 
   await expect(page.getByRole("link", { name: /@/ })).toHaveAttribute("href", /^mailto:/);
-  await expect(form.getByText(/Direct website sending is coming later/)).toBeVisible();
   await expect(page.locator(`a[href="https://linkedin.com/in/mantle-bearer"]`)).toHaveCount(1);
   await expect(page.locator(`a[href="https://github.com/mantle-bearer"]`)).toHaveCount(1);
   await expect(page.locator(`a[href="https://linkedin.com/in/mantle-bearer"]`)).toHaveAttribute(
@@ -340,4 +345,36 @@ test("portfolio contact form exposes expected fields and actions", async ({ page
   expect(formBox).not.toBeNull();
   expect(asideBox!.height).toBeLessThanOrEqual(formBox!.height + 1);
   await expectNoHorizontalOverflow(page);
+});
+
+test("legacy portfolio route redirects and preserves its anchor", async ({ page }) => {
+  await page.goto("/portfolio#about");
+  await expect.poll(() => new URL(page.url()).pathname).toBe("/");
+  await expect.poll(() => new URL(page.url()).hash).toBe("#about");
+  await expect(page.locator("#about")).toBeVisible();
+});
+
+test("contact form stores a direct website enquiry", async ({ page }) => {
+  await page.goto("/#contact");
+  const form = page.getByRole("form", { name: "Contact form" });
+  await form.getByLabel("Name").fill("Browser Visitor");
+  await form.getByLabel("Email").fill("browser@example.com");
+  await form.getByLabel("Subject").fill("Portfolio browser enquiry");
+  await form.getByLabel("Message").fill("I would like to discuss a practical software project.");
+  const request = page.waitForResponse((response) =>
+    response.url().includes("/api/v1/portfolio/contact")
+  );
+  await form.getByRole("button", { name: "Send message" }).click();
+  await expect((await request).status()).toBe(202);
+  await expect(form.getByText("Message received. I will get back to you soon.")).toBeVisible();
+});
+
+test("placeholder posts and projects have internal detail pages", async ({ page }) => {
+  await page.goto("/blog/designing-apis-that-stay-easy-to-use");
+  await expect(page.getByRole("heading", { name: "Designing APIs that stay easy to use" }).first()).toBeVisible();
+  await expect(page.locator(".markdown-content")).toContainText("practical article draft");
+
+  await page.goto("/projects/commerce-platform");
+  await expect(page.getByRole("heading", { name: "Commerce Platform" }).first()).toBeVisible();
+  await expect(page.locator(".markdown-content")).toContainText("placeholder case study");
 });
