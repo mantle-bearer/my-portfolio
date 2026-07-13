@@ -12,6 +12,12 @@ BUILTIN_PERMISSIONS = {
     "roles:write": "Assign built-in roles",
     "items:read": "Read owned items",
     "items:write": "Create, update, and delete owned items",
+    "portfolio:read": "Read portfolio drafts and history",
+    "portfolio:write": "Edit portfolio draft content",
+    "portfolio:publish": "Publish and restore portfolio versions",
+    "media:write": "Upload and manage portfolio media",
+    "contacts:read": "Read portfolio contact enquiries",
+    "contacts:write": "Manage portfolio contact enquiries",
 }
 
 
