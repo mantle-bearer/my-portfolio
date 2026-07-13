@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { createContext, useContext } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { api, type UserRead } from "./api";
 
 type LoginBody = {
@@ -26,9 +26,17 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const queryClient = useQueryClient();
   const me = useQuery({
     queryKey: ["me"],
-    queryFn: () => api<UserRead>("/auth/me"),
+    queryFn: () => api<UserRead | null>("/auth/me"),
     retry: false
   });
+
+  useEffect(() => {
+    const handleExpiredSession = () => {
+      queryClient.setQueryData(["me"], null);
+    };
+    window.addEventListener("auth:expired", handleExpiredSession);
+    return () => window.removeEventListener("auth:expired", handleExpiredSession);
+  }, [queryClient]);
 
   async function login(body: LoginBody) {
     const user = await api<UserRead>("/auth/login", {
