@@ -13,7 +13,7 @@ import { messageFromError } from "@/lib/errors";
 function AuthLayout({ children }: { children: ReactNode }) {
   return (
     <main className="auth-layout" data-auth-layout>
-      <section className="auth-logo-panel" aria-label="FastAPI">
+      <section className="auth-logo-panel" aria-label="Goodluck Igbokwe">
         <Logo variant="full" className="auth-logo" asLink={false} />
       </section>
       <section className="auth-form-panel">
@@ -34,14 +34,14 @@ export function LoginPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  if (user) return <Navigate to="/" />;
+  if (user) return <Navigate to="/dashboard" />;
 
   async function submit(event: FormEvent) {
     event.preventDefault();
     setError("");
     try {
       await login({ email, password });
-      await navigate({ to: "/" });
+      await navigate({ to: "/dashboard" });
     } catch (err) {
       setError(messageFromError(err));
     }
@@ -92,7 +92,7 @@ export function SignupPage() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
 
-  if (user) return <Navigate to="/" />;
+  if (user) return <Navigate to="/dashboard" />;
 
   async function submit(event: FormEvent) {
     event.preventDefault();
@@ -103,7 +103,7 @@ export function SignupPage() {
     }
     try {
       await signup({ email, password, full_name: fullName });
-      await navigate({ to: "/" });
+      await navigate({ to: "/dashboard" });
     } catch (err) {
       setError(messageFromError(err));
     }
