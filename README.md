@@ -1,311 +1,71 @@
-# Fullstack FastAPI Template
+# Goodluck Igbokwe Portfolio
 
-A public full stack FastAPI starter with app-owned auth, RBAC, React, Vite,
-SQLModel, Alembic, optional Redis, password recovery, and frontend serving through
-FastAPI's `app.frontend()`.
+Goodluck Igbokwe's deployable portfolio product: a public React experience,
+authenticated workspace, and database-backed CMS for managing published content.
+The backend is FastAPI, the data layer is SQLModel/Alembic with PostgreSQL in
+production, and the frontend is React, TypeScript, Vite, and TanStack Router.
 
-## Technology Stack and Features
+## Product Areas
 
-- [FastAPI](https://fastapi.tiangolo.com) for the backend API.
-  - SQLModel and Alembic for database models and migrations.
-  - Cookie JWT sessions, CSRF protection, password hashing, and token revocation.
-  - Role and permission based authorization for users, admins, and items.
-  - Optional SMTP password recovery.
-  - Optional Redis login rate limiting through `fastapi-redis-sdk` that never
-    blocks core app flows.
-- [React](https://react.dev) for the frontend.
-  - TypeScript, Vite, TanStack Router, TanStack Query, and Tailwind CSS.
-  - shadcn-style owned components and FastAPI template inspired UI.
-  - Public `/portfolio` homepage for Goodluck Igbokwe.
-  - Generated OpenAPI TypeScript client.
-  - Playwright end-to-end tests.
-  - Dark mode support.
-- PostgreSQL for application data.
-- Docker Compose for local dependency services only.
-- Committed `dist/` output served by `app.frontend()`.
+- Public portfolio at `/`, with static content fallback before the first CMS
+  publication.
+- Authenticated workspace under `/dashboard`.
+- Admin content screens for profile, About, stacks, services, projects, posts,
+  media, contacts, and SEO.
+- Immutable draft publications with preview, history, and restore.
+- Database-backed image storage with best-effort local copies.
+- Cookie JWT authentication, CSRF protection, RBAC, Redis throttling, and SMTP
+  notifications.
 
-### Dashboard Login
-
-<!-- Replace with a screenshot of this template. -->
-![Login screen placeholder](img/login-screen-light.png)
-
-### Dashboard
-
-<!-- Replace with a screenshot of this template. -->
-![Dashboard placeholder](img/dashboard-light.png)
-
-### Dashboard - Items
-
-<!-- Replace with a screenshot of this template. -->
-![Items placeholder](img/dashboard-items.png)
-
-### Dashboard - Users
-
-<!-- Replace with a screenshot of this template. -->
-![Users placeholder](img/users.png)
-
-### User Settings
-
-<!-- Replace with a screenshot of this template. -->
-![Settings placeholder](img/settings.png)
-
-### Dashboard - Dark Mode
-
-<!-- Replace with a screenshot of this template. -->
-![Dark mode placeholder](img/dashboard-dark.png)
-
-### Interactive API Documentation
-
-<!-- Replace with a screenshot of this template. -->
-![API docs placeholder](img/docs.png)
-
-### Portfolio Homepage
-
-The public `/portfolio` route is a React-only page served by the same FastAPI
-frontend fallback. It uses the current navy, blue, orange, and white brand with a
-neumorphic layout inspired by the previous Goodluck Igbokwe portfolio: fixed
-identity navigation, hero, about stats, services, placeholder projects, notes,
-and contact.
-
-## How To Use It
-
-Use this project as a starting point for a new FastAPI full stack app.
-
-### Option 1: GitHub Template
-
-On GitHub, select **Use this template** and create a new repository from it. Then
-clone your new repository locally.
-
-With the GitHub CLI:
-
-```bash
-gh repo create my-fastapi-app --template mantle-bearer/fullstack-fastapi-template --clone
-cd my-fastapi-app
-```
-
-Replace `mantle-bearer/fullstack-fastapi-template` with the published repository path.
-
-### Option 2: degit
-
-Use `degit` when you want a clean project directory without Git history:
-
-```bash
-npx degit mantle-bearer/fullstack-fastapi-template my-fastapi-app
-cd my-fastapi-app
-```
-
-Use a tagged version for reproducible starts:
-
-```bash
-npx degit mantle-bearer/fullstack-fastapi-template#v0.1.0 my-fastapi-app
-cd my-fastapi-app
-```
-
-### Option 3: Copier
-
-Use Copier when you want prompted project settings:
-
-```bash
-uvx copier copy gh:mantle-bearer/fullstack-fastapi-template my-fastapi-app
-cd my-fastapi-app
-```
-
-For a tagged version:
-
-```bash
-uvx copier copy gh:mantle-bearer/fullstack-fastapi-template --vcs-ref v0.1.0 my-fastapi-app
-cd my-fastapi-app
-```
-
-### Option 4: Clone
-
-Clone directly if you want this repository's Git history:
-
-```bash
-git clone https://github.com/mantle-bearer/fullstack-fastapi-template.git my-fastapi-app
-cd my-fastapi-app
-```
-
-### Requirements
+## Requirements
 
 - Python 3.11+
+- `uv`
 - Node.js 20+
-- Docker, for local Postgres and optional Redis
-- [uv](https://docs.astral.sh/uv/)
-- [pnpm](https://pnpm.io/)
-- [just](https://just.systems/)
+- `pnpm`
+- PostgreSQL for production
 
-### Install Tools
-
-macOS:
+## Setup
 
 ```bash
-brew install python node pnpm just
-curl -LsSf https://astral.sh/uv/install.sh | sh
+just setup
+just dev
 ```
 
-Linux:
+The API and built frontend are served at `http://127.0.0.1:8000`. For frontend
+iteration, run `pnpm --dir frontend dev` in a second terminal.
+
+## Common Commands
 
 ```bash
-curl -LsSf https://astral.sh/uv/install.sh | sh
-corepack enable
-corepack prepare pnpm@latest --activate
-```
-
-Install Python, Node.js, Docker, and `just` with your distribution's package manager.
-
-Windows PowerShell:
-
-```powershell
-winget install Python.Python.3.12
-winget install OpenJS.NodeJS.LTS
-winget install Docker.DockerDesktop
-winget install Casey.Just
-irm https://astral.sh/uv/install.ps1 | iex
-corepack enable
-corepack prepare pnpm@latest --activate
-```
-
-If `uv` is installed but not available as `uv` on Windows, use `python -m uv`
-for the Python commands below.
-
-### Configure
-
-Copy the example environment file and update it for your project:
-
-```bash
-cp .env.example .env
-```
-
-On Windows PowerShell:
-
-```powershell
-Copy-Item .env.example .env
-```
-
-Before production, change at least:
-
-- `DATABASE_URL`
-- `JWT_SECRET`
-- `ENVIRONMENT`
-- `COOKIE_SECURE`
-- `PUBLIC_BASE_URL`
-- `CORS_ORIGINS`
-
-Generate a secret key with:
-
-```bash
-python -c "import secrets; print(secrets.token_urlsafe(32))"
-```
-
-### Start The App
-
-Start local dependency services:
-
-```bash
-docker compose up -d
-```
-
-Install dependencies and seed demo users:
-
-```bash
-uv sync --all-groups
-pnpm --dir frontend install
-uv run app seed-local
-```
-
-Run the FastAPI app:
-
-```bash
-uv run fastapi dev
-```
-
-Then open http://127.0.0.1:8000.
-
-Demo users:
-
-- `admin@example.com` / `ChangeMe123!`
-- `user@example.com` / `ChangeMe123!`
-
-For frontend-only development with Vite live reload:
-
-```bash
-pnpm --dir frontend dev
-```
-
-## Development
-
-Common commands:
-
-```bash
-just test
-just check
-just build
-pnpm --dir frontend test:e2e
-```
-
-Regenerate the OpenAPI client after backend API changes:
-
-```bash
+just check          # lint and frontend type checks
+just test           # backend tests
+just build          # rebuild committed dist/
 just client-generate
+just dist-check
 ```
 
-Backend docs: [backend/README.md](./backend/README.md).
+## Configuration
 
-Frontend docs: [frontend/README.md](./frontend/README.md).
+Copy `.env.example` to `.env` and configure the database, JWT secret, secure
+cookies, optional Redis, SMTP, media root, and public base URL. Run migrations
+before deploying:
 
-Auth and RBAC docs: [docs/auth-rbac.md](./docs/auth-rbac.md).
+```bash
+uv run alembic upgrade head
+```
 
-Integrations docs: [docs/integrations.md](./docs/integrations.md).
-
-Publishing checklist: [docs/publishing.md](./docs/publishing.md).
+See [docs/portfolio-cms.md](docs/portfolio-cms.md),
+[docs/auth-rbac.md](docs/auth-rbac.md),
+[docs/integrations.md](docs/integrations.md), and
+[docs/fastapi-cloud.md](docs/fastapi-cloud.md).
 
 ## Deployment
 
-This app can deploy to FastAPI Cloud from the repository root:
-
-```bash
-uv run fastapi deploy
-```
-
-The committed `dist/` directory is intentional so the frontend can be served by
-FastAPI through `app.frontend()` without a separate frontend build service.
-
-PostgreSQL is required in production. SQLite is local-only and will be rejected
-when `ENVIRONMENT=production`.
-
-It is still a normal FastAPI app, so you can adapt it for other platforms that can
-run Python and connect to PostgreSQL.
-
-FastAPI Cloud checklist: [docs/fastapi-cloud.md](./docs/fastapi-cloud.md).
-
-## Publishing Checklist
-
-Before publishing your own template:
-
-- Replace `mantle-bearer/fullstack-fastapi-template` placeholders.
-- Confirm `.env` and `.fastapicloud/` are not tracked.
-- Rebuild `dist/` with `just build`.
-- Run `just check`, `just test`, and `just dist-check`.
-- Confirm screenshots in `img/` match your app.
-- Tag the first release, for example `v0.1.0`.
-
-## Agent Workflow
-
-Install current library skills:
-
-```bash
-uv tool run library-skills --all --yes
-```
-
-Run advisory skill checks:
-
-```bash
-just skills-check
-```
-
-Commit messages in this project must be at most 10 words.
+The application is compatible with FastAPI Cloud and other platforms that can
+run a FastAPI process with PostgreSQL. Keep private environment files, local
+deployment metadata, and uploaded media out of source control.
 
 ## License
 
-This template is licensed under the terms of the MIT license.
+Copyright Goodluck Igbokwe. See [LICENSE](LICENSE) for the license terms.
