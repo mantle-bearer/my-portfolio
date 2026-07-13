@@ -1,7 +1,7 @@
 [project]
 name = "fullstack-fastapi-template"
 version = "0.1.0"
-description = "A public fullstack FastAPI template for FastAPI Cloud."
+description = "Goodluck Igbokwe's deployable portfolio and content management application."
 readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
