@@ -10,7 +10,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     """Runtime configuration for the FastAPI application."""
 
-    app_name: str = "Fullstack FastAPI Template"
+    app_name: str = "Goodluck Igbokwe Portfolio"
     app_version: str = "0.1.0"
     environment: Literal["local", "test", "production"] = "local"
     database_url: str = "sqlite:///./local.db"
@@ -39,6 +39,12 @@ class Settings(BaseSettings):
     smtp_tls: bool = True
     emails_from_email: str | None = None
     password_reset_token_minutes: int = 30
+
+    media_root: str = "./media"
+    media_max_bytes: int = 8 * 1024 * 1024
+    contact_body_max_bytes: int = 16 * 1024
+    contact_rate_limit: int = 5
+    contact_rate_window_seconds: int = 3600
 
     git_sha: str | None = None
 
