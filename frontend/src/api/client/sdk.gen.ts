@@ -3,7 +3,7 @@
 import type { CancelablePromise } from './core/CancelablePromise';
 import { OpenAPI } from './core/OpenAPI';
 import { request as __request } from './core/request';
-import type { HealthApiV1HealthGetResponse, StatusApiV1HealthStatusGetResponse, LoginApiV1AuthLoginPostData, LoginApiV1AuthLoginPostResponse, SignupApiV1AuthSignupPostData, SignupApiV1AuthSignupPostResponse, RefreshApiV1AuthRefreshPostData, RefreshApiV1AuthRefreshPostResponse, LogoutApiV1AuthLogoutPostData, LogoutApiV1AuthLogoutPostResponse, MeApiV1AuthMeGetData, MeApiV1AuthMeGetResponse, UpdateMeApiV1AuthMePatchData, UpdateMeApiV1AuthMePatchResponse, DeleteMeApiV1AuthMeDeleteData, DeleteMeApiV1AuthMeDeleteResponse, ChangePasswordApiV1AuthMePasswordPostData, ChangePasswordApiV1AuthMePasswordPostResponse, RecoverPasswordApiV1AuthPasswordRecoveryPostData, RecoverPasswordApiV1AuthPasswordRecoveryPostResponse, ResetPasswordApiV1AuthResetPasswordPostData, ResetPasswordApiV1AuthResetPasswordPostResponse, ListUsersApiV1AdminUsersGetData, ListUsersApiV1AdminUsersGetResponse, CreateUserApiV1AdminUsersPostData, CreateUserApiV1AdminUsersPostResponse, AssignRolesApiV1AdminUsersUserIdRolesPatchData, AssignRolesApiV1AdminUsersUserIdRolesPatchResponse, UpdateUserApiV1AdminUsersUserIdPatchData, UpdateUserApiV1AdminUsersUserIdPatchResponse, DeleteUserApiV1AdminUsersUserIdDeleteData, DeleteUserApiV1AdminUsersUserIdDeleteResponse, ListRolesApiV1AdminRolesGetData, ListRolesApiV1AdminRolesGetResponse, ListItemsApiV1ItemsGetData, ListItemsApiV1ItemsGetResponse, CreateItemApiV1ItemsPostData, CreateItemApiV1ItemsPostResponse, ReadItemApiV1ItemsItemIdGetData, ReadItemApiV1ItemsItemIdGetResponse, UpdateItemApiV1ItemsItemIdPatchData, UpdateItemApiV1ItemsItemIdPatchResponse, DeleteItemApiV1ItemsItemIdDeleteData, DeleteItemApiV1ItemsItemIdDeleteResponse } from './types.gen';
+import type { HealthApiV1HealthGetResponse, StatusApiV1HealthStatusGetResponse, LoginApiV1AuthLoginPostData, LoginApiV1AuthLoginPostResponse, SignupApiV1AuthSignupPostData, SignupApiV1AuthSignupPostResponse, RefreshApiV1AuthRefreshPostData, RefreshApiV1AuthRefreshPostResponse, LogoutApiV1AuthLogoutPostData, LogoutApiV1AuthLogoutPostResponse, MeApiV1AuthMeGetData, MeApiV1AuthMeGetResponse, UpdateMeApiV1AuthMePatchData, UpdateMeApiV1AuthMePatchResponse, DeleteMeApiV1AuthMeDeleteData, DeleteMeApiV1AuthMeDeleteResponse, ChangePasswordApiV1AuthMePasswordPostData, ChangePasswordApiV1AuthMePasswordPostResponse, RecoverPasswordApiV1AuthPasswordRecoveryPostData, RecoverPasswordApiV1AuthPasswordRecoveryPostResponse, ResetPasswordApiV1AuthResetPasswordPostData, ResetPasswordApiV1AuthResetPasswordPostResponse, ListUsersApiV1AdminUsersGetData, ListUsersApiV1AdminUsersGetResponse, CreateUserApiV1AdminUsersPostData, CreateUserApiV1AdminUsersPostResponse, AssignRolesApiV1AdminUsersUserIdRolesPatchData, AssignRolesApiV1AdminUsersUserIdRolesPatchResponse, UpdateUserApiV1AdminUsersUserIdPatchData, UpdateUserApiV1AdminUsersUserIdPatchResponse, DeleteUserApiV1AdminUsersUserIdDeleteData, DeleteUserApiV1AdminUsersUserIdDeleteResponse, ListRolesApiV1AdminRolesGetData, ListRolesApiV1AdminRolesGetResponse, ListItemsApiV1ItemsGetData, ListItemsApiV1ItemsGetResponse, CreateItemApiV1ItemsPostData, CreateItemApiV1ItemsPostResponse, ReadItemApiV1ItemsItemIdGetData, ReadItemApiV1ItemsItemIdGetResponse, UpdateItemApiV1ItemsItemIdPatchData, UpdateItemApiV1ItemsItemIdPatchResponse, DeleteItemApiV1ItemsItemIdDeleteData, DeleteItemApiV1ItemsItemIdDeleteResponse, ReadPortfolioApiV1PortfolioGetResponse, ListPostsApiV1PortfolioPostsGetResponse, ReadPostApiV1PortfolioPostsSlugGetData, ReadPostApiV1PortfolioPostsSlugGetResponse, ReadProjectApiV1PortfolioProjectsSlugGetData, ReadProjectApiV1PortfolioProjectsSlugGetResponse, ReadMediaApiV1PortfolioMediaMediaIdGetData, ReadMediaApiV1PortfolioMediaMediaIdGetResponse, SubmitContactApiV1PortfolioContactPostData, SubmitContactApiV1PortfolioContactPostResponse, ReadSiteApiV1AdminPortfolioSiteGetData, ReadSiteApiV1AdminPortfolioSiteGetResponse, UpdateSiteApiV1AdminPortfolioSitePatchData, UpdateSiteApiV1AdminPortfolioSitePatchResponse, ListSectionsApiV1AdminPortfolioSectionsGetData, ListSectionsApiV1AdminPortfolioSectionsGetResponse, ReadSectionApiV1AdminPortfolioSectionsKeyGetData, ReadSectionApiV1AdminPortfolioSectionsKeyGetResponse, UpdateSectionApiV1AdminPortfolioSectionsKeyPatchData, UpdateSectionApiV1AdminPortfolioSectionsKeyPatchResponse, ListExpertiseApiV1AdminPortfolioExpertiseGetData, ListExpertiseApiV1AdminPortfolioExpertiseGetResponse, CreateExpertiseApiV1AdminPortfolioExpertisePostData, CreateExpertiseApiV1AdminPortfolioExpertisePostResponse, OrderExpertiseApiV1AdminPortfolioExpertiseOrderPutData, OrderExpertiseApiV1AdminPortfolioExpertiseOrderPutResponse, ReadExpertiseApiV1AdminPortfolioExpertiseRecordIdGetData, ReadExpertiseApiV1AdminPortfolioExpertiseRecordIdGetResponse, UpdateExpertiseApiV1AdminPortfolioExpertiseRecordIdPatchData, UpdateExpertiseApiV1AdminPortfolioExpertiseRecordIdPatchResponse, ArchiveExpertiseApiV1AdminPortfolioExpertiseRecordIdDeleteData, ArchiveExpertiseApiV1AdminPortfolioExpertiseRecordIdDeleteResponse, ListSocialLinksApiV1AdminPortfolioSocialLinksGetData, ListSocialLinksApiV1AdminPortfolioSocialLinksGetResponse, CreateSocialLinkApiV1AdminPortfolioSocialLinksPostData, CreateSocialLinkApiV1AdminPortfolioSocialLinksPostResponse, OrderSocialLinksApiV1AdminPortfolioSocialLinksOrderPutData, OrderSocialLinksApiV1AdminPortfolioSocialLinksOrderPutResponse, ReadSocialLinkApiV1AdminPortfolioSocialLinksRecordIdGetData, ReadSocialLinkApiV1AdminPortfolioSocialLinksRecordIdGetResponse, UpdateSocialLinkApiV1AdminPortfolioSocialLinksRecordIdPatchData, UpdateSocialLinkApiV1AdminPortfolioSocialLinksRecordIdPatchResponse, ArchiveSocialLinkApiV1AdminPortfolioSocialLinksRecordIdDeleteData, ArchiveSocialLinkApiV1AdminPortfolioSocialLinksRecordIdDeleteResponse, ListAboutCardsApiV1AdminPortfolioAboutCardsGetData, ListAboutCardsApiV1AdminPortfolioAboutCardsGetResponse, CreateAboutCardApiV1AdminPortfolioAboutCardsPostData, CreateAboutCardApiV1AdminPortfolioAboutCardsPostResponse, OrderAboutCardsApiV1AdminPortfolioAboutCardsOrderPutData, OrderAboutCardsApiV1AdminPortfolioAboutCardsOrderPutResponse, ReadAboutCardApiV1AdminPortfolioAboutCardsRecordIdGetData, ReadAboutCardApiV1AdminPortfolioAboutCardsRecordIdGetResponse, UpdateAboutCardApiV1AdminPortfolioAboutCardsRecordIdPatchData, UpdateAboutCardApiV1AdminPortfolioAboutCardsRecordIdPatchResponse, ArchiveAboutCardApiV1AdminPortfolioAboutCardsRecordIdDeleteData, ArchiveAboutCardApiV1AdminPortfolioAboutCardsRecordIdDeleteResponse, ListStacksApiV1AdminPortfolioStacksGetData, ListStacksApiV1AdminPortfolioStacksGetResponse, CreateStackApiV1AdminPortfolioStacksPostData, CreateStackApiV1AdminPortfolioStacksPostResponse, OrderStacksApiV1AdminPortfolioStacksOrderPutData, OrderStacksApiV1AdminPortfolioStacksOrderPutResponse, ReadStackApiV1AdminPortfolioStacksRecordIdGetData, ReadStackApiV1AdminPortfolioStacksRecordIdGetResponse, UpdateStackApiV1AdminPortfolioStacksRecordIdPatchData, UpdateStackApiV1AdminPortfolioStacksRecordIdPatchResponse, ArchiveStackApiV1AdminPortfolioStacksRecordIdDeleteData, ArchiveStackApiV1AdminPortfolioStacksRecordIdDeleteResponse, ListServicesApiV1AdminPortfolioServicesGetData, ListServicesApiV1AdminPortfolioServicesGetResponse, CreateServiceApiV1AdminPortfolioServicesPostData, CreateServiceApiV1AdminPortfolioServicesPostResponse, OrderServicesApiV1AdminPortfolioServicesOrderPutData, OrderServicesApiV1AdminPortfolioServicesOrderPutResponse, ReadServiceApiV1AdminPortfolioServicesRecordIdGetData, ReadServiceApiV1AdminPortfolioServicesRecordIdGetResponse, UpdateServiceApiV1AdminPortfolioServicesRecordIdPatchData, UpdateServiceApiV1AdminPortfolioServicesRecordIdPatchResponse, ArchiveServiceApiV1AdminPortfolioServicesRecordIdDeleteData, ArchiveServiceApiV1AdminPortfolioServicesRecordIdDeleteResponse, ListProjectsApiV1AdminPortfolioProjectsGetData, ListProjectsApiV1AdminPortfolioProjectsGetResponse, CreateProjectApiV1AdminPortfolioProjectsPostData, CreateProjectApiV1AdminPortfolioProjectsPostResponse, OrderProjectsApiV1AdminPortfolioProjectsOrderPutData, OrderProjectsApiV1AdminPortfolioProjectsOrderPutResponse, ReadProjectApiV1AdminPortfolioProjectsRecordIdGetData, ReadProjectApiV1AdminPortfolioProjectsRecordIdGetResponse, UpdateProjectApiV1AdminPortfolioProjectsRecordIdPatchData, UpdateProjectApiV1AdminPortfolioProjectsRecordIdPatchResponse, ArchiveProjectApiV1AdminPortfolioProjectsRecordIdDeleteData, ArchiveProjectApiV1AdminPortfolioProjectsRecordIdDeleteResponse, ListCategoriesApiV1AdminPortfolioCategoriesGetData, ListCategoriesApiV1AdminPortfolioCategoriesGetResponse, CreateCategoryApiV1AdminPortfolioCategoriesPostData, CreateCategoryApiV1AdminPortfolioCategoriesPostResponse, OrderCategoriesApiV1AdminPortfolioCategoriesOrderPutData, OrderCategoriesApiV1AdminPortfolioCategoriesOrderPutResponse, ReadCategoryApiV1AdminPortfolioCategoriesRecordIdGetData, ReadCategoryApiV1AdminPortfolioCategoriesRecordIdGetResponse, UpdateCategoryApiV1AdminPortfolioCategoriesRecordIdPatchData, UpdateCategoryApiV1AdminPortfolioCategoriesRecordIdPatchResponse, ArchiveCategoryApiV1AdminPortfolioCategoriesRecordIdDeleteData, ArchiveCategoryApiV1AdminPortfolioCategoriesRecordIdDeleteResponse, ListPostsApiV1AdminPortfolioPostsGetData, ListPostsApiV1AdminPortfolioPostsGetResponse, CreatePostApiV1AdminPortfolioPostsPostData, CreatePostApiV1AdminPortfolioPostsPostResponse, OrderPostsApiV1AdminPortfolioPostsOrderPutData, OrderPostsApiV1AdminPortfolioPostsOrderPutResponse, ReadPostApiV1AdminPortfolioPostsRecordIdGetData, ReadPostApiV1AdminPortfolioPostsRecordIdGetResponse, UpdatePostApiV1AdminPortfolioPostsRecordIdPatchData, UpdatePostApiV1AdminPortfolioPostsRecordIdPatchResponse, ArchivePostApiV1AdminPortfolioPostsRecordIdDeleteData, ArchivePostApiV1AdminPortfolioPostsRecordIdDeleteResponse, ListMediaApiV1AdminPortfolioMediaGetData, ListMediaApiV1AdminPortfolioMediaGetResponse, UploadMediaApiV1AdminPortfolioMediaPostData, UploadMediaApiV1AdminPortfolioMediaPostResponse, UpdateMediaApiV1AdminPortfolioMediaMediaIdPatchData, UpdateMediaApiV1AdminPortfolioMediaMediaIdPatchResponse, DeleteMediaApiV1AdminPortfolioMediaMediaIdDeleteData, DeleteMediaApiV1AdminPortfolioMediaMediaIdDeleteResponse, PreviewApiV1AdminPortfolioPreviewGetData, PreviewApiV1AdminPortfolioPreviewGetResponse, PublishApiV1AdminPortfolioPublishPostData, PublishApiV1AdminPortfolioPublishPostResponse, ListPublicationsApiV1AdminPortfolioPublicationsGetData, ListPublicationsApiV1AdminPortfolioPublicationsGetResponse, RestorePublicationApiV1AdminPortfolioPublicationsPublicationIdRestorePostData, RestorePublicationApiV1AdminPortfolioPublicationsPublicationIdRestorePostResponse, ListContactsApiV1AdminPortfolioContactsGetData, ListContactsApiV1AdminPortfolioContactsGetResponse, UpdateContactApiV1AdminPortfolioContactsSubmissionIdPatchData, UpdateContactApiV1AdminPortfolioContactsSubmissionIdPatchResponse, RetryContactEmailApiV1AdminPortfolioContactsSubmissionIdRetryEmailPostData, RetryContactEmailApiV1AdminPortfolioContactsSubmissionIdRetryEmailPostResponse } from './types.gen';
 
 /**
  * Health
@@ -117,10 +117,10 @@ export const logoutApiV1AuthLogoutPost = (data: LogoutApiV1AuthLogoutPostData = 
 
 /**
  * Me
- * Return the current authenticated user.
+ * Return the current user, or null when no active session exists.
  * @param data The data for the request.
  * @param data.accessToken
- * @returns UserRead Successful Response
+ * @returns unknown Successful Response
  * @throws ApiError
  */
 export const meApiV1AuthMeGet = (data: MeApiV1AuthMeGetData = {}): CancelablePromise<MeApiV1AuthMeGetResponse> => {
@@ -168,7 +168,7 @@ export const updateMeApiV1AuthMePatch = (data: UpdateMeApiV1AuthMePatchData): Ca
  * @param data The data for the request.
  * @param data.csrfToken
  * @param data.accessToken
- * @returns Message Successful Response
+ * @returns app__schemas__Message Successful Response
  * @throws ApiError
  */
 export const deleteMeApiV1AuthMeDelete = (data: DeleteMeApiV1AuthMeDeleteData = {}): CancelablePromise<DeleteMeApiV1AuthMeDeleteResponse> => {
@@ -216,7 +216,7 @@ export const changePasswordApiV1AuthMePasswordPost = (data: ChangePasswordApiV1A
  * Send a password recovery email without revealing account existence.
  * @param data The data for the request.
  * @param data.requestBody
- * @returns Message Successful Response
+ * @returns app__schemas__Message Successful Response
  * @throws ApiError
  */
 export const recoverPasswordApiV1AuthPasswordRecoveryPost = (data: RecoverPasswordApiV1AuthPasswordRecoveryPostData): CancelablePromise<RecoverPasswordApiV1AuthPasswordRecoveryPostResponse> => {
@@ -236,7 +236,7 @@ export const recoverPasswordApiV1AuthPasswordRecoveryPost = (data: RecoverPasswo
  * Reset a user's password from a valid recovery token.
  * @param data The data for the request.
  * @param data.requestBody
- * @returns Message Successful Response
+ * @returns app__schemas__Message Successful Response
  * @throws ApiError
  */
 export const resetPasswordApiV1AuthResetPasswordPost = (data: ResetPasswordApiV1AuthResetPasswordPostData): CancelablePromise<ResetPasswordApiV1AuthResetPasswordPostResponse> => {
@@ -371,7 +371,7 @@ export const updateUserApiV1AdminUsersUserIdPatch = (data: UpdateUserApiV1AdminU
  * @param data.userId
  * @param data.csrfToken
  * @param data.accessToken
- * @returns Message Successful Response
+ * @returns app__schemas__Message Successful Response
  * @throws ApiError
  */
 export const deleteUserApiV1AdminUsersUserIdDelete = (data: DeleteUserApiV1AdminUsersUserIdDeleteData): CancelablePromise<DeleteUserApiV1AdminUsersUserIdDeleteResponse> => {
@@ -527,7 +527,7 @@ export const updateItemApiV1ItemsItemIdPatch = (data: UpdateItemApiV1ItemsItemId
  * @param data.itemId
  * @param data.csrfToken
  * @param data.accessToken
- * @returns Message Successful Response
+ * @returns app__schemas__Message Successful Response
  * @throws ApiError
  */
 export const deleteItemApiV1ItemsItemIdDelete = (data: DeleteItemApiV1ItemsItemIdDeleteData): CancelablePromise<DeleteItemApiV1ItemsItemIdDeleteResponse> => {
@@ -536,6 +536,1764 @@ export const deleteItemApiV1ItemsItemIdDelete = (data: DeleteItemApiV1ItemsItemI
         url: '/api/v1/items/{item_id}',
         path: {
             item_id: data.itemId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Read Portfolio
+ * Return the current publication or an explicit no-publication response.
+ * @returns PortfolioContentResponse Successful Response
+ * @throws ApiError
+ */
+export const readPortfolioApiV1PortfolioGet = (): CancelablePromise<ReadPortfolioApiV1PortfolioGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/portfolio'
+    });
+};
+
+/**
+ * List Posts
+ * List post summaries from the current immutable publication.
+ * @returns PublishedPostSummary Successful Response
+ * @throws ApiError
+ */
+export const listPostsApiV1PortfolioPostsGet = (): CancelablePromise<ListPostsApiV1PortfolioPostsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/portfolio/posts'
+    });
+};
+
+/**
+ * Read Post
+ * Return one published Markdown post.
+ * @param data The data for the request.
+ * @param data.slug
+ * @returns PublishedPostDetail Successful Response
+ * @throws ApiError
+ */
+export const readPostApiV1PortfolioPostsSlugGet = (data: ReadPostApiV1PortfolioPostsSlugGetData): CancelablePromise<ReadPostApiV1PortfolioPostsSlugGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/portfolio/posts/{slug}',
+        path: {
+            slug: data.slug
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Read Project
+ * Return one published internal case study.
+ * @param data The data for the request.
+ * @param data.slug
+ * @returns PublishedProjectDetail Successful Response
+ * @throws ApiError
+ */
+export const readProjectApiV1PortfolioProjectsSlugGet = (data: ReadProjectApiV1PortfolioProjectsSlugGetData): CancelablePromise<ReadProjectApiV1PortfolioProjectsSlugGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/portfolio/projects/{slug}',
+        path: {
+            slug: data.slug
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Read Media
+ * Stream database media with ETag and single-range support.
+ * @param data The data for the request.
+ * @param data.mediaId
+ * @returns unknown Successful Response
+ * @throws ApiError
+ */
+export const readMediaApiV1PortfolioMediaMediaIdGet = (data: ReadMediaApiV1PortfolioMediaMediaIdGetData): CancelablePromise<ReadMediaApiV1PortfolioMediaMediaIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/portfolio/media/{media_id}',
+        path: {
+            media_id: data.mediaId
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Submit Contact
+ * Store an enquiry before scheduling a best-effort owner notification.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @returns ContactAccepted Successful Response
+ * @throws ApiError
+ */
+export const submitContactApiV1PortfolioContactPost = (data: SubmitContactApiV1PortfolioContactPostData): CancelablePromise<SubmitContactApiV1PortfolioContactPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/api/v1/portfolio/contact',
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Read Site
+ * Read the singleton draft site.
+ * @param data The data for the request.
+ * @param data.accessToken
+ * @returns PortfolioSiteRead Successful Response
+ * @throws ApiError
+ */
+export const readSiteApiV1AdminPortfolioSiteGet = (data: ReadSiteApiV1AdminPortfolioSiteGetData = {}): CancelablePromise<ReadSiteApiV1AdminPortfolioSiteGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/site',
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Update Site
+ * Update global draft content.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PortfolioSiteRead Successful Response
+ * @throws ApiError
+ */
+export const updateSiteApiV1AdminPortfolioSitePatch = (data: UpdateSiteApiV1AdminPortfolioSitePatchData): CancelablePromise<UpdateSiteApiV1AdminPortfolioSitePatchResponse> => {
+    return __request(OpenAPI, {
+        method: 'PATCH',
+        url: '/api/v1/admin/portfolio/site',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * List Sections
+ * List fixed portfolio section settings.
+ * @param data The data for the request.
+ * @param data.accessToken
+ * @returns SectionSettingRead Successful Response
+ * @throws ApiError
+ */
+export const listSectionsApiV1AdminPortfolioSectionsGet = (data: ListSectionsApiV1AdminPortfolioSectionsGetData = {}): CancelablePromise<ListSectionsApiV1AdminPortfolioSectionsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/sections',
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Read Section
+ * Read one fixed section setting.
+ * @param data The data for the request.
+ * @param data.key
+ * @param data.accessToken
+ * @returns SectionSettingRead Successful Response
+ * @throws ApiError
+ */
+export const readSectionApiV1AdminPortfolioSectionsKeyGet = (data: ReadSectionApiV1AdminPortfolioSectionsKeyGetData): CancelablePromise<ReadSectionApiV1AdminPortfolioSectionsKeyGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/sections/{key}',
+        path: {
+            key: data.key
+        },
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Update Section
+ * Update one fixed section setting.
+ * @param data The data for the request.
+ * @param data.key
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns SectionSettingRead Successful Response
+ * @throws ApiError
+ */
+export const updateSectionApiV1AdminPortfolioSectionsKeyPatch = (data: UpdateSectionApiV1AdminPortfolioSectionsKeyPatchData): CancelablePromise<UpdateSectionApiV1AdminPortfolioSectionsKeyPatchResponse> => {
+    return __request(OpenAPI, {
+        method: 'PATCH',
+        url: '/api/v1/admin/portfolio/sections/{key}',
+        path: {
+            key: data.key
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * List Expertise
+ * List hero expertise records.
+ * @param data The data for the request.
+ * @param data.accessToken
+ * @returns HeroExpertiseRead Successful Response
+ * @throws ApiError
+ */
+export const listExpertiseApiV1AdminPortfolioExpertiseGet = (data: ListExpertiseApiV1AdminPortfolioExpertiseGetData = {}): CancelablePromise<ListExpertiseApiV1AdminPortfolioExpertiseGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/expertise',
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Create Expertise
+ * Create hero expertise.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns HeroExpertiseRead Successful Response
+ * @throws ApiError
+ */
+export const createExpertiseApiV1AdminPortfolioExpertisePost = (data: CreateExpertiseApiV1AdminPortfolioExpertisePostData): CancelablePromise<CreateExpertiseApiV1AdminPortfolioExpertisePostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/api/v1/admin/portfolio/expertise',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Order Expertise
+ * Replace hero expertise order.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns HeroExpertiseRead Successful Response
+ * @throws ApiError
+ */
+export const orderExpertiseApiV1AdminPortfolioExpertiseOrderPut = (data: OrderExpertiseApiV1AdminPortfolioExpertiseOrderPutData): CancelablePromise<OrderExpertiseApiV1AdminPortfolioExpertiseOrderPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/api/v1/admin/portfolio/expertise/order',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Read Expertise
+ * Read hero expertise.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.accessToken
+ * @returns HeroExpertiseRead Successful Response
+ * @throws ApiError
+ */
+export const readExpertiseApiV1AdminPortfolioExpertiseRecordIdGet = (data: ReadExpertiseApiV1AdminPortfolioExpertiseRecordIdGetData): CancelablePromise<ReadExpertiseApiV1AdminPortfolioExpertiseRecordIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/expertise/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Update Expertise
+ * Update hero expertise.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns HeroExpertiseRead Successful Response
+ * @throws ApiError
+ */
+export const updateExpertiseApiV1AdminPortfolioExpertiseRecordIdPatch = (data: UpdateExpertiseApiV1AdminPortfolioExpertiseRecordIdPatchData): CancelablePromise<UpdateExpertiseApiV1AdminPortfolioExpertiseRecordIdPatchResponse> => {
+    return __request(OpenAPI, {
+        method: 'PATCH',
+        url: '/api/v1/admin/portfolio/expertise/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Archive Expertise
+ * Archive hero expertise.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns HeroExpertiseRead Successful Response
+ * @throws ApiError
+ */
+export const archiveExpertiseApiV1AdminPortfolioExpertiseRecordIdDelete = (data: ArchiveExpertiseApiV1AdminPortfolioExpertiseRecordIdDeleteData): CancelablePromise<ArchiveExpertiseApiV1AdminPortfolioExpertiseRecordIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/api/v1/admin/portfolio/expertise/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * List Social Links
+ * List social links.
+ * @param data The data for the request.
+ * @param data.accessToken
+ * @returns SocialLinkRead Successful Response
+ * @throws ApiError
+ */
+export const listSocialLinksApiV1AdminPortfolioSocialLinksGet = (data: ListSocialLinksApiV1AdminPortfolioSocialLinksGetData = {}): CancelablePromise<ListSocialLinksApiV1AdminPortfolioSocialLinksGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/social-links',
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Create Social Link
+ * Create a social link.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns SocialLinkRead Successful Response
+ * @throws ApiError
+ */
+export const createSocialLinkApiV1AdminPortfolioSocialLinksPost = (data: CreateSocialLinkApiV1AdminPortfolioSocialLinksPostData): CancelablePromise<CreateSocialLinkApiV1AdminPortfolioSocialLinksPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/api/v1/admin/portfolio/social-links',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Order Social Links
+ * Replace social-link order.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns SocialLinkRead Successful Response
+ * @throws ApiError
+ */
+export const orderSocialLinksApiV1AdminPortfolioSocialLinksOrderPut = (data: OrderSocialLinksApiV1AdminPortfolioSocialLinksOrderPutData): CancelablePromise<OrderSocialLinksApiV1AdminPortfolioSocialLinksOrderPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/api/v1/admin/portfolio/social-links/order',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Read Social Link
+ * Read a social link.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.accessToken
+ * @returns SocialLinkRead Successful Response
+ * @throws ApiError
+ */
+export const readSocialLinkApiV1AdminPortfolioSocialLinksRecordIdGet = (data: ReadSocialLinkApiV1AdminPortfolioSocialLinksRecordIdGetData): CancelablePromise<ReadSocialLinkApiV1AdminPortfolioSocialLinksRecordIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/social-links/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Update Social Link
+ * Update a social link.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns SocialLinkRead Successful Response
+ * @throws ApiError
+ */
+export const updateSocialLinkApiV1AdminPortfolioSocialLinksRecordIdPatch = (data: UpdateSocialLinkApiV1AdminPortfolioSocialLinksRecordIdPatchData): CancelablePromise<UpdateSocialLinkApiV1AdminPortfolioSocialLinksRecordIdPatchResponse> => {
+    return __request(OpenAPI, {
+        method: 'PATCH',
+        url: '/api/v1/admin/portfolio/social-links/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Archive Social Link
+ * Archive a social link.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns SocialLinkRead Successful Response
+ * @throws ApiError
+ */
+export const archiveSocialLinkApiV1AdminPortfolioSocialLinksRecordIdDelete = (data: ArchiveSocialLinkApiV1AdminPortfolioSocialLinksRecordIdDeleteData): CancelablePromise<ArchiveSocialLinkApiV1AdminPortfolioSocialLinksRecordIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/api/v1/admin/portfolio/social-links/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * List About Cards
+ * List About bento cards.
+ * @param data The data for the request.
+ * @param data.accessToken
+ * @returns AboutCardRead Successful Response
+ * @throws ApiError
+ */
+export const listAboutCardsApiV1AdminPortfolioAboutCardsGet = (data: ListAboutCardsApiV1AdminPortfolioAboutCardsGetData = {}): CancelablePromise<ListAboutCardsApiV1AdminPortfolioAboutCardsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/about-cards',
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Create About Card
+ * Create an About card.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns AboutCardRead Successful Response
+ * @throws ApiError
+ */
+export const createAboutCardApiV1AdminPortfolioAboutCardsPost = (data: CreateAboutCardApiV1AdminPortfolioAboutCardsPostData): CancelablePromise<CreateAboutCardApiV1AdminPortfolioAboutCardsPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/api/v1/admin/portfolio/about-cards',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Order About Cards
+ * Replace About card order.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns AboutCardRead Successful Response
+ * @throws ApiError
+ */
+export const orderAboutCardsApiV1AdminPortfolioAboutCardsOrderPut = (data: OrderAboutCardsApiV1AdminPortfolioAboutCardsOrderPutData): CancelablePromise<OrderAboutCardsApiV1AdminPortfolioAboutCardsOrderPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/api/v1/admin/portfolio/about-cards/order',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Read About Card
+ * Read an About card.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.accessToken
+ * @returns AboutCardRead Successful Response
+ * @throws ApiError
+ */
+export const readAboutCardApiV1AdminPortfolioAboutCardsRecordIdGet = (data: ReadAboutCardApiV1AdminPortfolioAboutCardsRecordIdGetData): CancelablePromise<ReadAboutCardApiV1AdminPortfolioAboutCardsRecordIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/about-cards/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Update About Card
+ * Update an About card.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns AboutCardRead Successful Response
+ * @throws ApiError
+ */
+export const updateAboutCardApiV1AdminPortfolioAboutCardsRecordIdPatch = (data: UpdateAboutCardApiV1AdminPortfolioAboutCardsRecordIdPatchData): CancelablePromise<UpdateAboutCardApiV1AdminPortfolioAboutCardsRecordIdPatchResponse> => {
+    return __request(OpenAPI, {
+        method: 'PATCH',
+        url: '/api/v1/admin/portfolio/about-cards/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Archive About Card
+ * Archive an About card.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns AboutCardRead Successful Response
+ * @throws ApiError
+ */
+export const archiveAboutCardApiV1AdminPortfolioAboutCardsRecordIdDelete = (data: ArchiveAboutCardApiV1AdminPortfolioAboutCardsRecordIdDeleteData): CancelablePromise<ArchiveAboutCardApiV1AdminPortfolioAboutCardsRecordIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/api/v1/admin/portfolio/about-cards/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * List Stacks
+ * List technology stacks.
+ * @param data The data for the request.
+ * @param data.accessToken
+ * @returns TechnologyStackRead Successful Response
+ * @throws ApiError
+ */
+export const listStacksApiV1AdminPortfolioStacksGet = (data: ListStacksApiV1AdminPortfolioStacksGetData = {}): CancelablePromise<ListStacksApiV1AdminPortfolioStacksGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/stacks',
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Create Stack
+ * Create a technology stack.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns TechnologyStackRead Successful Response
+ * @throws ApiError
+ */
+export const createStackApiV1AdminPortfolioStacksPost = (data: CreateStackApiV1AdminPortfolioStacksPostData): CancelablePromise<CreateStackApiV1AdminPortfolioStacksPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/api/v1/admin/portfolio/stacks',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Order Stacks
+ * Replace technology-stack order.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns TechnologyStackRead Successful Response
+ * @throws ApiError
+ */
+export const orderStacksApiV1AdminPortfolioStacksOrderPut = (data: OrderStacksApiV1AdminPortfolioStacksOrderPutData): CancelablePromise<OrderStacksApiV1AdminPortfolioStacksOrderPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/api/v1/admin/portfolio/stacks/order',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Read Stack
+ * Read a technology stack.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.accessToken
+ * @returns TechnologyStackRead Successful Response
+ * @throws ApiError
+ */
+export const readStackApiV1AdminPortfolioStacksRecordIdGet = (data: ReadStackApiV1AdminPortfolioStacksRecordIdGetData): CancelablePromise<ReadStackApiV1AdminPortfolioStacksRecordIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/stacks/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Update Stack
+ * Update a technology stack.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns TechnologyStackRead Successful Response
+ * @throws ApiError
+ */
+export const updateStackApiV1AdminPortfolioStacksRecordIdPatch = (data: UpdateStackApiV1AdminPortfolioStacksRecordIdPatchData): CancelablePromise<UpdateStackApiV1AdminPortfolioStacksRecordIdPatchResponse> => {
+    return __request(OpenAPI, {
+        method: 'PATCH',
+        url: '/api/v1/admin/portfolio/stacks/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Archive Stack
+ * Archive a technology stack.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns TechnologyStackRead Successful Response
+ * @throws ApiError
+ */
+export const archiveStackApiV1AdminPortfolioStacksRecordIdDelete = (data: ArchiveStackApiV1AdminPortfolioStacksRecordIdDeleteData): CancelablePromise<ArchiveStackApiV1AdminPortfolioStacksRecordIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/api/v1/admin/portfolio/stacks/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * List Services
+ * List portfolio services.
+ * @param data The data for the request.
+ * @param data.accessToken
+ * @returns PortfolioServiceRead Successful Response
+ * @throws ApiError
+ */
+export const listServicesApiV1AdminPortfolioServicesGet = (data: ListServicesApiV1AdminPortfolioServicesGetData = {}): CancelablePromise<ListServicesApiV1AdminPortfolioServicesGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/services',
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Create Service
+ * Create a portfolio service.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PortfolioServiceRead Successful Response
+ * @throws ApiError
+ */
+export const createServiceApiV1AdminPortfolioServicesPost = (data: CreateServiceApiV1AdminPortfolioServicesPostData): CancelablePromise<CreateServiceApiV1AdminPortfolioServicesPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/api/v1/admin/portfolio/services',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Order Services
+ * Replace portfolio-service order.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PortfolioServiceRead Successful Response
+ * @throws ApiError
+ */
+export const orderServicesApiV1AdminPortfolioServicesOrderPut = (data: OrderServicesApiV1AdminPortfolioServicesOrderPutData): CancelablePromise<OrderServicesApiV1AdminPortfolioServicesOrderPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/api/v1/admin/portfolio/services/order',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Read Service
+ * Read a portfolio service.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.accessToken
+ * @returns PortfolioServiceRead Successful Response
+ * @throws ApiError
+ */
+export const readServiceApiV1AdminPortfolioServicesRecordIdGet = (data: ReadServiceApiV1AdminPortfolioServicesRecordIdGetData): CancelablePromise<ReadServiceApiV1AdminPortfolioServicesRecordIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/services/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Update Service
+ * Update a portfolio service.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PortfolioServiceRead Successful Response
+ * @throws ApiError
+ */
+export const updateServiceApiV1AdminPortfolioServicesRecordIdPatch = (data: UpdateServiceApiV1AdminPortfolioServicesRecordIdPatchData): CancelablePromise<UpdateServiceApiV1AdminPortfolioServicesRecordIdPatchResponse> => {
+    return __request(OpenAPI, {
+        method: 'PATCH',
+        url: '/api/v1/admin/portfolio/services/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Archive Service
+ * Archive a portfolio service.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PortfolioServiceRead Successful Response
+ * @throws ApiError
+ */
+export const archiveServiceApiV1AdminPortfolioServicesRecordIdDelete = (data: ArchiveServiceApiV1AdminPortfolioServicesRecordIdDeleteData): CancelablePromise<ArchiveServiceApiV1AdminPortfolioServicesRecordIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/api/v1/admin/portfolio/services/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * List Projects
+ * List portfolio projects.
+ * @param data The data for the request.
+ * @param data.accessToken
+ * @returns PortfolioProjectRead Successful Response
+ * @throws ApiError
+ */
+export const listProjectsApiV1AdminPortfolioProjectsGet = (data: ListProjectsApiV1AdminPortfolioProjectsGetData = {}): CancelablePromise<ListProjectsApiV1AdminPortfolioProjectsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/projects',
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Create Project
+ * Create a portfolio project.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PortfolioProjectRead Successful Response
+ * @throws ApiError
+ */
+export const createProjectApiV1AdminPortfolioProjectsPost = (data: CreateProjectApiV1AdminPortfolioProjectsPostData): CancelablePromise<CreateProjectApiV1AdminPortfolioProjectsPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/api/v1/admin/portfolio/projects',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Order Projects
+ * Replace project order.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PortfolioProjectRead Successful Response
+ * @throws ApiError
+ */
+export const orderProjectsApiV1AdminPortfolioProjectsOrderPut = (data: OrderProjectsApiV1AdminPortfolioProjectsOrderPutData): CancelablePromise<OrderProjectsApiV1AdminPortfolioProjectsOrderPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/api/v1/admin/portfolio/projects/order',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Read Project
+ * Read a portfolio project.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.accessToken
+ * @returns PortfolioProjectRead Successful Response
+ * @throws ApiError
+ */
+export const readProjectApiV1AdminPortfolioProjectsRecordIdGet = (data: ReadProjectApiV1AdminPortfolioProjectsRecordIdGetData): CancelablePromise<ReadProjectApiV1AdminPortfolioProjectsRecordIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/projects/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Update Project
+ * Update a portfolio project.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PortfolioProjectRead Successful Response
+ * @throws ApiError
+ */
+export const updateProjectApiV1AdminPortfolioProjectsRecordIdPatch = (data: UpdateProjectApiV1AdminPortfolioProjectsRecordIdPatchData): CancelablePromise<UpdateProjectApiV1AdminPortfolioProjectsRecordIdPatchResponse> => {
+    return __request(OpenAPI, {
+        method: 'PATCH',
+        url: '/api/v1/admin/portfolio/projects/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Archive Project
+ * Archive a portfolio project.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PortfolioProjectRead Successful Response
+ * @throws ApiError
+ */
+export const archiveProjectApiV1AdminPortfolioProjectsRecordIdDelete = (data: ArchiveProjectApiV1AdminPortfolioProjectsRecordIdDeleteData): CancelablePromise<ArchiveProjectApiV1AdminPortfolioProjectsRecordIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/api/v1/admin/portfolio/projects/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * List Categories
+ * List post categories.
+ * @param data The data for the request.
+ * @param data.accessToken
+ * @returns PostCategoryRead Successful Response
+ * @throws ApiError
+ */
+export const listCategoriesApiV1AdminPortfolioCategoriesGet = (data: ListCategoriesApiV1AdminPortfolioCategoriesGetData = {}): CancelablePromise<ListCategoriesApiV1AdminPortfolioCategoriesGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/categories',
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Create Category
+ * Create a post category.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PostCategoryRead Successful Response
+ * @throws ApiError
+ */
+export const createCategoryApiV1AdminPortfolioCategoriesPost = (data: CreateCategoryApiV1AdminPortfolioCategoriesPostData): CancelablePromise<CreateCategoryApiV1AdminPortfolioCategoriesPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/api/v1/admin/portfolio/categories',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Order Categories
+ * Replace category order.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PostCategoryRead Successful Response
+ * @throws ApiError
+ */
+export const orderCategoriesApiV1AdminPortfolioCategoriesOrderPut = (data: OrderCategoriesApiV1AdminPortfolioCategoriesOrderPutData): CancelablePromise<OrderCategoriesApiV1AdminPortfolioCategoriesOrderPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/api/v1/admin/portfolio/categories/order',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Read Category
+ * Read a post category.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.accessToken
+ * @returns PostCategoryRead Successful Response
+ * @throws ApiError
+ */
+export const readCategoryApiV1AdminPortfolioCategoriesRecordIdGet = (data: ReadCategoryApiV1AdminPortfolioCategoriesRecordIdGetData): CancelablePromise<ReadCategoryApiV1AdminPortfolioCategoriesRecordIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/categories/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Update Category
+ * Update a post category.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PostCategoryRead Successful Response
+ * @throws ApiError
+ */
+export const updateCategoryApiV1AdminPortfolioCategoriesRecordIdPatch = (data: UpdateCategoryApiV1AdminPortfolioCategoriesRecordIdPatchData): CancelablePromise<UpdateCategoryApiV1AdminPortfolioCategoriesRecordIdPatchResponse> => {
+    return __request(OpenAPI, {
+        method: 'PATCH',
+        url: '/api/v1/admin/portfolio/categories/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Archive Category
+ * Archive a post category.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PostCategoryRead Successful Response
+ * @throws ApiError
+ */
+export const archiveCategoryApiV1AdminPortfolioCategoriesRecordIdDelete = (data: ArchiveCategoryApiV1AdminPortfolioCategoriesRecordIdDeleteData): CancelablePromise<ArchiveCategoryApiV1AdminPortfolioCategoriesRecordIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/api/v1/admin/portfolio/categories/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * List Posts
+ * List draft posts.
+ * @param data The data for the request.
+ * @param data.accessToken
+ * @returns PortfolioPostRead Successful Response
+ * @throws ApiError
+ */
+export const listPostsApiV1AdminPortfolioPostsGet = (data: ListPostsApiV1AdminPortfolioPostsGetData = {}): CancelablePromise<ListPostsApiV1AdminPortfolioPostsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/posts',
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Create Post
+ * Create a Markdown post.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PortfolioPostRead Successful Response
+ * @throws ApiError
+ */
+export const createPostApiV1AdminPortfolioPostsPost = (data: CreatePostApiV1AdminPortfolioPostsPostData): CancelablePromise<CreatePostApiV1AdminPortfolioPostsPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/api/v1/admin/portfolio/posts',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Order Posts
+ * Replace post order.
+ * @param data The data for the request.
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PortfolioPostRead Successful Response
+ * @throws ApiError
+ */
+export const orderPostsApiV1AdminPortfolioPostsOrderPut = (data: OrderPostsApiV1AdminPortfolioPostsOrderPutData): CancelablePromise<OrderPostsApiV1AdminPortfolioPostsOrderPutResponse> => {
+    return __request(OpenAPI, {
+        method: 'PUT',
+        url: '/api/v1/admin/portfolio/posts/order',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Read Post
+ * Read a draft post.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.accessToken
+ * @returns PortfolioPostRead Successful Response
+ * @throws ApiError
+ */
+export const readPostApiV1AdminPortfolioPostsRecordIdGet = (data: ReadPostApiV1AdminPortfolioPostsRecordIdGetData): CancelablePromise<ReadPostApiV1AdminPortfolioPostsRecordIdGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/posts/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Update Post
+ * Update a Markdown post.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PortfolioPostRead Successful Response
+ * @throws ApiError
+ */
+export const updatePostApiV1AdminPortfolioPostsRecordIdPatch = (data: UpdatePostApiV1AdminPortfolioPostsRecordIdPatchData): CancelablePromise<UpdatePostApiV1AdminPortfolioPostsRecordIdPatchResponse> => {
+    return __request(OpenAPI, {
+        method: 'PATCH',
+        url: '/api/v1/admin/portfolio/posts/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Archive Post
+ * Archive a Markdown post.
+ * @param data The data for the request.
+ * @param data.recordId
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PortfolioPostRead Successful Response
+ * @throws ApiError
+ */
+export const archivePostApiV1AdminPortfolioPostsRecordIdDelete = (data: ArchivePostApiV1AdminPortfolioPostsRecordIdDeleteData): CancelablePromise<ArchivePostApiV1AdminPortfolioPostsRecordIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/api/v1/admin/portfolio/posts/{record_id}',
+        path: {
+            record_id: data.recordId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * List Media
+ * List media metadata.
+ * @param data The data for the request.
+ * @param data.includeArchived
+ * @param data.accessToken
+ * @returns MediaAssetRead Successful Response
+ * @throws ApiError
+ */
+export const listMediaApiV1AdminPortfolioMediaGet = (data: ListMediaApiV1AdminPortfolioMediaGetData = {}): CancelablePromise<ListMediaApiV1AdminPortfolioMediaGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/media',
+        cookies: {
+            access_token: data.accessToken
+        },
+        query: {
+            include_archived: data.includeArchived
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Upload Media
+ * Upload validated image bytes into canonical database storage.
+ * @param data The data for the request.
+ * @param data.formData
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns MediaAssetRead Successful Response
+ * @throws ApiError
+ */
+export const uploadMediaApiV1AdminPortfolioMediaPost = (data: UploadMediaApiV1AdminPortfolioMediaPostData): CancelablePromise<UploadMediaApiV1AdminPortfolioMediaPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/api/v1/admin/portfolio/media',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        formData: data.formData,
+        mediaType: 'multipart/form-data',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Update Media
+ * Update media metadata.
+ * @param data The data for the request.
+ * @param data.mediaId
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns MediaAssetRead Successful Response
+ * @throws ApiError
+ */
+export const updateMediaApiV1AdminPortfolioMediaMediaIdPatch = (data: UpdateMediaApiV1AdminPortfolioMediaMediaIdPatchData): CancelablePromise<UpdateMediaApiV1AdminPortfolioMediaMediaIdPatchResponse> => {
+    return __request(OpenAPI, {
+        method: 'PATCH',
+        url: '/api/v1/admin/portfolio/media/{media_id}',
+        path: {
+            media_id: data.mediaId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Delete Media
+ * Archive media by default or safely purge an unreferenced asset.
+ * @param data The data for the request.
+ * @param data.mediaId
+ * @param data.purge
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns app__portfolio__schemas__Message Successful Response
+ * @throws ApiError
+ */
+export const deleteMediaApiV1AdminPortfolioMediaMediaIdDelete = (data: DeleteMediaApiV1AdminPortfolioMediaMediaIdDeleteData): CancelablePromise<DeleteMediaApiV1AdminPortfolioMediaMediaIdDeleteResponse> => {
+    return __request(OpenAPI, {
+        method: 'DELETE',
+        url: '/api/v1/admin/portfolio/media/{media_id}',
+        path: {
+            media_id: data.mediaId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        query: {
+            purge: data.purge
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Preview
+ * Compose a private full-page draft preview payload.
+ * @param data The data for the request.
+ * @param data.accessToken
+ * @returns PortfolioContentResponse Successful Response
+ * @throws ApiError
+ */
+export const previewApiV1AdminPortfolioPreviewGet = (data: PreviewApiV1AdminPortfolioPreviewGetData = {}): CancelablePromise<PreviewApiV1AdminPortfolioPreviewGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/preview',
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Publish
+ * Validate and atomically publish the draft workspace.
+ * @param data The data for the request.
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PortfolioPublicationRead Successful Response
+ * @throws ApiError
+ */
+export const publishApiV1AdminPortfolioPublishPost = (data: PublishApiV1AdminPortfolioPublishPostData = {}): CancelablePromise<PublishApiV1AdminPortfolioPublishPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/api/v1/admin/portfolio/publish',
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * List Publications
+ * List immutable publication history.
+ * @param data The data for the request.
+ * @param data.accessToken
+ * @returns PortfolioPublicationRead Successful Response
+ * @throws ApiError
+ */
+export const listPublicationsApiV1AdminPortfolioPublicationsGet = (data: ListPublicationsApiV1AdminPortfolioPublicationsGetData = {}): CancelablePromise<ListPublicationsApiV1AdminPortfolioPublicationsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/publications',
+        cookies: {
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Restore Publication
+ * Create a new public version from immutable history.
+ * @param data The data for the request.
+ * @param data.publicationId
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns PortfolioPublicationRead Successful Response
+ * @throws ApiError
+ */
+export const restorePublicationApiV1AdminPortfolioPublicationsPublicationIdRestorePost = (data: RestorePublicationApiV1AdminPortfolioPublicationsPublicationIdRestorePostData): CancelablePromise<RestorePublicationApiV1AdminPortfolioPublicationsPublicationIdRestorePostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/api/v1/admin/portfolio/publications/{publication_id}/restore',
+        path: {
+            publication_id: data.publicationId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * List Contacts
+ * List stored contact enquiries.
+ * @param data The data for the request.
+ * @param data.includeArchived
+ * @param data.accessToken
+ * @returns ContactSubmissionRead Successful Response
+ * @throws ApiError
+ */
+export const listContactsApiV1AdminPortfolioContactsGet = (data: ListContactsApiV1AdminPortfolioContactsGetData = {}): CancelablePromise<ListContactsApiV1AdminPortfolioContactsGetResponse> => {
+    return __request(OpenAPI, {
+        method: 'GET',
+        url: '/api/v1/admin/portfolio/contacts',
+        cookies: {
+            access_token: data.accessToken
+        },
+        query: {
+            include_archived: data.includeArchived
+        },
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Update Contact
+ * Update contact inbox state or archive status.
+ * @param data The data for the request.
+ * @param data.submissionId
+ * @param data.requestBody
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns ContactSubmissionRead Successful Response
+ * @throws ApiError
+ */
+export const updateContactApiV1AdminPortfolioContactsSubmissionIdPatch = (data: UpdateContactApiV1AdminPortfolioContactsSubmissionIdPatchData): CancelablePromise<UpdateContactApiV1AdminPortfolioContactsSubmissionIdPatchResponse> => {
+    return __request(OpenAPI, {
+        method: 'PATCH',
+        url: '/api/v1/admin/portfolio/contacts/{submission_id}',
+        path: {
+            submission_id: data.submissionId
+        },
+        cookies: {
+            csrf_token: data.csrfToken,
+            access_token: data.accessToken
+        },
+        body: data.requestBody,
+        mediaType: 'application/json',
+        errors: {
+            422: 'Validation Error'
+        }
+    });
+};
+
+/**
+ * Retry Contact Email
+ * Retry one owner notification and retain its delivery result.
+ * @param data The data for the request.
+ * @param data.submissionId
+ * @param data.csrfToken
+ * @param data.accessToken
+ * @returns ContactSubmissionRead Successful Response
+ * @throws ApiError
+ */
+export const retryContactEmailApiV1AdminPortfolioContactsSubmissionIdRetryEmailPost = (data: RetryContactEmailApiV1AdminPortfolioContactsSubmissionIdRetryEmailPostData): CancelablePromise<RetryContactEmailApiV1AdminPortfolioContactsSubmissionIdRetryEmailPostResponse> => {
+    return __request(OpenAPI, {
+        method: 'POST',
+        url: '/api/v1/admin/portfolio/contacts/{submission_id}/retry-email',
+        path: {
+            submission_id: data.submissionId
         },
         cookies: {
             csrf_token: data.csrfToken,
