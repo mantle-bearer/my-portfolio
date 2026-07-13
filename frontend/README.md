@@ -1,73 +1,48 @@
-# FastAPI Template - Frontend
+# Goodluck Igbokwe Portfolio Frontend
 
-The frontend is built with Vite, React, TypeScript, TanStack Router, TanStack
-Query, Tailwind CSS, and owned shadcn-style components.
+The frontend is a Vite, React, and TypeScript application for the public
+portfolio and authenticated content workspace. TanStack Router and Query manage
+navigation and server state; the project keeps its own focused UI components and
+current navy, blue, orange, and white visual system.
 
-## Requirements
+## Local Workflow
 
-- Node.js 20+
-- pnpm
-
-## Quick Start
-
-Run the FastAPI backend on port 8000, then start Vite:
+Run the FastAPI backend on port 8000, then start the frontend:
 
 ```bash
 pnpm install
 pnpm dev
 ```
 
-From the project root, the same command is:
-
-```bash
-pnpm --dir frontend dev
-```
-
-Open http://localhost:5173. The Vite dev server proxies API requests to the
-FastAPI backend.
+Open `http://localhost:5173`. Vite proxies API requests to the backend.
 
 ## Production Build
 
-The production build is committed to the root `dist/` directory and served by
-FastAPI through `app.frontend()`.
-
-From the project root:
+The committed build is served by FastAPI from the root `dist/` directory:
 
 ```bash
 just build
 ```
 
-## Portfolio Page
+The public portfolio is available at `/`; the legacy `/portfolio` address
+redirects there. The portfolio uses static data until the first CMS publication,
+then consumes the published aggregate with a transparent static fallback.
 
-The public portfolio lives at `/portfolio`. Its content is centralized in
-`frontend/src/data/portfolio.ts`, with focused sections under
-`frontend/src/components/portfolio`. Keep the page dependency-light and preserve
-the current navy, blue, orange, white, and neumorphic brand direction.
+## CMS And Generated Types
 
-## Generated Client
-
-The generated OpenAPI client lives in `frontend/src/api/client`.
-
-After backend API changes:
+Admin content screens live under `/dashboard/content`. After changing backend
+contracts, regenerate the OpenAPI client and rebuild:
 
 ```bash
 just client-generate
+just build
 ```
 
-The app keeps a small cookie and CSRF aware fetch wrapper in `frontend/src/lib/api.ts`
-and imports generated types from the client.
+The cookie and CSRF-aware request wrapper remains in `src/lib/api.ts`.
 
-## End-to-End Tests
+## End-To-End Checks
 
 ```bash
+pnpm --dir frontend typecheck
 pnpm --dir frontend test:e2e
-```
-
-The Playwright suite starts the backend and verifies login, RBAC, item CRUD,
-password recovery, and SPA route fallback behavior.
-
-Run the focused portfolio checks with:
-
-```bash
-pnpm --dir frontend exec playwright test tests/portfolio.spec.ts
 ```
