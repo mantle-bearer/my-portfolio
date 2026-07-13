@@ -1,7 +1,7 @@
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
 import { Link, Navigate, useNavigate } from "@tanstack/react-router";
-import { Briefcase, ChevronDown, Home, PanelLeft, Users, X } from "lucide-react";
+import { Briefcase, ChevronDown, FileText, Home, PanelLeft, Users, X } from "lucide-react";
 
 import { Footer } from "@/components/Common/Footer";
 import { Logo } from "@/components/Common/Logo";
@@ -43,19 +43,25 @@ function Sidebar({
           <Logo />
         </div>
         <nav className="sidebar-nav">
-          <Link to="/" className="nav-link" activeProps={{ className: "nav-link active" }} onClick={onNavigate}>
+          <Link to="/dashboard" className="nav-link" activeProps={{ className: "nav-link active" }} onClick={onNavigate}>
             <Home size={17} />
             <span>Dashboard</span>
           </Link>
-          <Link to="/items" className="nav-link" activeProps={{ className: "nav-link active" }} onClick={onNavigate}>
+          <Link to="/dashboard/items" className="nav-link" activeProps={{ className: "nav-link active" }} onClick={onNavigate}>
             <Briefcase size={17} />
             <span>Items</span>
           </Link>
           {isAdmin ? (
-            <Link to="/admin" className="nav-link" activeProps={{ className: "nav-link active" }} onClick={onNavigate}>
-              <Users size={17} />
-              <span>Admin</span>
-            </Link>
+            <>
+              <Link to="/dashboard/content/profile" className="nav-link" activeProps={{ className: "nav-link active" }} onClick={onNavigate}>
+                <FileText size={17} />
+                <span>Content</span>
+              </Link>
+              <Link to="/dashboard/users" className="nav-link" activeProps={{ className: "nav-link active" }} onClick={onNavigate}>
+                <Users size={17} />
+                <span>Users</span>
+              </Link>
+            </>
           ) : null}
         </nav>
       </div>
@@ -68,7 +74,7 @@ function Sidebar({
             <ChevronDown size={14} />
           </summary>
           <div className="menu-panel">
-            <Link to="/settings" onClick={onNavigate}>
+            <Link to="/dashboard/settings" onClick={onNavigate}>
               User Settings
             </Link>
             <button type="button" onClick={() => void signOut()}>
@@ -137,7 +143,7 @@ export function AppShell({ children }: { children: ReactNode }) {
             <PanelLeft size={18} />
           </button>
           <Logo variant="icon" className="topbar-logo" />
-          <span className="topbar-title">Full Stack FastAPI</span>
+          <span className="topbar-title">Goodluck Igbokwe</span>
           <div className="topbar-spacer" />
           <AppearanceButton />
         </header>
