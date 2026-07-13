@@ -1,21 +1,13 @@
-# FastAPI Template - Backend
+# Goodluck Igbokwe Portfolio Backend
 
-The backend is a FastAPI app with SQLModel models, Alembic migrations, cookie JWT
-auth, CSRF protection, RBAC dependencies, item CRUD, optional Redis login rate
-limiting through `fastapi-redis-sdk`, and optional SMTP password recovery.
+This FastAPI backend powers the deployable portfolio product, its authenticated
+workspace, and the portfolio CMS. It owns cookie-based JWT sessions, CSRF
+protection, RBAC, SQLModel/Alembic persistence, media delivery, contact inbox
+handling, optional Redis throttling, and SMTP notifications.
 
-## Requirements
+## Local Workflow
 
-- Python 3.11+
-- uv
-- PostgreSQL
-
-Docker Compose in the project root starts local dependency services. It does not
-run the application container.
-
-## General Workflow
-
-From the project root:
+From the repository root:
 
 ```bash
 uv sync --all-groups
@@ -23,51 +15,35 @@ uv run app seed-local
 uv run fastapi dev
 ```
 
-The FastAPI CLI reads `[tool.fastapi]` from `pyproject.toml`, so `uv run fastapi dev`
-starts `app.main:app`.
+The application serves the API and the built React frontend through
+`app.frontend()`.
 
 ## Database
 
-Set `DATABASE_URL` in `.env`.
-
-For local Docker Postgres:
-
-```env
-DATABASE_URL=postgresql+psycopg://fastapi:fastapi@localhost:5432/fastapi_template
-```
-
-For hosted Postgres, use the provider connection string and keep the
-`postgresql+psycopg://` driver prefix.
-
-PostgreSQL is required when `ENVIRONMENT=production`. SQLite is allowed only for
-local experiments and tests.
-
-Run migrations with:
+Set `DATABASE_URL` in `.env`. PostgreSQL is required in production; SQLite is
+supported for local development and tests.
 
 ```bash
 uv run alembic upgrade head
 ```
 
-Local and test environments also call `SQLModel.metadata.create_all()` to keep the
-template easy to start.
+Portfolio uploads are stored as database bytes, with an optional best-effort copy
+under `MEDIA_ROOT`. A failed local write does not make an upload unavailable.
 
-## Auth and RBAC
+## Authentication And CMS
 
-Auth is owned by the FastAPI app:
+Access and refresh tokens use httpOnly cookies, mutating requests require the
+CSRF header, and permissions are enforced by dependencies. Admins edit draft
+portfolio content under `/api/v1/admin/portfolio` and publish immutable snapshots
+through the publication endpoints. The public aggregate is served by
+`GET /api/v1/portfolio`.
 
-- Access and refresh JWTs are stored in httpOnly cookies.
-- Mutating requests require `x-csrf-token`.
-- Token revocation uses `User.token_version`.
-- Permissions are enforced with dependency factories.
+See [../docs/auth-rbac.md](../docs/auth-rbac.md) and
+[../docs/portfolio-cms.md](../docs/portfolio-cms.md).
 
-See [../docs/auth-rbac.md](../docs/auth-rbac.md).
-
-## Tests and Linting
+## Checks
 
 ```bash
 uv run pytest
 uv run ruff check .
 ```
-
-Ruff enforces import order, modern Python rules, bugbear/simplify checks, and
-PEP257-compatible docstrings for application code.
