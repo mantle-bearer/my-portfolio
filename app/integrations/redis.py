@@ -61,3 +61,19 @@ async def allow_login_attempt(key: str, limit: int = 5, window_seconds: int = 60
     except Exception:
         return True
     return bool(current <= limit)
+
+
+async def allow_rate_limited_action(key: str, limit: int, window_seconds: int) -> bool:
+    """Apply a Redis counter for a public action, degrading open if unavailable."""
+    client = get_redis()
+    if client is None:
+        return True
+    try:
+        current = await client.incr(key)
+        if current == 1:
+            await client.expire(key, window_seconds)
+    except (OSError, TimeoutError):
+        return True
+    except Exception:
+        return True
+    return bool(current <= limit)
