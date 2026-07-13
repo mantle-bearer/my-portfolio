@@ -1,8 +1,8 @@
 import { useMemo, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
-import { portfolioNoteCategories, portfolioNotes } from "@/data/portfolio";
 import { SectionShell } from "@/components/portfolio/SectionShell";
+import { usePortfolioContent } from "@/lib/portfolio-content";
 
 const allNotesCategory = "All";
 const noteDateFormatter = new Intl.DateTimeFormat("en", {
@@ -13,16 +13,15 @@ const noteDateFormatter = new Intl.DateTimeFormat("en", {
 });
 
 export function NotesSection() {
-  const [activeCategory, setActiveCategory] = useState<(typeof portfolioNoteCategories)[number]>(
-    allNotesCategory
-  );
+  const { content } = usePortfolioContent();
+  const [activeCategory, setActiveCategory] = useState(allNotesCategory);
 
   const filteredNotes = useMemo(
     () =>
       activeCategory === allNotesCategory
-        ? portfolioNotes
-        : portfolioNotes.filter((note) => note.category === activeCategory),
-    [activeCategory]
+        ? content.notes
+        : content.notes.filter((note) => note.category === activeCategory),
+    [activeCategory, content.notes]
   );
 
   const articleCountLabel = `${filteredNotes.length} ${
@@ -33,13 +32,13 @@ export function NotesSection() {
     <SectionShell id="notes" className="notes-section">
       <div className="section-heading">
         <h2>
-          Code <span>Chronicles</span>
+          {content.sections.notes?.heading ?? "Code Chronicles"}
         </h2>
       </div>
 
       <div className="note-toolbar" aria-label="Code Chronicles categories">
         <div className="note-tabs" role="group" aria-label="Filter Code Chronicles by category">
-          {portfolioNoteCategories.map((category) => (
+          {content.noteCategories.map((category) => (
             <button
               className="note-tab"
               type="button"
