@@ -20,6 +20,17 @@ export type StatusResponse = {
 
 export const apiPrefix = "/api/v1";
 
+export class ApiError extends Error {
+  constructor(
+    public readonly status: number,
+    message: string,
+    public readonly detail?: string
+  ) {
+    super(message);
+    this.name = "ApiError";
+  }
+}
+
 function csrfToken() {
   return document.cookie
     .split("; ")
@@ -30,7 +41,7 @@ function csrfToken() {
 export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   const method = init.method?.toUpperCase() ?? "GET";
   const headers = new Headers(init.headers);
-  if (init.body !== undefined) {
+  if (init.body !== undefined && !(init.body instanceof FormData)) {
     headers.set("Content-Type", "application/json");
   }
   if (!["GET", "HEAD"].includes(method)) {
@@ -43,8 +54,23 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
     credentials: "include"
   });
   if (!response.ok) {
-    const detail = await response.text();
-    throw new Error(detail || response.statusText);
+    let detail: string | undefined;
+    try {
+      const payload: unknown = await response.json();
+      if (typeof payload === "object" && payload !== null) {
+        const candidate = (payload as { detail?: unknown; message?: unknown }).detail ??
+          (payload as { message?: unknown }).message;
+        if (typeof candidate === "string") detail = candidate;
+      } else if (typeof payload === "string") {
+        detail = payload;
+      }
+    } catch {
+      detail = undefined;
+    }
+    if (response.status === 401) {
+      window.dispatchEvent(new Event("auth:expired"));
+    }
+    throw new ApiError(response.status, detail ?? response.statusText, detail);
   }
   if (response.status === 204) return undefined as T;
   return response.json() as Promise<T>;
