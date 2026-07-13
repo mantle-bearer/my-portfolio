@@ -1,12 +1,12 @@
 import { ExternalLink } from "lucide-react";
 
-import type { PortfolioProject } from "@/data/portfolio";
+import type { PortfolioProject } from "@/types/portfolio";
 
 export function ProjectCard({ project }: { project: PortfolioProject }) {
   return (
     <article className="project-card">
       <div className="project-card-image" aria-hidden="true">
-        <span>{project.title}</span>
+        {project.image ? <img src={project.image} alt="" /> : <span>{project.title}</span>}
       </div>
       <div className="project-card-copy">
         <p className="project-card-kicker">{project.featured ? "Featured placeholder" : "Project placeholder"}</p>
@@ -18,11 +18,15 @@ export function ProjectCard({ project }: { project: PortfolioProject }) {
           <span key={tag}>{tag}</span>
         ))}
       </div>
-      {project.href ? (
-        <a className="project-card-link" href={project.href} target="_blank" rel="noreferrer" aria-label={`Open ${project.title}`}>
+      <a
+        className="project-card-link"
+        href={project.href || `/projects/${project.slug}`}
+        target={project.external_url ? "_blank" : undefined}
+        rel={project.external_url ? "noopener noreferrer" : undefined}
+        aria-label={`Open ${project.title}`}
+      >
           <ExternalLink size={16} />
-        </a>
-      ) : null}
+      </a>
     </article>
   );
 }
