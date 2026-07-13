@@ -7,7 +7,12 @@ from fastapi import APIRouter, Cookie, Depends, HTTPException, Request, Response
 from sqlmodel import Session, delete, select
 
 from app.auth.cookies import clear_auth_cookies, set_auth_cookies
-from app.auth.dependencies import get_current_user, get_user_by_email, verify_csrf
+from app.auth.dependencies import (
+    get_current_user,
+    get_optional_current_user,
+    get_user_by_email,
+    verify_csrf,
+)
 from app.auth.password_reset import send_password_reset_email
 from app.auth.security import (
     decode_password_reset_token,
@@ -126,9 +131,9 @@ def logout(
     return {"status": "logged_out"}
 
 
-@router.get("/me", response_model=UserRead)
-def me(user: User = Depends(get_current_user)) -> User:
-    """Return the current authenticated user."""
+@router.get("/me", response_model=UserRead | None)
+def me(user: User | None = Depends(get_optional_current_user)) -> User | None:
+    """Return the current user, or null when no active session exists."""
     return user
 
 
