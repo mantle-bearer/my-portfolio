@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 
 test("admin can sign in and see admin users", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/login");
   await page.getByRole("textbox").first().fill("admin@example.com");
   await page.getByRole("textbox").nth(1).fill("ChangeMe123!");
   const loginResponse = page.waitForResponse((response) =>
@@ -12,7 +12,7 @@ test("admin can sign in and see admin users", async ({ page }) => {
   await expect(page.getByRole("heading", { name: /Hi,/ })).toBeVisible({
     timeout: 15000
   });
-  await page.getByRole("link", { name: "Admin" }).click();
+  await page.getByRole("link", { name: "Users" }).click();
   await expect(page.getByRole("heading", { name: "Users" })).toBeVisible();
   await expect(page.getByRole("table")).toBeVisible();
 });
@@ -26,7 +26,8 @@ test("normal user sees items but not admin", async ({ page }) => {
     timeout: 15000
   });
   await expect(page.getByRole("link", { name: "Items" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Admin" })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Users" })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Content" })).toHaveCount(0);
 });
 
 test("user can create and delete an item", async ({ page }) => {
@@ -68,7 +69,7 @@ test("mobile user can navigate drawer and manage item cards", async ({ page }) =
 
   await page.getByRole("button", { name: "Open menu" }).click();
   await expect(page.getByRole("dialog", { name: "Navigation" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Admin" })).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Users" })).toHaveCount(0);
   await page.getByRole("link", { name: "Items" }).click();
   await expect(page.getByRole("heading", { name: "Items" })).toBeVisible();
 
@@ -100,7 +101,7 @@ test("mobile admin users render card actions inside viewport", async ({ page }) 
   });
 
   await page.getByRole("button", { name: "Open menu" }).click();
-  await page.getByRole("link", { name: "Admin" }).click();
+  await page.getByRole("link", { name: "Users" }).click();
   await expect(page.getByRole("heading", { name: "Users" })).toBeVisible();
   await expect(page.locator(".mobile-row-card").first()).toBeVisible();
 
@@ -113,4 +114,27 @@ test("mobile admin users render card actions inside viewport", async ({ page }) 
 
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > window.innerWidth);
   expect(overflow).toBe(false);
+});
+
+test("admin can navigate the portfolio CMS screens", async ({ page }) => {
+  await page.goto("/login");
+  await page.getByRole("textbox").first().fill("admin@example.com");
+  await page.getByRole("textbox").nth(1).fill("ChangeMe123!");
+  await page.getByRole("button", { name: "Log In" }).click();
+  await expect(page.getByRole("heading", { name: /Hi,/ })).toBeVisible({ timeout: 15000 });
+
+  await page.getByRole("link", { name: "Content" }).click();
+  await expect(page.getByRole("heading", { name: "Portfolio content" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Profile and global content" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Preview" })).toHaveAttribute(
+    "href",
+    "/dashboard/content/preview"
+  );
+
+  await page.getByRole("navigation", { name: "Portfolio content screens" }).getByRole("link", { name: "About" }).click();
+  await expect(page.getByRole("heading", { name: "About cards" })).toBeVisible();
+  await expect(page.locator(".cms-record")).toHaveCount(6);
+
+  await page.getByRole("navigation", { name: "Portfolio content screens" }).getByRole("link", { name: "Contact" }).click();
+  await expect(page.getByRole("heading", { name: "Contact inbox" })).toBeVisible();
 });
