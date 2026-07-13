@@ -62,7 +62,7 @@ class User(SQLModel, table=True):
 
 
 class Item(SQLModel, table=True):
-    """User-owned item managed by the template CRUD UI."""
+    """User-owned item retained for authenticated workspace compatibility."""
 
     id: UUID = Field(default_factory=uuid4, primary_key=True)
     title: str = Field(index=True)
