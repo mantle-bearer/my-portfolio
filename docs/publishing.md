@@ -1,67 +1,33 @@
-# Publishing
+# Publishing And Releases
 
-Use this checklist before publishing the template repository or cutting a tagged
-release.
+This repository contains Goodluck Igbokwe's deployable portfolio product. A
+release is ready when the public portfolio, authenticated workspace, CMS
+contracts, and committed frontend build agree.
 
-## Repository Cleanup
+## Pre-release Checks
 
-- Replace `mantle-bearer/fullstack-fastapi-template` placeholders in docs.
-- Keep `.env` untracked.
-- Keep `.fastapicloud/` untracked.
-- Remove local databases such as `local.db`, `test.db`, and `test-e2e.db`.
-- Remove local caches and build artifacts that are not intended for users.
-- Confirm `dist/` is fresh and committed.
-- Confirm screenshots in `img/` are current.
-- Confirm the license has the right owner information.
-
-Useful checks:
-
-```bash
-git status --ignored
-just check
-just test
-just build
-just dist-check
-```
-
-## Template Usage Paths
-
-GitHub Template:
-
-```bash
-gh repo create my-fastapi-app --template mantle-bearer/fullstack-fastapi-template --clone
-```
-
-degit:
-
-```bash
-npx degit mantle-bearer/fullstack-fastapi-template#v0.1.0 my-fastapi-app
-```
-
-Copier:
-
-```bash
-uvx copier copy gh:mantle-bearer/fullstack-fastapi-template --vcs-ref v0.1.0 my-fastapi-app
-```
-
-Keep clone instructions as a fallback for users who want the full Git history.
+- Keep `.env`, `.fastapicloud/`, local databases, and private media out of Git.
+- Run `just check`, `just test`, `just build`, and `just dist-check`.
+- Review SEO, public links, contact delivery configuration, and the publication
+  history before deployment.
+- Confirm the release notes describe migrations and any required environment
+  changes.
 
 ## Release Flow
 
-1. Update screenshots and docs.
-2. Run local checks.
-3. Confirm CI passes on the default branch.
-4. Create a semver tag, for example `v0.1.0`.
-5. Create GitHub release notes with setup, deployment, and upgrade notes.
-6. Test `degit` and Copier generation from the tag in a temporary directory.
+1. Update product documentation and screenshots when the interface changes.
+2. Apply and verify Alembic migrations against the target database.
+3. Regenerate the OpenAPI client after contract changes.
+4. Run backend, frontend, and browser checks.
+5. Create a version tag and publish release notes with upgrade instructions.
 
-## FastAPI Cloud Notes
+## FastAPI Cloud
 
-The generated app should deploy with:
+The application can deploy through FastAPI Cloud:
 
 ```bash
 uv run fastapi deploy
 ```
 
-Do not commit `.fastapicloud/`; it contains local app-link metadata. Keep
-`.fastapicloudignore` focused on deployment uploads, not repository publishing.
+Keep `.fastapicloud/` local. Configure PostgreSQL, Redis, SMTP, secure cookies,
+and `PUBLIC_BASE_URL` through the deployment environment.
