@@ -38,6 +38,26 @@ def get_current_user(
     return user
 
 
+def get_optional_current_user(
+    access_token: str | None = Cookie(default=None),
+    session: Session = Depends(get_session),
+    settings: Settings = Depends(get_settings),
+) -> User | None:
+    """Return the current user when a valid session exists, otherwise ``None``."""
+    if not access_token:
+        return None
+    try:
+        payload = decode_token(access_token, settings)
+        if payload.get("type") != "access":
+            return None
+        user = session.get(User, UUID(payload["sub"]))
+    except (jwt.PyJWTError, KeyError, TypeError, ValueError):
+        return None
+    if not user or not user.is_active or user.token_version != payload.get("token_version"):
+        return None
+    return user
+
+
 def verify_csrf(
     request: Request,
     csrf_cookie: str | None = Cookie(default=None, alias="csrf_token"),
