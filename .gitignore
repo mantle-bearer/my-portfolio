@@ -17,6 +17,7 @@ frontend/*.tsbuildinfo
 playwright-report/
 test-results/
 frontend/test-results/
+media/
 
 # IDE
 .vscode/
