@@ -1,17 +1,17 @@
-import { portfolioAboutCards, portfolioAboutSummaryNote } from "@/data/portfolio";
 import { SectionShell } from "@/components/portfolio/SectionShell";
+import { usePortfolioContent } from "@/lib/portfolio-content";
 
 const operationalClarityTitle = "Operational Clarity";
 
 export function AboutSection() {
-  const supportingCards = portfolioAboutCards.filter((card) => card.title !== operationalClarityTitle);
-  const operationalClarityCard = portfolioAboutCards.find((card) => card.title === operationalClarityTitle);
+  const { content } = usePortfolioContent();
+  const supportingCards = content.aboutCards.filter((card) => card.title !== operationalClarityTitle);
+  const operationalClarityCard = content.aboutCards.find((card) => card.title === operationalClarityTitle);
 
   return (
     <SectionShell id="about" className="about-section">
       <div className="section-heading">
-        <h2>About Me</h2>
-        {/* <p>A quick read, not a resume.</p> */}
+        <h2>{content.sections.about?.heading ?? "About Me"}</h2>
       </div>
       <div className="about-bento" aria-label="About Goodluck">
         {supportingCards.map((card) => (
@@ -54,8 +54,8 @@ export function AboutSection() {
                 <strong>GI</strong>
               </div>
               <div className="about-summary-note-body">
-                <p className="about-summary-note-title">{portfolioAboutSummaryNote.title}</p>
-                <p>{portfolioAboutSummaryNote.summary}</p>
+                <p className="about-summary-note-title">{content.aboutSummaryNote.title}</p>
+                <p>{content.aboutSummaryNote.summary}</p>
               </div>
             </aside>
           </div>
