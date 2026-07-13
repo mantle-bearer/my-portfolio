@@ -3,22 +3,14 @@ import { Link } from "@tanstack/react-router";
 import { Menu, Moon, Sun, X } from "lucide-react";
 
 import { useTheme } from "@/components/theme";
-import { portfolioProfile } from "@/data/portfolio";
-
-const links = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Stack", href: "#stacks" },
-  { label: "Services", href: "#services" },
-  { label: "Portfolio", href: "#projects" },
-  { label: "Blog", href: "#notes" },
-  { label: "Contact", href: "#contact" }
-];
+import { usePortfolioContent } from "@/lib/portfolio-content";
 
 export function PortfolioNav() {
   const [open, setOpen] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
+  const { content } = usePortfolioContent();
   const isDark = resolvedTheme === "dark";
+  const links = content.navigation.filter((link) => link.isVisible);
 
   useEffect(() => {
     if (!open) return;
@@ -35,8 +27,8 @@ export function PortfolioNav() {
 
   return (
     <header className={`portfolio-nav ${open ? "is-open" : ""}`}>
-      <Link to="/portfolio" className="portfolio-brand" aria-label="Goodluck Igbokwe portfolio home">
-        <img src="/images/portfolio/profile-passport-picture.jpg" alt="" />
+      <Link to="/" className="portfolio-brand" aria-label={`${content.profile.name} portfolio home`}>
+        <img src={content.assets.profilePortrait.src} alt="" />
       </Link>
       <nav className="portfolio-nav-links" aria-label="Portfolio navigation">
         {links.map((link) => (
@@ -91,9 +83,9 @@ export function PortfolioNav() {
             </button>
           </div>
           <div className="portfolio-mobile-profile">
-            <img src="/images/portfolio/profile-passport-picture.jpg" alt="" />
-            <strong>{portfolioProfile.name}</strong>
-            <span>{portfolioProfile.role}</span>
+            <img src={content.assets.profilePortrait.src} alt="" />
+            <strong>{content.profile.name}</strong>
+            <span>{content.profile.role}</span>
           </div>
           {links.map((link) => (
             <a key={link.href} href={link.href} onClick={() => setOpen(false)}>
