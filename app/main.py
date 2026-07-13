@@ -8,9 +8,10 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlmodel import Session
 
-from app.api import admin, auth, health, items
+from app.api import admin, auth, health, items, portfolio, portfolio_admin
 from app.core.config import get_settings
 from app.db.session import create_db_and_tables, engine
+from app.portfolio.seed import seed_portfolio_draft
 from app.seed import seed_local_demo, seed_roles
 
 settings = get_settings()
@@ -23,9 +24,11 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None]:
         create_db_and_tables()
         with Session(engine) as session:
             seed_local_demo(session)
+            seed_portfolio_draft(session)
     else:
         with Session(engine) as session:
             seed_roles(session)
+            seed_portfolio_draft(session)
     yield
 
 
@@ -45,6 +48,8 @@ app.include_router(health.router, prefix=api_prefix)
 app.include_router(auth.router, prefix=api_prefix)
 app.include_router(admin.router, prefix=api_prefix)
 app.include_router(items.router, prefix=api_prefix)
+app.include_router(portfolio.router, prefix=api_prefix)
+app.include_router(portfolio_admin.router, prefix=api_prefix)
 
 
 @app.api_route(
@@ -55,6 +60,7 @@ app.include_router(items.router, prefix=api_prefix)
 async def missing_api_route(path: str) -> None:
     """Return API 404s before the frontend fallback handles unknown paths."""
     raise HTTPException(status_code=404, detail=f"API route not found: {path}")
+
 
 dist_dir = Path("dist")
 if hasattr(app, "frontend"):
