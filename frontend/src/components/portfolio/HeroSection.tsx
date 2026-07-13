@@ -1,48 +1,42 @@
 import { Download, Mail } from "lucide-react";
-import { SiFastapi, SiJavascript, SiPython, SiReact, SiTypescript, SiDjango, SiPhp, SiLaravel } from "react-icons/si";
 
 import { HeroPortrait } from "@/components/portfolio/HeroPortrait";
-import { portfolioProfile } from "@/data/portfolio";
-
-const expertise = [
-  { label: "Python", Icon: SiPython },
-  { label: "FastAPI", Icon: SiFastapi },
-  { label: "Django", Icon: SiDjango },
-  // { label: "JavaScript", Icon: SiJavascript },
-  { label: "React", Icon: SiReact },
-  // { label: "TypeScript", Icon: SiTypescript },
-  // { label: "PHP", Icon: SiPhp },
-  { label: "Laravel", Icon: SiLaravel }
-];
+import { portfolioIconMap } from "@/components/portfolio/iconMap";
+import { usePortfolioContent } from "@/lib/portfolio-content";
 
 export function HeroSection() {
+  const { content } = usePortfolioContent();
+  const { profile } = content;
+
   return (
     <section id="home" className="portfolio-hero" aria-labelledby="portfolio-hero-title">
       <div className="portfolio-shell hero-grid">
         <div className="hero-content">
           <h2 id="portfolio-hero-title" className="portfolio-display">
-            {/* <span className="hero-title-intro">{portfolioProfile.heroTitle.intro}</span>{" "} */}
-            <span className="hero-title-name">{portfolioProfile.heroTitle.name}</span>
+            <span className="hero-title-name">{profile.heroTitle.name}</span>
           </h2>
-          <p className="hero-summary">{portfolioProfile.heroSummary}</p>
+          <p className="hero-summary">{profile.heroSummary}</p>
           <div className="hero-actions" aria-label="Primary portfolio actions">
-            <a className="portfolio-button portfolio-button-primary" href="#projects">
-              View my work
+            <a className="portfolio-button portfolio-button-primary" href={profile.heroPrimaryAction.href}>
+              {profile.heroPrimaryAction.label}
               <Download size={17} />
             </a>
-            <a className="portfolio-button portfolio-button-secondary" href="#contact">
-              Get in touch
+            <a className="portfolio-button portfolio-button-secondary" href={profile.heroSecondaryAction.href}>
+              {profile.heroSecondaryAction.label}
               <Mail size={17} />
             </a>
           </div>
           <div className="hero-expertise" aria-label="Technical expertise">
             <p>Expertise in</p>
             <div>
-              {expertise.map(({ label, Icon }) => (
-                <span key={label} title={label} aria-label={label}>
-                  <Icon aria-hidden="true" />
-                </span>
-              ))}
+              {content.heroExpertise.map(({ label, iconKey }) => {
+                const Icon = portfolioIconMap[iconKey] ?? portfolioIconMap.code;
+                return (
+                  <span key={label} title={label} aria-label={label}>
+                    <Icon aria-hidden="true" />
+                  </span>
+                );
+              })}
             </div>
           </div>
         </div>
