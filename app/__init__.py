@@ -1,3 +1,3 @@
-"""Fullstack FastAPI template application package."""
+"""Goodluck Igbokwe portfolio application package."""
 
 __version__ = "0.1.0"
