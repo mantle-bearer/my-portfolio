@@ -118,6 +118,10 @@ def test_frontend_and_api_route_precedence(client: TestClient) -> None:
 
 
 def test_login_me_logout_flow(client: TestClient) -> None:
+    unauthenticated = client.get("/api/v1/auth/me")
+    assert unauthenticated.status_code == 200
+    assert unauthenticated.json() is None
+
     login = client.post(
         "/api/v1/auth/login",
         json={"email": "admin@example.com", "password": "ChangeMe123!"},
@@ -249,7 +253,8 @@ def test_user_can_update_profile_and_password_revokes_token(client: TestClient) 
         json={"current_password": "ChangeMe123!", "new_password": "ChangeMe124!"},
     )
     assert changed.status_code == 200
-    assert client.get("/api/v1/auth/me").status_code == 401
+    assert client.get("/api/v1/auth/me").status_code == 200
+    assert client.get("/api/v1/auth/me").json() is None
 
 
 def test_password_recovery_and_reset(client: TestClient) -> None:
@@ -285,7 +290,8 @@ def test_user_can_delete_own_non_admin_account(client: TestClient) -> None:
     assert signup.status_code == 200
     response = client.delete("/api/v1/auth/me", headers={"x-csrf-token": csrf(client)})
     assert response.status_code == 200
-    assert client.get("/api/v1/auth/me").status_code == 401
+    assert client.get("/api/v1/auth/me").status_code == 200
+    assert client.get("/api/v1/auth/me").json() is None
 
 
 def test_admin_self_delete_is_blocked(client: TestClient) -> None:
