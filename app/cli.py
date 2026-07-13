@@ -6,6 +6,7 @@ from sqlmodel import Session
 
 from app.core.config import get_settings
 from app.db.session import create_db_and_tables, engine
+from app.portfolio.seed import seed_portfolio_draft
 from app.seed import seed_admin, seed_local_demo, seed_roles
 
 
@@ -16,18 +17,23 @@ def main() -> None:
     subcommands.add_parser("init-db")
     subcommands.add_parser("seed-local")
     subcommands.add_parser("seed-admin")
+    subcommands.add_parser("seed-portfolio")
     args = parser.parse_args()
     settings = get_settings()
     create_db_and_tables()
     with Session(engine) as session:
         if args.command == "init-db":
             seed_roles(session)
+            seed_portfolio_draft(session)
         elif args.command == "seed-local":
             seed_local_demo(session)
+            seed_portfolio_draft(session)
         elif args.command == "seed-admin":
             if not settings.admin_email or not settings.admin_password:
                 raise SystemExit("ADMIN_EMAIL and ADMIN_PASSWORD are required")
             seed_admin(session, settings.admin_email, settings.admin_password)
+        elif args.command == "seed-portfolio":
+            seed_portfolio_draft(session)
 
 
 if __name__ == "__main__":
