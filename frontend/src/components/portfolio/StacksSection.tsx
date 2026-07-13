@@ -2,17 +2,20 @@ import { useMemo, useState } from "react";
 import { Check } from "lucide-react";
 import { TbCopy } from "react-icons/tb";
 
-import { portfolioStacks } from "@/data/portfolio";
 import { SectionShell } from "@/components/portfolio/SectionShell";
+import { usePortfolioContent } from "@/lib/portfolio-content";
 
 export function StacksSection() {
-  const [activeStack, setActiveStack] = useState(portfolioStacks[0].language);
+  const { content } = usePortfolioContent();
+  const [activeStack, setActiveStack] = useState(content.stacks[0]?.language ?? "");
   const [copiedStack, setCopiedStack] = useState<string | null>(null);
 
   const selectedStack = useMemo(
-    () => portfolioStacks.find((stack) => stack.language === activeStack) ?? portfolioStacks[0],
-    [activeStack]
+    () => content.stacks.find((stack) => stack.language === activeStack) ?? content.stacks[0],
+    [activeStack, content.stacks]
   );
+
+  if (!selectedStack) return null;
 
   async function copySnippet() {
     const snippet = selectedStack.snippet.join("\n");
@@ -30,7 +33,7 @@ export function StacksSection() {
     <SectionShell id="stacks" className="stacks-section">
       <div className="section-heading">
         <h2>
-          Stacks <span>I Use</span>
+          {content.sections.stacks?.heading ?? "Stacks I Use"}
         </h2>
       </div>
 
@@ -47,7 +50,7 @@ export function StacksSection() {
         </div>
 
         <div className="stacks-tabs" role="tablist" aria-label="Programming language stacks">
-          {portfolioStacks.map((stack) => (
+          {content.stacks.map((stack) => (
             <button
               id={`stack-tab-${stack.language.toLowerCase().replace(/[^a-z0-9]+/g, "-")}`}
               className="stacks-tab"
@@ -85,14 +88,23 @@ export function StacksSection() {
                 ))}
               </code>
             </pre>
-            <button className="stacks-copy-button" type="button" onClick={copySnippet}>
+            <button
+              className="stacks-copy-button"
+              type="button"
+              aria-label={`Copy ${selectedStack.language} code snippet`}
+              onClick={copySnippet}
+            >
               {copiedStack === selectedStack.language ? (
                 <>
-                  <span><Check size={17} aria-hidden="true" /></span>
+                  <span>
+                    <Check size={17} aria-hidden="true" />
+                  </span>
                 </>
               ) : (
                 <>
-                  <span><TbCopy size={17} aria-hidden="true" /></span>
+                  <span>
+                    <TbCopy size={17} aria-hidden="true" />
+                  </span>
                 </>
               )}
             </button>
