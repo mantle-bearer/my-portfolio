@@ -10,7 +10,7 @@ const ThemeContext = createContext<{
   setTheme: (theme: Theme) => void;
 } | null>(null);
 
-const THEME_KEY = "fastapi-template-theme";
+const THEME_KEY = "goodluck-portfolio-theme";
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setTheme] = useState<Theme>(
