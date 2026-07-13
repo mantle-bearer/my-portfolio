@@ -1,22 +1,20 @@
-import { Code2, Database, Gauge, Layers3, ShieldCheck, Wrench } from "lucide-react";
-
-import { portfolioServices } from "@/data/portfolio";
+import { portfolioIconMap } from "@/components/portfolio/iconMap";
 import { SectionShell } from "@/components/portfolio/SectionShell";
-
-const icons = [Code2, Layers3, Gauge, Database, Wrench, ShieldCheck];
+import { usePortfolioContent } from "@/lib/portfolio-content";
 
 export function ServicesSection() {
+  const { content } = usePortfolioContent();
   return (
     <SectionShell id="services" className="services-section">
       <div className="section-heading">
         {/* <p className="portfolio-kicker">Services</p> */}
         <h2>
-          My <span>services</span>
+          {content.sections.services?.heading ?? "My services"}
         </h2>
       </div>
       <div className="service-grid">
-        {portfolioServices.map((service, index) => {
-          const Icon = icons[index] ?? Code2;
+        {content.services.map((service) => {
+          const Icon = portfolioIconMap[service.iconKey ?? "code"] ?? portfolioIconMap.code;
           return (
             <article className="service-card" key={service.title}>
               <Icon size={34} aria-hidden="true" />
