@@ -466,17 +466,19 @@ class MediaAssetUpdate(OptimisticPatch):
 class ContactCreate(BaseModel):
     """Public contact enquiry including an invisible bot trap."""
 
-    name: str = Field(min_length=2, max_length=120)
-    email: EmailStr
-    subject: str = Field(min_length=2, max_length=180)
-    message: str = Field(min_length=10, max_length=5000)
-    company: str = Field(default="", max_length=0)
+    name: str = Field(min_length=1, max_length=120)
+    email: EmailStr = Field(max_length=320)
+    subject: str = Field(min_length=1, max_length=180)
+    message: str = Field(min_length=1, max_length=5000)
+    website: str = Field(default="", max_length=0)
 
     @field_validator("name", "subject", "message")
     @classmethod
     def reject_control_characters(cls, value: str) -> str:
         """Reject hidden control characters and normalize surrounding whitespace."""
         normalized = value.strip()
+        if not normalized:
+            raise ValueError("This field cannot be blank")
         if any(ord(character) < 32 and character not in "\n\r\t" for character in normalized):
             raise ValueError("Control characters are not allowed")
         return normalized
