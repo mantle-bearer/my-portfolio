@@ -1449,6 +1449,17 @@ html {
   text-align: center;
 }
 
+.contact-field-error {
+  color: var(--pf-orange);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.contact-form input[aria-invalid="true"],
+.contact-form textarea[aria-invalid="true"] {
+  border-color: var(--pf-orange);
+}
+
 .contact-honeypot {
   position: absolute !important;
   left: -10000px !important;
