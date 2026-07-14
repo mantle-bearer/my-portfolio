@@ -357,16 +357,52 @@ test("legacy portfolio route redirects and preserves its anchor", async ({ page 
 test("contact form stores a direct website enquiry", async ({ page }) => {
   await page.goto("/#contact");
   const form = page.getByRole("form", { name: "Contact form" });
-  await form.getByLabel("Name").fill("Browser Visitor");
+  await form.getByLabel("Name").fill("Q");
   await form.getByLabel("Email").fill("browser@example.com");
-  await form.getByLabel("Subject").fill("Portfolio browser enquiry");
-  await form.getByLabel("Message").fill("I would like to discuss a practical software project.");
+  await form.getByLabel("Subject").fill("Hi");
+  await form.getByLabel("Message").fill("Call");
   const request = page.waitForResponse((response) =>
     response.url().includes("/api/v1/portfolio/contact")
   );
   await form.getByRole("button", { name: "Send message" }).click();
   await expect((await request).status()).toBe(202);
   await expect(form.getByText("Message received. I will get back to you soon.")).toBeVisible();
+});
+
+test("contact form explains invalid fields before sending", async ({ page }) => {
+  await page.goto("/#contact");
+  const form = page.getByRole("form", { name: "Contact form" });
+  await form.getByLabel("Name").fill("   ");
+  await form.getByLabel("Email").fill("not-an-email");
+  await form.getByLabel("Subject").fill("   ");
+  await form.getByLabel("Message").fill("   ");
+  await form.getByRole("button", { name: "Send message" }).click();
+
+  await expect(form.getByText("Please enter your name.")).toBeVisible();
+  await expect(form.getByText("Please enter a valid email address.")).toBeVisible();
+  await expect(form.getByText("Please enter a subject.")).toBeVisible();
+  await expect(form.getByText("Please enter a message.")).toBeVisible();
+});
+
+test("runtime manifest uses valid application URLs", async ({ page }) => {
+  const manifestWarnings: string[] = [];
+  page.on("console", (message) => {
+    if (message.type() === "warning" && message.text().includes("Manifest:")) {
+      manifestWarnings.push(message.text());
+    }
+  });
+  await page.goto("/");
+  const manifest = await page.evaluate(async () => {
+    const href = document.querySelector<HTMLLinkElement>('link[rel="manifest"]')?.href;
+    if (!href) return null;
+    return fetch(href).then((response) => response.json());
+  });
+
+  expect(manifest).not.toBeNull();
+  expect(new URL(manifest.start_url).origin).toBe(new URL(page.url()).origin);
+  expect(new URL(manifest.scope).origin).toBe(new URL(page.url()).origin);
+  expect(new URL(manifest.icons[0].src).origin).toBe(new URL(page.url()).origin);
+  expect(manifestWarnings).toEqual([]);
 });
 
 test("placeholder posts and projects have internal detail pages", async ({ page }) => {
