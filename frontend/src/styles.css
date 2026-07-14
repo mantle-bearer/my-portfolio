@@ -1214,6 +1214,49 @@ td {
   font-size: 11px;
 }
 
+.cms-contact-delivery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0;
+  background: var(--border);
+}
+
+.cms-contact-delivery > div {
+  min-width: 0;
+  background: var(--muted);
+  padding: 9px 10px;
+}
+
+.cms-contact-delivery dt {
+  color: var(--muted-foreground);
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.cms-contact-delivery dd {
+  overflow-wrap: anywhere;
+  margin: 3px 0 0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cms-contact-delivery-error {
+  border-left: 3px solid var(--destructive);
+  background: var(--card);
+  padding: 10px 12px;
+}
+
+.cms-contact-delivery-error strong {
+  color: var(--destructive);
+  font-size: 12px;
+}
+
+.cms-contact-delivery-error p {
+  margin-top: 4px;
+}
+
 .cms-contact-item footer .input {
   width: 150px;
 }
@@ -1297,6 +1340,10 @@ td {
   .cms-contact-item footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .cms-contact-delivery {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
