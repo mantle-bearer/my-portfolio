@@ -87,6 +87,49 @@ async def test_login_rate_limit_degrades_open_when_redis_breaks(
     assert await redis_integration.allow_login_attempt("login:broken@example.com")
 
 
+@pytest.mark.asyncio
+async def test_public_rate_limit_uses_bounded_memory_without_redis(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    monkeypatch.setattr(redis_integration, "get_redis", lambda: None)
+    redis_integration.reset_fallback_rate_limits()
+
+    for _ in range(5):
+        assert await redis_integration.allow_rate_limited_action("contact:visitor-a", 5, 3600)
+    assert not await redis_integration.allow_rate_limited_action("contact:visitor-a", 5, 3600)
+    assert await redis_integration.allow_rate_limited_action("contact:visitor-b", 5, 3600)
+
+
+@pytest.mark.asyncio
+async def test_public_rate_limit_falls_back_when_redis_breaks(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    class BrokenRedis:
+        async def incr(self, _key: str) -> int:
+            raise OSError("redis unavailable")
+
+    monkeypatch.setattr(redis_integration, "get_redis", lambda: BrokenRedis())
+    redis_integration.reset_fallback_rate_limits()
+
+    assert await redis_integration.allow_rate_limited_action("contact:fallback", 1, 3600)
+    assert not await redis_integration.allow_rate_limited_action("contact:fallback", 1, 3600)
+
+
+@pytest.mark.asyncio
+async def test_public_rate_limit_fallback_expires(
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    clock = [100.0]
+    monkeypatch.setattr(redis_integration, "get_redis", lambda: None)
+    monkeypatch.setattr(redis_integration, "monotonic", lambda: clock[0])
+    redis_integration.reset_fallback_rate_limits()
+
+    assert await redis_integration.allow_rate_limited_action("contact:expiring", 1, 60)
+    assert not await redis_integration.allow_rate_limited_action("contact:expiring", 1, 60)
+    clock[0] = 161.0
+    assert await redis_integration.allow_rate_limited_action("contact:expiring", 1, 60)
+
+
 def test_local_sqlite_database_is_allowed() -> None:
     settings = Settings(environment="local", database_url="sqlite:///./local.db")
     assert settings.database_url == "sqlite:///./local.db"
