@@ -5,6 +5,7 @@ from fastapi.testclient import TestClient
 from sqlmodel import Session, select
 
 import app.api.portfolio as portfolio_api
+import app.integrations.redis as redis_integration
 import app.portfolio.contact as contact_module
 from app.core.config import get_settings
 from app.db.session import engine
@@ -21,8 +22,10 @@ from app.portfolio.seed import seed_portfolio_draft
 @pytest.fixture()
 def client() -> TestClient:
     """Run the application lifespan for each CMS integration test."""
+    redis_integration.reset_fallback_rate_limits()
     with TestClient(app) as test_client:
         yield test_client
+    redis_integration.reset_fallback_rate_limits()
 
 
 def csrf(client: TestClient) -> str:
@@ -301,7 +304,7 @@ def test_contact_is_stored_and_owner_delivery_can_succeed(
             "email": "visitor@example.com",
             "subject": "A project enquiry",
             "message": "I would like to discuss a useful business application.",
-            "company": "",
+            "website": "",
         },
     )
     assert response.status_code == 202
@@ -323,7 +326,7 @@ def test_contact_honeypot_and_rate_limit_reject_bots(
         "email": "bot@example.com",
         "subject": "A project enquiry",
         "message": "This message is long enough to pass normal validation.",
-        "company": "filled by a bot",
+        "website": "filled by a bot",
     }
     assert client.post("/api/v1/portfolio/contact", json=payload).status_code == 422
 
@@ -331,8 +334,106 @@ def test_contact_honeypot_and_rate_limit_reject_bots(
         return False
 
     monkeypatch.setattr(portfolio_api, "allow_rate_limited_action", blocked)
-    payload["company"] = ""
+    payload["website"] = ""
     assert client.post("/api/v1/portfolio/contact", json=payload).status_code == 429
+
+
+def test_contact_accepts_short_nonblank_content(client: TestClient) -> None:
+    response = client.post(
+        "/api/v1/portfolio/contact",
+        json={
+            "name": "Q",
+            "email": f"short-{uuid4()}@example.com",
+            "subject": "Hi",
+            "message": "Call",
+            "website": "",
+        },
+    )
+    assert response.status_code == 202
+
+
+@pytest.mark.parametrize("field", ["name", "subject", "message"])
+def test_contact_rejects_blank_text(client: TestClient, field: str) -> None:
+    payload = {
+        "name": "Visitor",
+        "email": f"blank-{uuid4()}@example.com",
+        "subject": "Project",
+        "message": "Hello",
+        "website": "",
+    }
+    payload[field] = "   "
+    response = client.post("/api/v1/portfolio/contact", json=payload)
+    assert response.status_code == 422
+    assert response.json()["detail"][0]["loc"][-1] == field
+
+
+def test_contact_is_stored_when_smtp_is_not_configured(
+    client: TestClient,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    email = f"failed-{uuid4()}@example.com"
+    monkeypatch.setattr(contact_module, "send_email", lambda *_args, **_kwargs: False)
+
+    response = client.post(
+        "/api/v1/portfolio/contact",
+        json={
+            "name": "Stored Visitor",
+            "email": email,
+            "subject": "Stored before delivery",
+            "message": "Please keep this enquiry even without SMTP.",
+            "website": "",
+        },
+    )
+    assert response.status_code == 202
+    assert response.json() == {"status": "accepted"}
+
+    with Session(engine) as session:
+        submission = session.exec(
+            select(ContactSubmission).where(ContactSubmission.email == email)
+        ).one()
+        assert submission.delivery_state == "failed"
+        assert submission.delivery_attempts == 1
+        assert submission.delivery_error == "RuntimeError: SMTP is not configured"
+
+    login_admin(client)
+    inbox = client.get("/api/v1/admin/portfolio/contacts").json()
+    stored = next(item for item in inbox if item["email"] == email)
+    assert stored["delivery_state"] == "failed"
+    assert stored["delivery_error"] == "RuntimeError: SMTP is not configured"
+
+
+def test_contact_delivery_error_redacts_smtp_credentials(
+    client: TestClient,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    settings = get_settings()
+    monkeypatch.setattr(settings, "smtp_user", "private-user")
+    monkeypatch.setattr(settings, "smtp_password", "private-password")
+
+    def fail_delivery(*_args: object, **_kwargs: object) -> bool:
+        raise RuntimeError("Login private-user failed with private-password")
+
+    monkeypatch.setattr(contact_module, "send_email", fail_delivery)
+    email = f"redacted-{uuid4()}@example.com"
+    response = client.post(
+        "/api/v1/portfolio/contact",
+        json={
+            "name": "Credential Check",
+            "email": email,
+            "subject": "Redact credentials",
+            "message": "Do not expose configured credentials.",
+            "website": "",
+        },
+    )
+    assert response.status_code == 202
+    with Session(engine) as session:
+        submission = session.exec(
+            select(ContactSubmission).where(ContactSubmission.email == email)
+        ).one()
+        assert submission.delivery_error is not None
+        assert "private-user" not in submission.delivery_error
+        assert "private-password" not in submission.delivery_error
+        assert submission.delivery_error.count("[redacted]") == 2
 
 
 def test_published_detail_endpoints_use_snapshot_content(client: TestClient) -> None:
@@ -426,7 +527,7 @@ def test_contact_inbox_update_accepts_api_timestamp(client: TestClient) -> None:
             "email": f"inbox-{uuid4()}@example.com",
             "subject": "Review this enquiry",
             "message": "This enquiry should move to the read inbox state.",
-            "company": "",
+            "website": "",
         },
     )
     assert response.status_code == 202
