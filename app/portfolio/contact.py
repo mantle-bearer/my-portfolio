@@ -107,7 +107,7 @@ def deliver_contact_notification(submission_id: UUID, settings: Settings) -> Non
                 raise RuntimeError("SMTP is not configured")
         except Exception as exc:
             submission.delivery_state = "failed"
-            submission.delivery_error = _safe_delivery_error(exc)
+            submission.delivery_error = _safe_delivery_error(exc, settings)
         else:
             submission.delivery_state = "sent"
             submission.delivered_at = datetime.now(UTC)
@@ -117,9 +117,13 @@ def deliver_contact_notification(submission_id: UUID, settings: Settings) -> Non
         session.commit()
 
 
-def _safe_delivery_error(exc: Exception) -> str:
+def _safe_delivery_error(exc: Exception, settings: Settings) -> str:
     """Store a short operational error without SMTP credentials or traceback data."""
-    message = " ".join(str(exc).split())[:180]
+    message = " ".join(str(exc).split())
+    for credential in (settings.smtp_password, settings.smtp_user):
+        if credential:
+            message = message.replace(credential, "[redacted]")
+    message = message[:180]
     return f"{type(exc).__name__}: {message or 'delivery failed'}"
 
 
