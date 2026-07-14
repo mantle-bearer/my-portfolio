@@ -50,8 +50,9 @@ owner notification. SMTP failure does not reject the visitor's request. Failed
 deliveries remain visible and retryable in the Contact screen.
 
 The private notification address is configured in the Profile screen and is not
-included in public content. Redis applies IP-based throttling when available; the
-existing fail-open behavior is retained when Redis is unavailable.
+included in public content. Redis applies shared IP-based throttling when available.
+A bounded in-process limiter protects local and single-instance deployments when
+Redis is unavailable; configure Redis for consistent limits across multiple instances.
 
 ```env
 CONTACT_BODY_MAX_BYTES=16384
