@@ -28,3 +28,15 @@ export function messageFromError(error: unknown) {
   }
   return "Something went wrong. Please try again.";
 }
+
+export function validationMessagesFromError(error: unknown) {
+  if (!(error instanceof ApiError) || error.status !== 422) return {};
+  return Object.fromEntries(
+    error.validationIssues.flatMap((issue) => {
+      const field = issue.loc.at(-1);
+      if (typeof field !== "string") return [];
+      const message = issue.msg.replace(/^Value error,\s*/i, "");
+      return [[field, message]];
+    })
+  );
+}
