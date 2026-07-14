@@ -40,17 +40,22 @@ function setCanonical(href: string) {
 function setManifest(content: PortfolioContent, title: string, description: string) {
   const link = document.querySelector<HTMLLinkElement>('link[rel="manifest"]');
   if (!link) return () => undefined;
-  const icon = content.branding?.favicon?.src || "/assets/images/brand-mark.svg";
+  const appRoot = new URL("/", window.location.origin).href;
+  const icon = new URL(
+    content.branding?.favicon?.src || "/assets/images/brand-mark.svg",
+    window.location.origin
+  ).href;
   const manifest = {
+    id: appRoot,
     name: content.profile.name || title,
     short_name: content.profile.name || title,
     description,
-    start_url: "/",
-    scope: "/",
+    start_url: appRoot,
+    scope: appRoot,
     display: "standalone",
     background_color: "#ffffff",
     theme_color: content.seo.themeColor || "#06245a",
-    icons: [{ src: icon, sizes: "any", type: "image/svg+xml", purpose: "any maskable" }]
+    icons: [{ src: icon, sizes: "any", purpose: "any maskable" }]
   };
   const url = URL.createObjectURL(
     new Blob([JSON.stringify(manifest)], { type: "application/manifest+json" })
