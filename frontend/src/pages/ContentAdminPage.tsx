@@ -796,7 +796,18 @@ function ContactScreen() {
           <article className="cms-contact-item" key={item.id}>
             <header><div><h3>{item.subject}</h3><p>{item.name} · {item.email}</p></div><Badge tone={item.delivery_state === "sent" ? "good" : item.delivery_state === "failed" ? "danger" : "warn"}>{item.delivery_state}</Badge></header>
             <p>{item.message}</p>
-            {item.delivery_error ? <small>{item.delivery_error}</small> : null}
+            <dl className="cms-contact-delivery">
+              <div><dt>Delivery</dt><dd>{item.delivery_state}</dd></div>
+              <div><dt>Attempts</dt><dd>{item.delivery_attempts}</dd></div>
+              <div><dt>Last attempt</dt><dd>{item.last_delivery_at ? new Date(item.last_delivery_at).toLocaleString() : "Not attempted"}</dd></div>
+              <div><dt>Delivered</dt><dd>{item.delivered_at ? new Date(item.delivered_at).toLocaleString() : "Not delivered"}</dd></div>
+            </dl>
+            {item.delivery_error ? (
+              <div className="cms-contact-delivery-error">
+                <strong>Why notification failed</strong>
+                <p>{item.delivery_error}</p>
+              </div>
+            ) : null}
             <footer>
               <Select aria-label={`Status for ${item.subject}`} value={item.inbox_state} onChange={(event) => void update(item, event.target.value)}>
                 {['new', 'read', 'replied', 'spam', 'archived'].map((state) => <option key={state} value={state}>{state}</option>)}
