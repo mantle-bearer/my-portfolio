@@ -463,30 +463,31 @@ export const ContactCreateSchema = {
         name: {
             type: 'string',
             maxLength: 120,
-            minLength: 2,
+            minLength: 1,
             title: 'Name'
         },
         email: {
             type: 'string',
+            maxLength: 320,
             format: 'email',
             title: 'Email'
         },
         subject: {
             type: 'string',
             maxLength: 180,
-            minLength: 2,
+            minLength: 1,
             title: 'Subject'
         },
         message: {
             type: 'string',
             maxLength: 5000,
-            minLength: 10,
+            minLength: 1,
             title: 'Message'
         },
-        company: {
+        website: {
             type: 'string',
             maxLength: 0,
-            title: 'Company',
+            title: 'Website',
             default: ''
         }
     },
