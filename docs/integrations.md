@@ -10,7 +10,9 @@ for isolated local and test runs.
 
 Redis is optional and powers login/contact throttling when configured. The app
 uses `fastapi-redis-sdk` for connection configuration; it does not host Redis or
-provide response caching. Compatible managed Redis services can expose `REDIS_URL`.
+provide response caching. Contact throttling falls back to a bounded in-process
+counter when Redis is unavailable. Compatible managed Redis services can expose
+`REDIS_URL`; Redis is required for one shared limit across multiple app instances.
 
 ## SMTP
 
