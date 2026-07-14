@@ -20,11 +20,18 @@ export type StatusResponse = {
 
 export const apiPrefix = "/api/v1";
 
+export type ApiValidationIssue = {
+  loc: Array<string | number>;
+  msg: string;
+  type?: string;
+};
+
 export class ApiError extends Error {
   constructor(
     public readonly status: number,
     message: string,
-    public readonly detail?: string
+    public readonly detail?: string,
+    public readonly validationIssues: ApiValidationIssue[] = []
   ) {
     super(message);
     this.name = "ApiError";
@@ -55,12 +62,20 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
   });
   if (!response.ok) {
     let detail: string | undefined;
+    let validationIssues: ApiValidationIssue[] = [];
     try {
       const payload: unknown = await response.json();
       if (typeof payload === "object" && payload !== null) {
         const candidate = (payload as { detail?: unknown; message?: unknown }).detail ??
           (payload as { message?: unknown }).message;
         if (typeof candidate === "string") detail = candidate;
+        if (Array.isArray(candidate)) {
+          validationIssues = candidate.filter((issue): issue is ApiValidationIssue => {
+            if (typeof issue !== "object" || issue === null) return false;
+            const value = issue as Partial<ApiValidationIssue>;
+            return Array.isArray(value.loc) && typeof value.msg === "string";
+          });
+        }
       } else if (typeof payload === "string") {
         detail = payload;
       }
@@ -70,7 +85,12 @@ export async function api<T>(path: string, init: RequestInit = {}): Promise<T> {
     if (response.status === 401) {
       window.dispatchEvent(new Event("auth:expired"));
     }
-    throw new ApiError(response.status, detail ?? response.statusText, detail);
+    throw new ApiError(
+      response.status,
+      detail ?? response.statusText,
+      detail,
+      validationIssues
+    );
   }
   if (response.status === 204) return undefined as T;
   return response.json() as Promise<T>;
