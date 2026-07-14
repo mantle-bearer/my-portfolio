@@ -137,4 +137,10 @@ test("admin can navigate the portfolio CMS screens", async ({ page }) => {
 
   await page.getByRole("navigation", { name: "Portfolio content screens" }).getByRole("link", { name: "Contact" }).click();
   await expect(page.getByRole("heading", { name: "Contact inbox" })).toBeVisible();
+  const firstContact = page.locator(".cms-contact-item").first();
+  if (await firstContact.count()) {
+    await expect(firstContact.getByText("Delivery", { exact: true })).toBeVisible();
+    await expect(firstContact.getByText("Attempts", { exact: true })).toBeVisible();
+    await expect(firstContact.getByText("Last attempt", { exact: true })).toBeVisible();
+  }
 });
