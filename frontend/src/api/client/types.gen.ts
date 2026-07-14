@@ -121,7 +121,7 @@ export type ContactCreate = {
     email: string;
     subject: string;
     message: string;
-    company?: string;
+    website?: string;
 };
 
 /**
